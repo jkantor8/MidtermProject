@@ -1,5 +1,8 @@
 package com.skilldistillery.sportswap.data;
 
-public interface UserDAO {
+import com.skilldistillery.sportswap.entities.User;
 
+public interface UserDAO {
+	
+	User login(User user);
 }

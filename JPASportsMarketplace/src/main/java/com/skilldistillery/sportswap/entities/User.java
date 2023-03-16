@@ -17,6 +17,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String username;
+	private String password;
 	private boolean enabled;
 	private String role;
 
@@ -32,7 +33,7 @@ public class User {
 		return username;
 	}
 
-	public void setUserName(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
@@ -50,6 +51,15 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
@@ -71,7 +81,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + username + ", enabled=" + enabled + ", role=" + role + "]";
+		return "User [id=" + id + ", username=" + username + ", enabled=" + enabled + ", role=" + role + "]";
 	}
 	
 	

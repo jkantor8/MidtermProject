@@ -11,5 +11,7 @@
 
 <h1>Welcome to SportSwap</h1>
 
+<h2>User: ${SMOKETEST }</h2>
+
 </body>
 </html>
