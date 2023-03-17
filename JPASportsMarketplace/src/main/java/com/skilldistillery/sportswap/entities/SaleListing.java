@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -20,7 +23,7 @@ public class SaleListing {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String price;
+	private double price;
 	
 	private boolean active;
 	
@@ -31,6 +34,14 @@ public class SaleListing {
 	private LocalDateTime updated;
 	
 	private LocalDateTime deactivated;
+	
+	@ManyToOne
+	@JoinColumn(name= "user_id")
+	private User sellingUser;
+	
+	@OneToOne
+	@JoinColumn(name="item_id")
+	private Item item;
 	
 	public SaleListing() {
 		
@@ -44,11 +55,11 @@ public class SaleListing {
 		this.id = id;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -82,6 +93,24 @@ public class SaleListing {
 
 	public void setDeactivated(LocalDateTime deactivated) {
 		this.deactivated = deactivated;
+	}
+	
+
+	public User getSellingUser() {
+		return sellingUser;
+	}
+
+	public void setSellingUser(User sellingUser) {
+		this.sellingUser = sellingUser;
+	}
+	
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	@Override

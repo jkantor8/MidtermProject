@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Item {
@@ -35,6 +36,9 @@ public class Item {
 	private LocalDateTime updated;
 
 	private LocalDateTime deactivated;
+	
+	@OneToOne(mappedBy="item")
+	private SaleListing saleListing;
 
 	public Item() {
 		super();
@@ -118,6 +122,14 @@ public class Item {
 
 	public void setDeactivated(LocalDateTime deactivated) {
 		this.deactivated = deactivated;
+	}
+
+	public SaleListing getSaleListing() {
+		return saleListing;
+	}
+
+	public void setSaleListing(SaleListing saleListing) {
+		this.saleListing = saleListing;
 	}
 
 	@Override
