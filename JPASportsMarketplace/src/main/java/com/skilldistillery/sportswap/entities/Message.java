@@ -98,7 +98,7 @@ public class Message {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(content, created, deactivated, id, subject);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -110,9 +110,7 @@ public class Message {
 		if (getClass() != obj.getClass())
 			return false;
 		Message other = (Message) obj;
-		return Objects.equals(content, other.content) && Objects.equals(created, other.created)
-				&& Objects.equals(deactivated, other.deactivated) && id == other.id
-				&& Objects.equals(subject, other.subject);
+		return id == other.id;
 	}
 
 	@Override

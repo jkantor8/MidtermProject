@@ -30,6 +30,8 @@ public class Address {
 	@Column(name = "country_code")
 	private String countryCode;
 	
+	
+	
 	public Address() {
 		
 	}

@@ -122,7 +122,7 @@ public class Item {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(active, brand, created, deactivated, description, gender, id, imageUrl, name, updated);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -134,10 +134,7 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return active == other.active && Objects.equals(brand, other.brand) && Objects.equals(created, other.created)
-				&& Objects.equals(deactivated, other.deactivated) && Objects.equals(description, other.description)
-				&& Objects.equals(gender, other.gender) && id == other.id && Objects.equals(imageUrl, other.imageUrl)
-				&& Objects.equals(name, other.name) && Objects.equals(updated, other.updated);
+		return id == other.id;
 	}
 
 	@Override

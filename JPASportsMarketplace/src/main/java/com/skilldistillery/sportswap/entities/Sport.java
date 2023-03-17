@@ -55,7 +55,7 @@ public class Sport {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name);
+		return Objects.hash(id);
 	}
 
 
@@ -69,7 +69,7 @@ public class Sport {
 		if (getClass() != obj.getClass())
 			return false;
 		Sport other = (Sport) obj;
-		return id == other.id && Objects.equals(name, other.name);
+		return id == other.id;
 	}
 
 

@@ -44,7 +44,7 @@ public class Condition {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(condition, id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class Condition {
 		if (getClass() != obj.getClass())
 			return false;
 		Condition other = (Condition) obj;
-		return Objects.equals(condition, other.condition) && id == other.id;
+		return id == other.id;
 	}
 
 	@Override

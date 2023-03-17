@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -35,6 +37,10 @@ public class User {
 	private LocalDateTime updated;
 
 	private LocalDateTime deactivated;
+	
+	@OneToOne
+	@JoinColumn (name= "address_id")
+	private Address address;
 	
 	@OneToMany (mappedBy= "sender")
 	private List<Message> sentMessages;
@@ -175,6 +181,14 @@ public class User {
 		message.setReceiver(null);
 		}
 		}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	@Override
 	public int hashCode() {
