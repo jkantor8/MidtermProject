@@ -84,13 +84,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `condition`
+-- Table `item_condition`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `condition` ;
+DROP TABLE IF EXISTS `item_condition` ;
 
-CREATE TABLE IF NOT EXISTS `condition` (
+CREATE TABLE IF NOT EXISTS `item_condition` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `condition` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -114,12 +114,12 @@ CREATE TABLE IF NOT EXISTS `item` (
   `user_id` INT NOT NULL,
   `age_group_id` INT NOT NULL,
   `sport_id` INT NOT NULL,
-  `condition_id` INT NOT NULL,
+  `item_condition_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_item_user1_idx` (`user_id` ASC),
   INDEX `fk_item_sport1_idx` (`sport_id` ASC),
   INDEX `fk_item_age_group1_idx` (`age_group_id` ASC),
-  INDEX `fk_item_condition1_idx` (`condition_id` ASC),
+  INDEX `fk_item_item_condition1_idx` (`item_condition_id` ASC),
   CONSTRAINT `fk_item_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
@@ -135,9 +135,9 @@ CREATE TABLE IF NOT EXISTS `item` (
     REFERENCES `age_group` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_item_condition1`
-    FOREIGN KEY (`condition_id`)
-    REFERENCES `condition` (`id`)
+  CONSTRAINT `fk_item_item_condition1`
+    FOREIGN KEY (`item_condition_id`)
+    REFERENCES `item_condition` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -499,14 +499,14 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `condition`
+-- Data for table `item_condition`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sportswapdb`;
-INSERT INTO `condition` (`id`, `condition`) VALUES (1, 'NEW');
-INSERT INTO `condition` (`id`, `condition`) VALUES (2, 'LIGHTLY USED');
-INSERT INTO `condition` (`id`, `condition`) VALUES (3, 'USED');
-INSERT INTO `condition` (`id`, `condition`) VALUES (4, 'HEAVILY USED');
+INSERT INTO `item_condition` (`id`, `name`) VALUES (1, 'NEW');
+INSERT INTO `item_condition` (`id`, `name`) VALUES (2, 'LIGHTLY USED');
+INSERT INTO `item_condition` (`id`, `name`) VALUES (3, 'USED');
+INSERT INTO `item_condition` (`id`, `name`) VALUES (4, 'HEAVILY USED');
 
 COMMIT;
 
@@ -516,8 +516,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sportswapdb`;
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `condition_id`) VALUES (1, 'Punching Bag', 'A punching bag that hangs from the ceiling. Attachment not included.', 'https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg', NULL, 'TKO', 1, NULL, NULL, NULL, 3, 3, 1, 2);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `condition_id`) VALUES (2, 'Hockey Stick', 'Got this new but it was too short.', 'https://xanimal37.github.io/figures/img/GAG_fig_06.jpg', NULL, 'Bauer', 1, NULL, NULL, NULL, 2, 2, 2, 1);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `item_condition_id`) VALUES (1, 'Punching Bag', 'A punching bag that hangs from the ceiling. Attachment not included.', 'https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg', NULL, 'TKO', 1, NULL, NULL, NULL, 3, 3, 1, 1);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `item_condition_id`) VALUES (2, 'Hockey Stick', 'Got this new but it was too short.', 'https://xanimal37.github.io/figures/img/GAG_fig_06.jpg', NULL, 'Bauer', 1, NULL, NULL, NULL, 2, 2, 2, 3);
 
 COMMIT;
 
