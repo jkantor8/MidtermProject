@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name= "age_group")
-public class ageGroup {
+public class AgeGroup {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class ageGroup {
 	
 	private String age;
 	
-	public ageGroup() {
+	public AgeGroup() {
 		
 	}
 
@@ -51,13 +51,13 @@ public class ageGroup {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ageGroup other = (ageGroup) obj;
+		AgeGroup other = (AgeGroup) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "ageGroup [id=" + id + ", age=" + age + "]";
+		return "AgeGroup [id=" + id + ", age=" + age + "]";
 	}
 	
 }
