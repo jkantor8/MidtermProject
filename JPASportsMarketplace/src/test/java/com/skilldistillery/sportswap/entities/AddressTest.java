@@ -43,11 +43,19 @@ class AddressTest {
 	@Test
 	void test_address_entity_mapping() {
 		assertNotNull(address);
-		assertEquals("2929 Beach St",address.getAddress());
-		assertNull(address.getAddress2());
+		assertEquals("2929 Beach St",address.getStreet());
+		assertNull(address.getStreet2());
 		assertEquals("Mendota Heights",address.getCity());
 		assertEquals("55555",address.getPostalCode());
 	}
+	
+	@Test
+	  void test_Address_DonationListing_OneToOne_mapping() {
+	     assertNotNull(address);
+	     assertNotNull(address.getDonationListing());
+	     assertTrue(address.getDonationListing().isActive());
+	    
+	  }
 
 }
 

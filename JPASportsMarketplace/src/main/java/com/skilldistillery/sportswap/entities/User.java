@@ -40,13 +40,16 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn (name= "address_id")
-	private Address address;
+	private Address userAddress;
 	
 	@OneToMany (mappedBy= "sender")
 	private List<Message> sentMessages;
 	
 	@OneToMany (mappedBy= "sender")
 	private List<Message> receivedMessages;
+	
+	@OneToMany (mappedBy= "user")
+	private List<DonationListing> donationListings;
 	
 	
 	public int getId() {
@@ -182,12 +185,20 @@ public class User {
 		}
 		}
 
-	public Address getAddress() {
-		return address;
+	public Address getUserAddress() {
+		return userAddress;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setUserAddress(Address address) {
+		this.userAddress = address;
+	}
+
+	public List<DonationListing> getDonationListings() {
+		return donationListings;
+	}
+
+	public void setDonationListings(List<DonationListing> donationListings) {
+		this.donationListings = donationListings;
 	}
 
 	@Override

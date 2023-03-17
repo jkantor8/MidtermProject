@@ -60,4 +60,22 @@ class UserTest {
 		assertNotNull(user.getReceivedMessages());
 		assertTrue(user.getReceivedMessages().size() > 0);
 	}
+	
+	@Test
+	  void test_User_Address_OneToOne_mapping() {
+		user = em.find(User.class, 1);
+	     assertNotNull(user);
+	     assertNotNull(user.getUserAddress());
+	     assertEquals(1, user.getUserAddress().getId());
+	     assertEquals("2929 Beach St", user.getUserAddress().getStreet());
+	     assertEquals("Mendota Heights", user.getUserAddress().getCity());
+	     assertEquals("55555", user.getUserAddress().getPostalCode());
+	  }
+	
+	@Test
+	void test_User_DonationListing_OneToMany_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getDonationListings());
+		assertTrue(user.getDonationListings().size() > 0);
+	}
 }

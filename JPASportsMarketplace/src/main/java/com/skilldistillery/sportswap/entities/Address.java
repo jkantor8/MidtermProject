@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
@@ -15,9 +16,11 @@ public class Address {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private String address;
+	@Column(name="address")
+	private String street;
 	
-	private String address2;
+	@Column(name="address2")
+	private String street2;
 	
 	private String city;
 	
@@ -30,7 +33,8 @@ public class Address {
 	@Column(name = "country_code")
 	private String countryCode;
 	
-	
+	@OneToOne(mappedBy= "donationAddress")
+	private DonationListing donationListing;
 	
 	public Address() {
 		
@@ -44,20 +48,20 @@ public class Address {
 		this.id = id;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
-	public String getAddress2() {
-		return address2;
+	public String getStreet2() {
+		return street2;
 	}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
+	public void setStreet2(String street2) {
+		this.street2 = street2;
 	}
 
 	public String getCity() {
@@ -92,6 +96,14 @@ public class Address {
 		this.countryCode = countryCode;
 	}
 
+	public DonationListing getDonationListing() {
+		return donationListing;
+	}
+
+	public void setDonationListing(DonationListing donationListing) {
+		this.donationListing = donationListing;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -111,7 +123,7 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", address=" + address + ", address2=" + address2 + ", city=" + city + ", state="
+		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state="
 				+ state + ", postalCode=" + postalCode + ", countryCode=" + countryCode + "]";
 	}
 	
