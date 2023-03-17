@@ -14,8 +14,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "donate_listing")
-public class DonateListing {
+@Table(name = "donation_listing")
+public class DonationListing {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class DonateListing {
 	@Column(name= "event_end")
 	private LocalDateTime eventEnd;
 	
-	public DonateListing() {
+	public DonationListing() {
 		
 	}
 
@@ -111,13 +111,13 @@ public class DonateListing {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DonateListing other = (DonateListing) obj;
+		DonationListing other = (DonationListing) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "DonateListing [id=" + id + ", active=" + active + ", created=" + created + ", updated=" + updated
+		return "DonationListing [id=" + id + ", active=" + active + ", created=" + created + ", updated=" + updated
 				+ ", deactivated=" + deactivated + ", eventStart=" + eventStart + ", eventEnd=" + eventEnd + "]";
 	}
 	

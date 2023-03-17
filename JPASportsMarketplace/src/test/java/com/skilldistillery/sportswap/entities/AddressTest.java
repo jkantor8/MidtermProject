@@ -20,7 +20,7 @@ class AddressTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+		emf = Persistence.createEntityManagerFactory("JPASportsMarketplace");
 	}
 
 	@AfterAll
@@ -43,10 +43,10 @@ class AddressTest {
 	@Test
 	void test_address_entity_mapping() {
 		assertNotNull(address);
-		assertEquals("47 MySakila Drive",address.getAddress());
+		assertEquals("2929 Beach St",address.getAddress());
 		assertNull(address.getAddress2());
-		assertEquals("Alberta",address.getState());
-		assertEquals("",address.getPostalCode());
+		assertEquals("Mendota Heights",address.getCity());
+		assertEquals("55555",address.getPostalCode());
 	}
 
 }

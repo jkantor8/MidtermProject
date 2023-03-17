@@ -16,12 +16,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DonateListingTest {
+class DonationListingTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	
-	private DonateListing donateListing;
+	private DonationListing donationListing;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -36,7 +36,7 @@ class DonateListingTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		donateListing = em.find(DonateListing.class, 1);
+		donationListing = em.find(DonationListing.class, 1);
 	}
 
 	@AfterEach
@@ -46,10 +46,9 @@ class DonateListingTest {
 
 	@Test
 	void test_entity_mapping() {
-		assertNotNull(donateListing);
-		assertTrue(donateListing.isActive());
-		assertEquals("", donateListing.getEventStart());
-		assertEquals("", donateListing.getEventEnd());
+		assertNotNull(donationListing);
+		assertTrue(donationListing.isActive());
+	
 		
 		
 	}
