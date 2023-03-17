@@ -21,7 +21,7 @@ public class User {
 	
 	private String password;
 	
-	private boolean enabled;
+	private boolean active;
 	
 	private String role;
 
@@ -50,12 +50,14 @@ public class User {
 		this.username = username;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+
+
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getRole() {
@@ -109,7 +111,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(created, deactivated, email, enabled, id, password, role, updated, username);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -121,17 +123,14 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(created, other.created) && Objects.equals(deactivated, other.deactivated)
-				&& Objects.equals(email, other.email) && enabled == other.enabled && id == other.id
-				&& Objects.equals(password, other.password) && Objects.equals(role, other.role)
-				&& Objects.equals(updated, other.updated) && Objects.equals(username, other.username);
+		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", email=" + email + ", created=" + created + ", updated=" + updated
-				+ ", deactivated=" + deactivated + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", active=" + active + ", role="
+				+ role + ", email=" + email + ", created=" + created + ", updated=" + updated + ", deactivated="
+				+ deactivated + "]";
 	}
 	
 	
