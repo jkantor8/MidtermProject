@@ -4,5 +4,5 @@ import com.skilldistillery.sportswap.entities.User;
 
 public interface UserDAO {
 	
-	User login(User user);
+	User login(String name, String pw);
 }
