@@ -54,6 +54,9 @@ public class User {
 	@OneToMany (mappedBy= "sellingUser")
 	private List<SaleListing> saleListings;
 	
+	@OneToMany(mappedBy="swappingUser")
+	private List<SwapListing> swapListings;
+	
 	
 	
 	public int getId() {
@@ -212,6 +215,15 @@ public class User {
 
 	public void setSaleListings(List<SaleListing> saleListings) {
 		this.saleListings = saleListings;
+	}
+	
+
+	public List<SwapListing> getSwapListings() {
+		return swapListings;
+	}
+
+	public void setSwapListings(List<SwapListing> swapListings) {
+		this.swapListings = swapListings;
 	}
 
 	@Override

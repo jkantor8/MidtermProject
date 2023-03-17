@@ -59,5 +59,15 @@ class SwapListingTest {
 	     assertEquals("Des Moines", swapListing.getSwapAddress().getCity());
 	     assertEquals("23425", swapListing.getSwapAddress().getPostalCode());
 	  }
+	
+	@Test
+	void test_SwapListing_User_ManyToOne() {
+		assertNotNull(swapListing);
+		assertNotNull(swapListing.getSwappingUser());
+		assertEquals("Florence",swapListing.getSwappingUser().getUsername());
+		assertEquals("Welch",swapListing.getSwappingUser().getPassword());
+		assertEquals("fwftw@fldsjaf.org",swapListing.getSwappingUser().getEmail());
+		
+	}
 
 }
