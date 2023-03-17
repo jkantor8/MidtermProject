@@ -36,6 +36,9 @@ public class Address {
 	@OneToOne(mappedBy= "donationAddress")
 	private DonationListing donationListing;
 	
+	@OneToOne(mappedBy= "swapAddress")
+	private SwapListing swapListing;
+	
 	public Address() {
 		
 	}
@@ -102,6 +105,14 @@ public class Address {
 
 	public void setDonationListing(DonationListing donationListing) {
 		this.donationListing = donationListing;
+	}
+
+	public SwapListing getSwapListing() {
+		return swapListing;
+	}
+
+	public void setSwapListing(SwapListing swapListing) {
+		this.swapListing = swapListing;
 	}
 
 	@Override

@@ -74,6 +74,7 @@ class UserTest {
 	
 	@Test
 	void test_User_DonationListing_OneToMany_mapping() {
+		user = em.find(User.class, 1);
 		assertNotNull(user);
 		assertNotNull(user.getDonationListings());
 		assertTrue(user.getDonationListings().size() > 0);

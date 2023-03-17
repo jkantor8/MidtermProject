@@ -2,6 +2,7 @@ package com.skilldistillery.sportswap.entities;
 
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -48,5 +49,15 @@ class SwapListingTest {
 		assertNotNull(swapListing);
 		assertTrue(swapListing.isActive());
 	}
+	
+	@Test
+	  void test_SwapListing_Address_OneToOne_mapping() {
+	     assertNotNull(swapListing);
+	     assertNotNull(swapListing.getSwapAddress());
+	     assertEquals(3, swapListing.getSwapAddress().getId());
+	     assertEquals("5050 9th St", swapListing.getSwapAddress().getStreet());
+	     assertEquals("Des Moines", swapListing.getSwapAddress().getCity());
+	     assertEquals("23425", swapListing.getSwapAddress().getPostalCode());
+	  }
 
 }

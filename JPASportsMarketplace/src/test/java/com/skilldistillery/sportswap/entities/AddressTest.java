@@ -56,6 +56,15 @@ class AddressTest {
 	     assertTrue(address.getDonationListing().isActive());
 	    
 	  }
+	
+	@Test
+	void test_Address_SwapListing_OneToOne_mapping() {
+		address = em.find(Address.class, 3);
+		assertNotNull(address);
+		assertNotNull(address.getSwapListing());
+		assertTrue(address.getSwapListing().isActive());
+		
+	}
 
 }
 
