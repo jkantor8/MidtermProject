@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name= "age_group")
 public class AgeGroup {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
