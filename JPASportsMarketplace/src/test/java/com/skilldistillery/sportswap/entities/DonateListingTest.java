@@ -2,6 +2,7 @@ package com.skilldistillery.sportswap.entities;
 
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,6 +48,9 @@ class DonateListingTest {
 	void test_entity_mapping() {
 		assertNotNull(donateListing);
 		assertTrue(donateListing.isActive());
+		assertEquals("", donateListing.getEventStart());
+		assertEquals("", donateListing.getEventEnd());
+		
 		
 	}
 
