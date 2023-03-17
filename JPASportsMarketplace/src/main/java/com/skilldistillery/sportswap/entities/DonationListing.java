@@ -8,14 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "donate_listing")
-public class DonateListing {
+@Table(name = "donation_listing")
+public class DonationListing {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +40,15 @@ public class DonateListing {
 	@Column(name= "event_end")
 	private LocalDateTime eventEnd;
 	
-	public DonateListing() {
+	@OneToOne
+	@JoinColumn (name= "address_id")
+	private Address donationAddress;
+	
+	@ManyToOne 
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	public DonationListing() {
 		
 	}
 
@@ -98,6 +109,22 @@ public class DonateListing {
 		this.eventEnd = eventEnd;
 	}
 
+	public Address getDonationAddress() {
+		return donationAddress;
+	}
+
+	public void setDonationAddress(Address donationAddress) {
+		this.donationAddress = donationAddress;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -111,13 +138,13 @@ public class DonateListing {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DonateListing other = (DonateListing) obj;
+		DonationListing other = (DonationListing) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "DonateListing [id=" + id + ", active=" + active + ", created=" + created + ", updated=" + updated
+		return "DonationListing [id=" + id + ", active=" + active + ", created=" + created + ", updated=" + updated
 				+ ", deactivated=" + deactivated + ", eventStart=" + eventStart + ", eventEnd=" + eventEnd + "]";
 	}
 	

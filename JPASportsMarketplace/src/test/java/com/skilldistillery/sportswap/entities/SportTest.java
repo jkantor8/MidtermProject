@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AddressTest {
+class SportTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Address address;
+	private Sport sport;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,40 +31,20 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);
+		sport = em.find(Sport.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		address = null;
+		sport = null;
 	}
-	
+
 	@Test
-	void test_address_entity_mapping() {
-		assertNotNull(address);
-		assertEquals("2929 Beach St",address.getStreet());
-		assertNull(address.getStreet2());
-		assertEquals("Mendota Heights",address.getCity());
-		assertEquals("55555",address.getPostalCode());
-	}
+	void test_sport_entity_mapping() {
+		assertNotNull(sport);
+		assertEquals("Boxing", sport.getName());
 	
-	@Test
-	  void test_Address_DonationListing_OneToOne_mapping() {
-	     assertNotNull(address);
-	     assertNotNull(address.getDonationListing());
-	     assertTrue(address.getDonationListing().isActive());
-	    
-	  }
-	
-	@Test
-	void test_Address_SwapListing_OneToOne_mapping() {
-		address = em.find(Address.class, 3);
-		assertNotNull(address);
-		assertNotNull(address.getSwapListing());
-		assertTrue(address.getSwapListing().isActive());
-		
 	}
 
 }
-

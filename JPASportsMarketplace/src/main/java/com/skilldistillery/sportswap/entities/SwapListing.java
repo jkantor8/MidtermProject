@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,6 +31,10 @@ public class SwapListing {
 	private LocalDateTime updated;
 	
 	private LocalDateTime deactivated;
+	
+	@OneToOne
+	@JoinColumn (name= "address_id")
+	private Address swapAddress;
 	
 	public SwapListing() {
 		
@@ -72,6 +78,14 @@ public class SwapListing {
 
 	public void setDeactivated(LocalDateTime deactivated) {
 		this.deactivated = deactivated;
+	}
+
+	public Address getSwapAddress() {
+		return swapAddress;
+	}
+
+	public void setSwapAddress(Address swapAddress) {
+		this.swapAddress = swapAddress;
 	}
 
 	@Override

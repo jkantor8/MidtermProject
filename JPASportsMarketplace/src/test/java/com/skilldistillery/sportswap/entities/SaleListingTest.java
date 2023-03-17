@@ -46,7 +46,7 @@ class SaleListingTest {
 	@Test
 	void test_entity_mapping() {
 		assertNotNull(saleListing);
-		assertEquals("admin",saleListing.getPrice());
+		assertEquals("20.00",saleListing.getPrice());
 	}
 
 }

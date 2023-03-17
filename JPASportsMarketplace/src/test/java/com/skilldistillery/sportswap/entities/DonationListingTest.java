@@ -16,12 +16,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class SwapListingTest {
+class DonationListingTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	
-	private SwapListing swapListing;
+	private DonationListing donationListing;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -36,7 +36,7 @@ class SwapListingTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		swapListing = em.find(SwapListing.class, 1);
+		donationListing = em.find(DonationListing.class, 1);
 	}
 
 	@AfterEach
@@ -46,18 +46,28 @@ class SwapListingTest {
 
 	@Test
 	void test_entity_mapping() {
-		assertNotNull(swapListing);
-		assertTrue(swapListing.isActive());
-	}
+		assertNotNull(donationListing);
+		assertTrue(donationListing.isActive());
 	
+		
+		
+	}
 	@Test
-	  void test_SwapListing_Address_OneToOne_mapping() {
-	     assertNotNull(swapListing);
-	     assertNotNull(swapListing.getSwapAddress());
-	     assertEquals(3, swapListing.getSwapAddress().getId());
-	     assertEquals("5050 9th St", swapListing.getSwapAddress().getStreet());
-	     assertEquals("Des Moines", swapListing.getSwapAddress().getCity());
-	     assertEquals("23425", swapListing.getSwapAddress().getPostalCode());
+	  void test_DonationListing_Address_OneToOne_mapping() {
+	     assertNotNull(donationListing);
+	     assertNotNull(donationListing.getDonationAddress());
+	     assertEquals(1, donationListing.getDonationAddress().getId());
+	     assertEquals("2929 Beach St", donationListing.getDonationAddress().getStreet());
+	     assertEquals("Mendota Heights", donationListing.getDonationAddress().getCity());
+	     assertEquals("55555", donationListing.getDonationAddress().getPostalCode());
 	  }
-
+	
+	@Test 
+	void test_DonationListing_User_ManyToOne_mapping() {
+		assertNotNull(donationListing);
+		assertNotNull(donationListing.getUser());
+		assertEquals("admin", donationListing.getUser().getUsername());
+		
+		
+	}
 }

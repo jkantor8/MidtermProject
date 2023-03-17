@@ -1,10 +1,6 @@
 package com.skilldistillery.sportswap.entities;
 
-
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,12 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DonateListingTest {
+class MessageTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	
-	private DonateListing donateListing;
+	private Message message;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -36,7 +32,7 @@ class DonateListingTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		donateListing = em.find(DonateListing.class, 1);
+		message = em.find(Message.class, 1);
 	}
 
 	@AfterEach
@@ -45,13 +41,18 @@ class DonateListingTest {
 	}
 
 	@Test
-	void test_entity_mapping() {
-		assertNotNull(donateListing);
-		assertTrue(donateListing.isActive());
-		assertEquals("", donateListing.getEventStart());
-		assertEquals("", donateListing.getEventEnd());
-		
-		
+	void test_Message_entity_mapping() {
+		assertNotNull(message);
+		assertEquals("Hi! What color is the punching bag?",message.getContent());
 	}
 
+	@Test
+	void test_Message_User_ManyToOne_relationship_mapping() {
+		assertNotNull(message);
+		assertNotNull(message.getSender());
+		assertNotNull(message.getReceiver());
+		assertEquals(2, message.getSender().getId());
+		assertEquals(3, message.getReceiver().getId());
+		assertEquals("Hi! What color is the punching bag?", message.getContent());
+	}
 }

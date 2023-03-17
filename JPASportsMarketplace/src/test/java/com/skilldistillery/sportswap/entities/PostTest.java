@@ -47,7 +47,7 @@ class PostTest {
 	void test_entity_mapping() {
 		assertNotNull(post);
 		assertTrue(post.isActive());
-		assertEquals("",post.getComment());
+		assertEquals("Hi this is really fun!",post.getComment());
 		
 	}
 }

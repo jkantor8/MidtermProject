@@ -44,7 +44,7 @@ class AgeGroupTest {
 	@Test
 	void test_entity_mapping() {
 		assertNotNull(ageGroup);
-		assertEquals("",ageGroup.getAge());
+		assertEquals("YOUTH",ageGroup.getAge());
 	}
 
 }

@@ -1,12 +1,17 @@
 package com.skilldistillery.sportswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -21,7 +26,7 @@ public class User {
 	
 	private String password;
 	
-	private boolean enabled;
+	private boolean active;
 	
 	private String role;
 
@@ -32,6 +37,19 @@ public class User {
 	private LocalDateTime updated;
 
 	private LocalDateTime deactivated;
+	
+	@OneToOne
+	@JoinColumn (name= "address_id")
+	private Address userAddress;
+	
+	@OneToMany (mappedBy= "sender")
+	private List<Message> sentMessages;
+	
+	@OneToMany (mappedBy= "sender")
+	private List<Message> receivedMessages;
+	
+	@OneToMany (mappedBy= "user")
+	private List<DonationListing> donationListings;
 	
 	
 	public int getId() {
@@ -50,12 +68,14 @@ public class User {
 		this.username = username;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+
+
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getRole() {
@@ -107,9 +127,83 @@ public class User {
 		this.deactivated = deactivated;
 	}
 
+	public List<Message> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
+		
+		
+	}
+
+	public void addSentMessage(Message message) {
+		if (sentMessages == null ) {sentMessages = new ArrayList<>();}
+		if (!sentMessages.contains(message)) {
+			
+			sentMessages.add(message);
+			if (message.getSender() != null) {
+				message.getSender().removeSentMessage(message);
+			}
+ 			message.setSender(this);
+		}
+	}
+
+	public void removeSentMessage(Message message) {
+		if (sentMessages != null && sentMessages.contains(message)) {
+		sentMessages.remove(message);
+		message.setSender(null);
+		}
+		}
+	
+	
+	
+	public List<Message> getReceivedMessages() {
+		return receivedMessages;
+	}
+
+	public void setReceivedMessages(List<Message> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+	
+	public void addReceivedMessage(Message message) {
+		if (receivedMessages == null ) {receivedMessages = new ArrayList<>();}
+		if (!receivedMessages.contains(message)) {
+			
+			receivedMessages.add(message);
+			if (message.getReceiver() != null) {
+				message.getReceiver().removeReceivedMessage(message);
+			}
+ 			message.setReceiver(this);
+		}
+	}
+	
+	public void removeReceivedMessage(Message message) {
+		if (receivedMessages != null && receivedMessages.contains(message)) {
+		receivedMessages.remove(message);
+		message.setReceiver(null);
+		}
+		}
+
+	public Address getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(Address address) {
+		this.userAddress = address;
+	}
+
+	public List<DonationListing> getDonationListings() {
+		return donationListings;
+	}
+
+	public void setDonationListings(List<DonationListing> donationListings) {
+		this.donationListings = donationListings;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(created, deactivated, email, enabled, id, password, role, updated, username);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -121,17 +215,14 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(created, other.created) && Objects.equals(deactivated, other.deactivated)
-				&& Objects.equals(email, other.email) && enabled == other.enabled && id == other.id
-				&& Objects.equals(password, other.password) && Objects.equals(role, other.role)
-				&& Objects.equals(updated, other.updated) && Objects.equals(username, other.username);
+		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", email=" + email + ", created=" + created + ", updated=" + updated
-				+ ", deactivated=" + deactivated + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", active=" + active + ", role="
+				+ role + ", email=" + email + ", created=" + created + ", updated=" + updated + ", deactivated="
+				+ deactivated + "]";
 	}
 	
 	

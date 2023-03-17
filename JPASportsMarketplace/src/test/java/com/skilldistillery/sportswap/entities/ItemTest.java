@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AddressTest {
+class ItemTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Address address;
+	private Item item;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,40 +31,29 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);
+		item = em.find(Item.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		address = null;
+		item = null;
 	}
-	
+
 	@Test
-	void test_address_entity_mapping() {
-		assertNotNull(address);
-		assertEquals("2929 Beach St",address.getStreet());
-		assertNull(address.getStreet2());
-		assertEquals("Mendota Heights",address.getCity());
-		assertEquals("55555",address.getPostalCode());
-	}
-	
-	@Test
-	  void test_Address_DonationListing_OneToOne_mapping() {
-	     assertNotNull(address);
-	     assertNotNull(address.getDonationListing());
-	     assertTrue(address.getDonationListing().isActive());
-	    
-	  }
-	
-	@Test
-	void test_Address_SwapListing_OneToOne_mapping() {
-		address = em.find(Address.class, 3);
-		assertNotNull(address);
-		assertNotNull(address.getSwapListing());
-		assertTrue(address.getSwapListing().isActive());
+	void test_item_entity_mapping() {
+		assertNotNull(item);
+		assertEquals("Punching Bag", item.getName());
+		assertEquals("A punching bag that hangs from the ceiling. Attachment not included.", item.getDescription());
+		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg", item.getImageUrl());
+		assertEquals("TKO", item.getBrand());
+		assertNull(item.getGender());
+		assertTrue(item.isActive());
+		assertNull(item.getCreated());
+		assertNull(item.getUpdated());
+		assertNull(item.getDeactivated());
 		
+	
 	}
 
 }
-
