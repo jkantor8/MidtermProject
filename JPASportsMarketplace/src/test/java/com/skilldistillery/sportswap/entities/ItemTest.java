@@ -48,7 +48,7 @@ class ItemTest {
 		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg", item.getImageUrl());
 		assertEquals("TKO", item.getBrand());
 		assertNull(item.getGender());
-		assertNull(item.isActive());
+		assertTrue(item.isActive());
 		assertNull(item.getCreated());
 		assertNull(item.getUpdated());
 		assertNull(item.getDeactivated());

@@ -3,10 +3,14 @@ package com.skilldistillery.sportswap.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Message {
@@ -23,6 +27,14 @@ public class Message {
 	private LocalDateTime created;
 	
 	private LocalDateTime deactivated;
+	
+	@ManyToOne
+	@JoinColumn(name= "sender_id")
+	private User sender;
+	
+	@ManyToOne
+	@JoinColumn(name= "receiver_id")
+	private User receiver;
 
 	public Message() {
 		super();
@@ -32,8 +44,24 @@ public class Message {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
+	}
+	public User getSender() {
+		return sender;
+	}
+	
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+	
+	public User getReceiver() {
+		return receiver;
+	}
+	
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
 	}
 
 	public String getSubject() {

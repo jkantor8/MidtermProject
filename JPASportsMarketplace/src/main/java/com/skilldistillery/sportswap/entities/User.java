@@ -1,12 +1,15 @@
 package com.skilldistillery.sportswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -32,6 +35,12 @@ public class User {
 	private LocalDateTime updated;
 
 	private LocalDateTime deactivated;
+	
+	@OneToMany (mappedBy= "sender")
+	private List<Message> sentMessages;
+	
+	@OneToMany (mappedBy= "sender")
+	private List<Message> receivedMessages;
 	
 	
 	public int getId() {
@@ -108,6 +117,64 @@ public class User {
 	public void setDeactivated(LocalDateTime deactivated) {
 		this.deactivated = deactivated;
 	}
+
+	public List<Message> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
+		
+		
+	}
+
+	public void addSentMessage(Message message) {
+		if (sentMessages == null ) {sentMessages = new ArrayList<>();}
+		if (!sentMessages.contains(message)) {
+			
+			sentMessages.add(message);
+			if (message.getSender() != null) {
+				message.getSender().removeSentMessage(message);
+			}
+ 			message.setSender(this);
+		}
+	}
+
+	public void removeSentMessage(Message message) {
+		if (sentMessages != null && sentMessages.contains(message)) {
+		sentMessages.remove(message);
+		message.setSender(null);
+		}
+		}
+	
+	
+	
+	public List<Message> getReceivedMessages() {
+		return receivedMessages;
+	}
+
+	public void setReceivedMessages(List<Message> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+	
+	public void addReceivedMessage(Message message) {
+		if (receivedMessages == null ) {receivedMessages = new ArrayList<>();}
+		if (!receivedMessages.contains(message)) {
+			
+			receivedMessages.add(message);
+			if (message.getReceiver() != null) {
+				message.getReceiver().removeReceivedMessage(message);
+			}
+ 			message.setReceiver(this);
+		}
+	}
+	
+	public void removeReceivedMessage(Message message) {
+		if (receivedMessages != null && receivedMessages.contains(message)) {
+		receivedMessages.remove(message);
+		message.setReceiver(null);
+		}
+		}
 
 	@Override
 	public int hashCode() {

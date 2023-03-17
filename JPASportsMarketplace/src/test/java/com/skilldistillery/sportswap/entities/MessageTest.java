@@ -46,5 +46,13 @@ class MessageTest {
 		assertEquals("Hi! What color is the punching bag?",message.getContent());
 	}
 
-
+	@Test
+	void test_Message_User_ManyToOne_relationship_mapping() {
+		assertNotNull(message);
+		assertNotNull(message.getSender());
+		assertNotNull(message.getReceiver());
+		assertEquals(2, message.getSender().getId());
+		assertEquals(3, message.getReceiver().getId());
+		assertEquals("Hi! What color is the punching bag?", message.getContent());
+	}
 }

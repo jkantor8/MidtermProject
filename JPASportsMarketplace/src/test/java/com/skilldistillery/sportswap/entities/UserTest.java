@@ -2,6 +2,7 @@ package com.skilldistillery.sportswap.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,7 +34,7 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		user = em.find(User.class, 2);
 	}
 
 	@AfterEach
@@ -44,7 +45,19 @@ class UserTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
-		assertEquals("admin",user.getUsername());
+		assertEquals("Bob",user.getUsername());
 	}
 
+	@Test
+	void test_User_sentMessage_OneToMany_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getSentMessages());
+		assertTrue(user.getSentMessages().size() > 0);
+	}
+	@Test
+	void test_User_receieMessage_OneToMany_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getReceivedMessages());
+		assertTrue(user.getReceivedMessages().size() > 0);
+	}
 }
