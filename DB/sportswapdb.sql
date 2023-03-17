@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `active` TINYINT NOT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `created` DATETIME NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `image_url` VARCHAR(2000) NULL,
   `gender` VARCHAR(45) NULL,
   `brand` VARCHAR(45) NULL,
-  `active` TINYINT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   `created` DATETIME NULL,
   `updated` DATETIME NULL,
   `deactivated` DATETIME NULL,
@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `sale_listing` ;
 CREATE TABLE IF NOT EXISTS `sale_listing` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `price` VARCHAR(45) NOT NULL,
-  `active` TINYINT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   `created` DATETIME NULL,
   `updated` DATETIME NULL,
   `deactivated` DATETIME NULL,
@@ -180,7 +180,7 @@ DROP TABLE IF EXISTS `donation_listing` ;
 
 CREATE TABLE IF NOT EXISTS `donation_listing` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `active` TINYINT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   `created` DATETIME NULL,
   `updated` DATETIME NULL,
   `deactivated` DATETIME NULL,
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `sale_listing_id` INT NULL,
   `swap_listing_id` INT NULL,
   `in_reply_to_id` INT NULL,
-  `active` TINYINT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_post_user1_idx` (`user_id` ASC),
@@ -516,8 +516,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sportswapdb`;
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `condition_id`) VALUES (1, 'Punching Bag', 'A punching bag that hangs from the ceiling. Attachment not included.', 'https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg', NULL, 'TKO', NULL, NULL, NULL, NULL, 3, 3, 1, 2);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `condition_id`) VALUES (2, 'Hockey Stick', 'Got this new but it was too short.', 'https://xanimal37.github.io/figures/img/GAG_fig_06.jpg', NULL, 'Bauer', NULL, NULL, NULL, NULL, 2, 2, 2, 1);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `condition_id`) VALUES (1, 'Punching Bag', 'A punching bag that hangs from the ceiling. Attachment not included.', 'https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg', NULL, 'TKO', 1, NULL, NULL, NULL, 3, 3, 1, 2);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `condition_id`) VALUES (2, 'Hockey Stick', 'Got this new but it was too short.', 'https://xanimal37.github.io/figures/img/GAG_fig_06.jpg', NULL, 'Bauer', 1, NULL, NULL, NULL, 2, 2, 2, 1);
 
 COMMIT;
 
@@ -548,6 +548,17 @@ COMMIT;
 START TRANSACTION;
 USE `sportswapdb`;
 INSERT INTO `swap_listing` (`id`, `active`, `created`, `updated`, `deactivated`, `user_id`, `address_id`) VALUES (1, 1, NULL, NULL, NULL, 3, 3);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `post`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sportswapdb`;
+INSERT INTO `post` (`id`, `comment`, `created`, `updated`, `deactivated`, `donation_listing_id`, `sale_listing_id`, `swap_listing_id`, `in_reply_to_id`, `active`, `user_id`) VALUES (1, 'Hi this is really fun!', NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, 2);
+INSERT INTO `post` (`id`, `comment`, `created`, `updated`, `deactivated`, `donation_listing_id`, `sale_listing_id`, `swap_listing_id`, `in_reply_to_id`, `active`, `user_id`) VALUES (2, 'Where am I', NULL, NULL, NULL, NULL, 1, NULL, NULL, 1, 3);
 
 COMMIT;
 
