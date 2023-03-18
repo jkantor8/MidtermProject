@@ -210,8 +210,7 @@ public class User {
 	public void setDonationListings(List<DonationListing> donationListings) {
 		this.donationListings = donationListings;
 	}
-	
-	
+
 	public void addDonationListing(DonationListing listing) {
 		if (donationListings == null) {
 			donationListings = new ArrayList<>();
@@ -240,9 +239,7 @@ public class User {
 	public void setSaleListings(List<SaleListing> saleListings) {
 		this.saleListings = saleListings;
 	}
-	
 
-	
 	public void addSaleListing(SaleListing listing) {
 		if (saleListings == null) {
 			saleListings = new ArrayList<>();
@@ -263,8 +260,6 @@ public class User {
 			listing.setSellingUser(null);
 		}
 	}
-	
-
 
 	public List<SwapListing> getSwapListings() {
 		return swapListings;
@@ -273,7 +268,7 @@ public class User {
 	public void setSwapListings(List<SwapListing> swapListings) {
 		this.swapListings = swapListings;
 	}
-	
+
 	public void addSwapListing(SwapListing listing) {
 		if (swapListings == null) {
 			swapListings = new ArrayList<>();
@@ -294,8 +289,6 @@ public class User {
 			listing.setSwappingUser(null);
 		}
 	}
-	
-	
 
 	public List<Item> getUsersItems() {
 		return usersItems;
@@ -303,6 +296,35 @@ public class User {
 
 	public void setUsersItems(List<Item> usersItems) {
 		this.usersItems = usersItems;
+	}
+
+	public void addUsersItem(Item item) {
+		if (usersItems == null) {
+			usersItems = new ArrayList<>();
+		}
+		if (!usersItems.contains(item)) {
+
+			usersItems.add(item);
+			if (item.getUserItem() != null) {
+				item.getUserItem().removeUsersItem(item);
+			}
+			item.setUserItem(this);
+		}
+	}
+
+	public void removeUsersItem(Item item) {
+		if (usersItems != null && usersItems.contains(item)) {
+			usersItems.remove(item);
+			item.setUserItem(null);
+		}
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	@Override
