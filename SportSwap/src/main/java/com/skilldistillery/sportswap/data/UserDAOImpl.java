@@ -16,13 +16,14 @@ public class UserDAOImpl implements UserDAO {
 	private EntityManager em;
 
 	@Override
-	public User login(User user) {
+	public User login(String name, String pw) {
+		User user = null;
 		String jpql = "SELECT u FROM User u WHERE u.username = :name "
-						+ "AND u.password = :pass AND u.enabled = 1";
+						+ "AND u.password = :pass AND u.active = 1";
 		try {
 		user = em.createQuery(jpql, User.class)
-				.setParameter("name", user.getUsername())
-				.setParameter("pass", user.getPassword())
+				.setParameter("name", name)
+				.setParameter("pass", pw)
 				.getSingleResult();
 		}catch (Exception e) {
 			e.printStackTrace();
