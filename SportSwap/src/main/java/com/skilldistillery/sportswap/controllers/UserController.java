@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.sportswap.data.AddressDAO;
 import com.skilldistillery.sportswap.data.UserDAO;
+import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.User;
 
 @Controller
@@ -18,6 +20,8 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private AddressDAO addressDAO;
 
 	// directs to home page
 	@RequestMapping(path = { "/", "home.do" })
@@ -60,11 +64,43 @@ public class UserController {
 	//************* NEEDS TESING AND DAO UPDATES ************
 	//for posting account info after entered
 	@RequestMapping(path ="createAccount.do", method=RequestMethod.POST)
-	public ModelAndView createAccount(HttpSession session, User user) {
+	public ModelAndView createAccount(
+			HttpSession session,
+			@RequestParam("username") String name,
+			@RequestParam("password") String pw,
+			@RequestParam("email") String email,
+			@RequestParam("address") String address,
+			@RequestParam("address2") String address2,
+			@RequestParam("city") String city,
+			@RequestParam("state_province") String state_province,
+			@RequestParam("postalCode") String postalCode,
+			@RequestParam("country") String country
+			) {
 		ModelAndView mv = new ModelAndView();
 		//create command object
 		//--> add user to database
-		User newUser = userDao.add(user);
+		User newUser = new User();
+		newUser.setActive(true);
+		newUser.setEmail(email);
+		newUser.setUsername(name);
+		newUser.setPassword(pw);
+		newUser.setRole("ACTIVE_USER");
+		
+		//use the addressDAO to cretae and add address to database
+		//then assign to user
+		Address add = new Address();
+		add.setStreet(address);
+		add.setStreet2(address2);
+		add.setCity(city);
+		add.setPostalCode(postalCode);
+		add.setCity(country);
+		add.setCountryCode(country);
+		
+		add = addressDAO.add(add);
+		
+		newUser.setUserAddress(add);
+		
+		newUser = userDao.add(newUser);
 		
 		//add user to session so that user will be logged in
 		session.setAttribute("loggedInUser", newUser);

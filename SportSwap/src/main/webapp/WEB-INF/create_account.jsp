@@ -63,15 +63,17 @@
   	<label for="email">email:</label>
  	<input type="email" id="email" name="email"><br>
  	<label for="address">address:</label>
- 	<input type="address" id="address" name="address"><br>
+ 	<input type="text" id="address" name="address"><br>
 	<label for="address2">address (Apt, Unit, etc.):</label>
- 	<input type="address2" id="address2" name="address2"><br>
+ 	<input type="text" id="address2" name="address2"><br>
+ 	<label for="city">city: </label>
+ 	<input type="text" id="city" name="city"><br>
  	<label for="state_province">state/province: </label>
- 	<input type="state_province" id="state_province" name="state_province"><br>
+ 	<input type="text" id="state_province" name="state_province"><br>
  	<label for="postalCode">postal code: </label>
- 	<input type="postalCode" id="postalCode" name="postalCode"><br>
+ 	<input type="text" id="postalCode" name="postalCode"><br>
  	<label for="country">country: </label>
- 	<input type="country" id="country" name="country"><br>
+ 	<input type="text" id="country" name="country"><br>
  	
  	<input type="submit" name="submit" value="create account">
 </form>

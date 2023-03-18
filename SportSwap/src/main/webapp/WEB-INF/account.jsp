@@ -56,7 +56,32 @@
 </header>
 
 
-<p>USER WILL VIEW ACCOUNT HERE AND CAN EDIT ACOUNT INFO.</p>
+<h2>Welcome, ${loggedInUser.username}!</h2>
+<div class="container">
+<form action="createAccount.do" method="POST">
+<label for="username">username: </label>
+  	<input type="text" id="username" name="username" value="${loggedInUser.username}"><br>
+  	<label for="password">password: </label>
+  	<input type="text" id="password" name="password" value="${loggedInUser.password}"><br>
+  	<label for="email">email:</label>
+ 	<input type="email" id="email" name="email" value="${loggedInUser.email}"><br>
+ 	<label for="address">address:</label>
+ 	<input type="text" id="address" name="address" value="${loggedInUser.address.address}"><br>
+	<label for="address2">address (Apt, Unit, etc.):</label>
+ 	<input type="text" id="address2" name="address2" value="${loggedInUser.address.address2}"><br>
+ 	<label for="city">city: </label>
+ 	<input type="text" id="city" name="city" value="${loggedInUser.address.city}"><br>
+ 	<label for="state_province">state/province: </label>
+ 	<input type="text" id="state_province" name="state_province" value="${loggedInUser.address.state_province}"><br>
+ 	<label for="postalCode">postal code: </label>
+ 	<input type="text" id="postalCode" name="postalCode" value="${loggedInUser.address.postalCode}"><br>
+ 	<label for="country">country: </label>
+ 	<input type="text" id="country" name="country" value="${loggedInUser.address.country}"><br>
+ 	
+ 	<input type="submit" name="submit" value="update account">
+</form>
+
+</div>
 <footer>
 <div id="disclaimer">
 <p>Unbearable Puppet is not responsible for any activities conducted offline.</p>
