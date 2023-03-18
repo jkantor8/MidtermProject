@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -39,6 +41,10 @@ public class Item {
 	
 	@OneToOne(mappedBy="item")
 	private SaleListing saleListing;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User userItem;
 
 	public Item() {
 		super();
@@ -130,6 +136,15 @@ public class Item {
 
 	public void setSaleListing(SaleListing saleListing) {
 		this.saleListing = saleListing;
+	}
+	
+
+	public User getUserItem() {
+		return userItem;
+	}
+
+	public void setUserItem(User userItem) {
+		this.userItem = userItem;
 	}
 
 	@Override

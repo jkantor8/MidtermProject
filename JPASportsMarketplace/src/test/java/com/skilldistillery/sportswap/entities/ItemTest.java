@@ -62,5 +62,13 @@ class ItemTest {
 		assertEquals(20.00, item.getSaleListing().getPrice());
 		assertTrue(item.getSaleListing().isActive());
 	}
+	
+	@Test
+	void test_Item_to_User_ManyToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getUserItem());
+		assertEquals("Florence" ,item.getUserItem().getUsername());
+		assertEquals("fwftw@fldsjaf.org", item.getUserItem().getEmail());
+	}
 
 }
