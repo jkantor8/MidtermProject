@@ -69,5 +69,12 @@ class SwapListingTest {
 		assertEquals("fwftw@fldsjaf.org",swapListing.getSwappingUser().getEmail());
 		
 	}
+	
+	@Test
+	void test_SwapListing_Post_OneToMany_mapping() {
+	assertNotNull(swapListing);
+	assertNotNull(swapListing.getSwapListingPosts());
+	
+	}
 
 }
