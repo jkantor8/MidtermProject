@@ -78,5 +78,17 @@ class PostTest {
 		assertEquals(20.0, post.getSaleListing().getPrice());
 
 	}
+	
+	@Test
+	void test_Post_User_ManyToOne() {
+	
+		assertNotNull(post);
+		assertNotNull(post.getPostingUser());
+		assertEquals(2, post.getPostingUser().getId());
+
+		
+	}
+	
+	
 
 }
