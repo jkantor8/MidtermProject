@@ -3,6 +3,7 @@ package com.skilldistillery.sportswap.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
@@ -47,6 +48,8 @@ class DonationListingTest {
 	void test_entity_mapping() {
 		assertNotNull(donationListing);
 		assertTrue(donationListing.isActive());
+		assertNull(donationListing.getEventStart());
+		assertNull(donationListing.getEventEnd());
 
 	}
 
