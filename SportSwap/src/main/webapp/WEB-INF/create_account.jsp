@@ -66,11 +66,16 @@
  	<input type="address" id="address" name="address"><br>
 	<label for="address2">address (Apt, Unit, etc.):</label>
  	<input type="address2" id="address2" name="address2"><br>
- 	<label for="state_province">state/province:</label>
+ 	<label for="state_province">state/province: </label>
  	<input type="state_province" id="state_province" name="state_province"><br>
- 
-
+ 	<label for="postalCode">postal code: </label>
+ 	<input type="postalCode" id="postalCode" name="postalCode"><br>
+ 	<label for="country">country: </label>
+ 	<input type="country" id="country" name="country"><br>
+ 	
+ 	<input type="submit" name="submit" value="create account">
 </form>
+
 </div>
 <footer>
 <div id="disclaimer">

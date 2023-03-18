@@ -57,14 +57,18 @@ public class UserController {
 		return mv;
 	}
 	
+	//************* NEEDS TESING AND DAO UPDATES ************
 	//for posting account info after entered
 	@RequestMapping(path ="createAccount.do", method=RequestMethod.POST)
-	public ModelAndView createAccount(HttpSession session) {
+	public ModelAndView createAccount(HttpSession session, User user) {
 		ModelAndView mv = new ModelAndView();
-		//get parameters
-		//create user object
+		//create command object
 		//--> add user to database
-		//return user to session so that user will be logged in
+		User newUser = userDao.add(user);
+		
+		//add user to session so that user will be logged in
+		session.setAttribute("loggedInUser", newUser);
+		mv.setViewName("account");
 		return mv;
 	}
 	
