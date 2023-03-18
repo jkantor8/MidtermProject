@@ -1,6 +1,9 @@
 package com.skilldistillery.sportswap.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,6 +64,35 @@ class ItemTest {
 		assertNotNull(item.getSaleListing());
 		assertEquals(20.00, item.getSaleListing().getPrice());
 		assertTrue(item.getSaleListing().isActive());
+	}
+	
+	@Test
+	void test_Item_to_User_ManyToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getUserItem());
+		assertEquals("Florence" ,item.getUserItem().getUsername());
+		assertEquals("fwftw@fldsjaf.org", item.getUserItem().getEmail());
+	}
+	
+	@Test
+	void test_Item_to_AgeGroup_OneToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getAgeGroup());
+		assertEquals("ADULT" ,item.getAgeGroup().getAge());
+	}
+	
+	@Test
+	void test_Item_to_Sport_OneToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getSportItem());
+		assertEquals("Boxing", item.getSportItem().getName());
+	}
+	
+	@Test
+	void test_Item_to_Condition_ManyToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getItemCondition());
+		assertNotNull("New", item.getItemCondition().getName());
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +18,9 @@ public class AgeGroup {
 	private int id;
 	
 	private String age;
+	
+	@OneToOne(mappedBy="ageGroup")
+	private Item itemAgeGroup;
 	
 	public AgeGroup() {
 		
@@ -36,6 +40,14 @@ public class AgeGroup {
 
 	public void setAge(String age) {
 		this.age = age;
+	}
+
+	public Item getItemAgeGroup() {
+		return itemAgeGroup;
+	}
+
+	public void setItemAgeGroup(Item itemAgeGroup) {
+		this.itemAgeGroup = itemAgeGroup;
 	}
 
 	@Override

@@ -94,4 +94,11 @@ class UserTest {
 		assertNotNull(user.getSwapListings());
 		assertTrue(user.getSwapListings().size() > 0);
 	}
+	@Test
+	void test_User_Item_OneToMany_mapping() {
+		user = em.find(User.class, 3);
+		assertNotNull(user);
+		assertNotNull(user.getUsersItems());
+		assertTrue(user.getUsersItems().size() > 0);
+	}
 }

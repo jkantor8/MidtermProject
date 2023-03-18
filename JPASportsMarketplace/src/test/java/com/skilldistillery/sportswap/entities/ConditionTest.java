@@ -44,6 +44,14 @@ class ConditionTest {
 	void test_Condition_entity_mapping() {
 		assertNotNull(condition);
 		assertEquals("NEW",condition.getName());
-
 }
+	
+	
+	@Test
+	void test_User_item_OneToMany_mapping() {
+		
+		assertNotNull(condition);
+		assertNotNull(condition.getItems());
+		assertTrue(condition.getItems().size() > 0);
+	}
 }

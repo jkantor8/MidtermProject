@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -39,7 +41,24 @@ public class Item {
 	
 	@OneToOne(mappedBy="item")
 	private SaleListing saleListing;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User userItem;
+	
+	@OneToOne
+	@JoinColumn(name= "age_group_id")
+	private AgeGroup ageGroup;
 
+	@OneToOne
+	@JoinColumn(name= "sport_id")
+	private Sport sportItem;
+	
+	@ManyToOne
+	@JoinColumn(name="item_condition_id")
+	private Condition itemCondition;
+	
+	
 	public Item() {
 		super();
 	}
@@ -130,6 +149,41 @@ public class Item {
 
 	public void setSaleListing(SaleListing saleListing) {
 		this.saleListing = saleListing;
+	}
+	
+
+	public User getUserItem() {
+		return userItem;
+	}
+
+	public void setUserItem(User userItem) {
+		this.userItem = userItem;
+	}
+	
+
+	public AgeGroup getAgeGroup() {
+		return ageGroup;
+	}
+
+	public void setAgeGroup(AgeGroup ageGroup) {
+		this.ageGroup = ageGroup;
+	}
+
+	public Sport getSportItem() {
+		return sportItem;
+	}
+
+	public void setSportItem(Sport sportItem) {
+		this.sportItem = sportItem;
+	}
+	
+
+	public Condition getItemCondition() {
+		return itemCondition;
+	}
+
+	public void setItemCondition(Condition itemCondition) {
+		this.itemCondition = itemCondition;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,6 +46,16 @@ class SportTest {
 		assertNotNull(sport);
 		assertEquals("Boxing", sport.getName());
 	
+	}
+	
+	@Test
+	void test_sport_to_item_OneToOne() {
+		assertNotNull(sport);
+		assertNotNull(sport.getItem());
+		assertEquals("Punching Bag",sport.getItem().getName());
+		assertEquals("TKO",sport.getItem().getBrand());
+		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg",sport.getItem().getImageUrl());
+		
 	}
 
 }
