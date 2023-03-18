@@ -318,6 +318,9 @@ public class User {
 			item.setUserItem(null);
 		}
 	}
+	
+//	@OneToMany(mappedBy = "postingUser")
+//	private List<Post> posts;
 
 	public List<Post> getPosts() {
 		return posts;
@@ -325,6 +328,27 @@ public class User {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+	
+	public void addUsersPost(Post post) {
+		if (posts == null) {
+			posts = new ArrayList<>();
+		}
+		if (!posts.contains(post)) {
+
+			posts.add(post);
+			if (post.getPostingUser() != null) {
+				post.getPostingUser().removeUsersPost(post);
+			}
+			post.setPostingUser(this);
+		}
+	}
+
+	public void removeUsersPost(Post post) {
+		if (posts != null && posts.contains(post)) {
+			posts.remove(post);
+			post.setPostingUser(null);
+		}
 	}
 
 	@Override
