@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -124,6 +125,27 @@ public class SaleListing {
 
 	public void setSaleListingPosts(List<Post> saleListingPosts) {
 		this.saleListingPosts = saleListingPosts;
+	}
+	
+	public void addSaleListingPost(Post salePost) {
+		if (saleListingPosts == null) {
+			saleListingPosts = new ArrayList<>();
+		}
+		if (!saleListingPosts.contains(salePost)) {
+
+			saleListingPosts.add(salePost);
+			if (salePost.getSaleListing() != null) {
+				salePost.getSaleListing().removeSaleListingPost(salePost);
+			}
+			salePost.setSaleListing(this);
+		}
+	}
+
+	public void removeSaleListingPost(Post salePost) {
+		if (saleListingPosts != null && saleListingPosts.contains(salePost)) {
+			saleListingPosts.remove(salePost);
+			salePost.setSaleListing(null);
+		}
 	}
 
 	@Override
