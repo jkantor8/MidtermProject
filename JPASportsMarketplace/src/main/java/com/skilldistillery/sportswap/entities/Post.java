@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -28,7 +30,25 @@ public class Post {
 	@UpdateTimestamp
 	private LocalDateTime updated;
 	
+	
 	private LocalDateTime deactivated;
+	
+	@ManyToOne 
+	@JoinColumn(name="donation_listing_id")
+	private DonationListing donationListing;
+	
+	@ManyToOne 
+	@JoinColumn(name="swap_listing_id")
+	private SwapListing swapListing;
+	
+	@ManyToOne 
+	@JoinColumn(name="sale_listing_id")
+	private SaleListing saleListing;
+	
+	@ManyToOne 
+	@JoinColumn(name="user_id")
+	private User postingUser;
+	
 	
 	public Post() {
 		
