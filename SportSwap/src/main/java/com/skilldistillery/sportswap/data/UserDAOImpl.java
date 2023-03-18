@@ -32,4 +32,11 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 	
+	@Override
+	public User add(User user) {
+		
+		
+		return user;
+	}
+	
 }

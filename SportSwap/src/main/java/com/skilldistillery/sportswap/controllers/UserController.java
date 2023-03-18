@@ -25,6 +25,7 @@ public class UserController {
 		return "home";
 	}
 
+	//logging in
 	@RequestMapping(path = "home.do", method = RequestMethod.POST, params = "login")
 	public ModelAndView login(@RequestParam("username") String name, @RequestParam("password") String pw,
 			HttpSession session) {
@@ -40,9 +41,9 @@ public class UserController {
 
 		}
 		return mv;
-
 	}
 
+	//logging out
 	@RequestMapping(path = "home.do", method = RequestMethod.POST, params = "logout")
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -53,6 +54,25 @@ public class UserController {
 		} else {
 
 		}
+		return mv;
+	}
+	
+	//for posting account info after entered
+	@RequestMapping(path ="createAccount.do", method=RequestMethod.POST)
+	public ModelAndView createAccount(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		//get parameters
+		//create user object
+		//--> add user to database
+		//return user to session so that user will be logged in
+		return mv;
+	}
+	
+	//for routing to the account creation page
+	@RequestMapping(path ="createAccount.do", method=RequestMethod.GET)
+	public ModelAndView createAccount() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("create_account");
 		return mv;
 	}
 
