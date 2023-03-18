@@ -51,6 +51,10 @@ public class SwapListing {
 	@ManyToMany(mappedBy="sportSwapListings")
 	private List<Sport> sports;
 	
+	@ManyToMany(mappedBy="swapListingItems")
+	private List<Item> items;
+	
+	
 	
 	public SwapListing() {
 		
@@ -148,6 +152,49 @@ public class SwapListing {
 
 	public void setSports(List<Sport> sports) {
 		this.sports = sports;
+	}
+	
+	public void addSport(Sport sport) {
+		if(sports ==null) {
+			sports = new ArrayList<>();
+			}
+			if(!sports.contains(sport)) {
+				sports.add(sport);
+				sport.addSwapListing(this);
+				}
+			}
+	
+	public void removeSport(Sport sport) {
+		if(sports != null && sports.contains(sport)) {
+			sports.remove(sport);
+			sport.removeSwapListing(this);
+		}
+	}
+	
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	public void addItem(Item item) {
+		if(items ==null) {
+			items = new ArrayList<>();
+			}
+			if(!items.contains(item)) {
+				items.add(item);
+				item.addSwapListingItem(this);
+				}
+			}
+	
+	public void removeItem(Item item) {
+		if(items != null && items.contains(item)) {
+			items.remove(item);
+			item.removeSwapListingItem(this);
+		}
 	}
 
 	@Override

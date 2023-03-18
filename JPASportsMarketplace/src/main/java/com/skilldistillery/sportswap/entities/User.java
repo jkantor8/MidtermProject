@@ -363,6 +363,23 @@ public class User {
 	public void setFavoriteSports(List<Sport> favoriteSports) {
 		this.favoriteSports = favoriteSports;
 	}
+	
+	public void addSport(Sport sport) {
+		if(favoriteSports ==null) {
+			favoriteSports = new ArrayList<>();
+			}
+			if(!favoriteSports.contains(sport)) {
+				favoriteSports.add(sport);
+				sport.addUserFavoriteSport(this);
+				}
+			}
+	
+	public void removeSport(Sport sport) {
+		if(favoriteSports != null && favoriteSports.contains(sport)) {
+			favoriteSports.remove(sport);
+			sport.removeUserFavoriteSport(this);
+		}
+	}
 
 	@Override
 	public int hashCode() {

@@ -94,5 +94,12 @@ class ItemTest {
 		assertNotNull(item.getItemCondition());
 		assertNotNull("New", item.getItemCondition().getName());
 	}
+	
+	@Test
+	void test_item_to_SwapListing_ManyToMany() {
+		assertNotNull(item);
+		assertNotNull(item.getSwapListingItems());
+		assertNotNull(item.getSwapListingItems().isEmpty());
+	}
 
 }

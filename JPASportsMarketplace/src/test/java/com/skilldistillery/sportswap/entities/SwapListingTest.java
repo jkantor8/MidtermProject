@@ -84,5 +84,13 @@ class SwapListingTest {
 		assertNotNull(swapListing.getSports());
 		assertFalse(swapListing.getSports().isEmpty());
 	}
+	@Test
+	void test_SwapListing_item_ManyToMany() {
+		assertNotNull(swapListing);
+		assertNotNull(swapListing.getItems());
+		assertFalse(swapListing.getItems().isEmpty());
+	}
+	
+	
 
 }
