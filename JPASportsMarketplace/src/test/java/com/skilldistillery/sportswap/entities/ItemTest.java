@@ -80,5 +80,19 @@ class ItemTest {
 		assertNotNull(item.getAgeGroup());
 		assertEquals("ADULT" ,item.getAgeGroup().getAge());
 	}
+	
+	@Test
+	void test_Item_to_Sport_OneToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getSportItem());
+		assertEquals("Boxing", item.getSportItem().getName());
+	}
+	
+	@Test
+	void test_Item_to_Condition_ManyToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getItemCondition());
+		assertNotNull("New", item.getItemCondition().getName());
+	}
 
 }

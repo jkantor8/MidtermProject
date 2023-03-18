@@ -50,6 +50,15 @@ public class Item {
 	@JoinColumn(name= "age_group_id")
 	private AgeGroup ageGroup;
 
+	@OneToOne
+	@JoinColumn(name= "sport_id")
+	private Sport sportItem;
+	
+	@ManyToOne
+	@JoinColumn(name="item_condition_id")
+	private Condition itemCondition;
+	
+	
 	public Item() {
 		super();
 	}
@@ -158,6 +167,23 @@ public class Item {
 
 	public void setAgeGroup(AgeGroup ageGroup) {
 		this.ageGroup = ageGroup;
+	}
+
+	public Sport getSportItem() {
+		return sportItem;
+	}
+
+	public void setSportItem(Sport sportItem) {
+		this.sportItem = sportItem;
+	}
+	
+
+	public Condition getItemCondition() {
+		return itemCondition;
+	}
+
+	public void setItemCondition(Condition itemCondition) {
+		this.itemCondition = itemCondition;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -20,6 +21,9 @@ public class Sport {
 	
 
 	private String name;
+	
+	@OneToOne(mappedBy="sportItem")
+	private Item item;
 
 
 
@@ -49,6 +53,16 @@ public class Sport {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Item getItem() {
+		return item;
+	}
+
+
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 
