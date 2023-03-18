@@ -51,6 +51,13 @@ public class User {
 	@OneToMany (mappedBy= "user")
 	private List<DonationListing> donationListings;
 	
+	@OneToMany (mappedBy= "sellingUser")
+	private List<SaleListing> saleListings;
+	
+	@OneToMany(mappedBy="swappingUser")
+	private List<SwapListing> swapListings;
+	
+	
 	
 	public int getId() {
 		return id;
@@ -199,6 +206,24 @@ public class User {
 
 	public void setDonationListings(List<DonationListing> donationListings) {
 		this.donationListings = donationListings;
+	}
+	
+
+	public List<SaleListing> getSaleListings() {
+		return saleListings;
+	}
+
+	public void setSaleListings(List<SaleListing> saleListings) {
+		this.saleListings = saleListings;
+	}
+	
+
+	public List<SwapListing> getSwapListings() {
+		return swapListings;
+	}
+
+	public void setSwapListings(List<SwapListing> swapListings) {
+		this.swapListings = swapListings;
 	}
 
 	@Override

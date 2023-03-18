@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -35,6 +36,11 @@ public class SwapListing {
 	@OneToOne
 	@JoinColumn (name= "address_id")
 	private Address swapAddress;
+	
+	@ManyToOne
+	@JoinColumn(name= "user_id")
+	private User swappingUser;
+	
 	
 	public SwapListing() {
 		
@@ -86,6 +92,15 @@ public class SwapListing {
 
 	public void setSwapAddress(Address swapAddress) {
 		this.swapAddress = swapAddress;
+	}
+	
+
+	public User getSwappingUser() {
+		return swappingUser;
+	}
+
+	public void setSwappingUser(User swappingUser) {
+		this.swappingUser = swappingUser;
 	}
 
 	@Override

@@ -55,5 +55,12 @@ class ItemTest {
 		
 	
 	}
+	@Test
+	void test_Item_to_SaleListing_OneToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getSaleListing());
+		assertEquals(20.00, item.getSaleListing().getPrice());
+		assertTrue(item.getSaleListing().isActive());
+	}
 
 }

@@ -40,10 +40,10 @@ class ConditionTest {
 		em.close();
 	}
 
-//	@Test
-//	void test_Condition_entity_mapping() {
-//		assertNotNull(condition);
-//		assertEquals("NEW",condition.getCondition());
-//
-//}
+	@Test
+	void test_Condition_entity_mapping() {
+		assertNotNull(condition);
+		assertEquals("NEW",condition.getName());
+
+}
 }

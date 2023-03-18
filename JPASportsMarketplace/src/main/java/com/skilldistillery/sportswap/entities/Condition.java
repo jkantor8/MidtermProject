@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="item_condition")
 public class Condition {
 	
 
@@ -17,7 +19,7 @@ public class Condition {
 	private int id;
 	
 	
-	private String condition;
+	private String name;
 
 	public Condition() {
 		super();
@@ -33,13 +35,13 @@ public class Condition {
 	}
 
 
-	public String getCondition() {
-		return condition;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -61,7 +63,7 @@ public class Condition {
 
 	@Override
 	public String toString() {
-		return "Condition [id=" + id + ", condition=" + condition + "]";
+		return "Condition [id=" + id + ", condition=" + name + "]";
 	}
 	
 	

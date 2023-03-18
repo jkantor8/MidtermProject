@@ -46,7 +46,23 @@ class SaleListingTest {
 	@Test
 	void test_entity_mapping() {
 		assertNotNull(saleListing);
-		assertEquals("20.00",saleListing.getPrice());
+		assertEquals(20.00,saleListing.getPrice());
+	}
+	
+	@Test
+	void test_user_ManyToOne_mapping() {
+		assertNotNull(saleListing);
+		assertNotNull(saleListing.getSellingUser());
+		assertEquals(2, saleListing.getSellingUser().getId());
+	}
+	
+	@Test
+	void test_SaleListing_to_Item_OneToOne() {
+		assertNotNull(saleListing);
+		assertNotNull(saleListing.getItem());
+		assertEquals("Punching Bag",saleListing.getItem().getName());
+		assertEquals("TKO",saleListing.getItem().getBrand());
+		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg",saleListing.getItem().getImageUrl());
 	}
 
 }
