@@ -45,6 +45,10 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User userItem;
+	
+	@OneToOne
+	@JoinColumn(name= "age_group_id")
+	private AgeGroup ageGroup;
 
 	public Item() {
 		super();
@@ -145,6 +149,15 @@ public class Item {
 
 	public void setUserItem(User userItem) {
 		this.userItem = userItem;
+	}
+	
+
+	public AgeGroup getAgeGroup() {
+		return ageGroup;
+	}
+
+	public void setAgeGroup(AgeGroup ageGroup) {
+		this.ageGroup = ageGroup;
 	}
 
 	@Override

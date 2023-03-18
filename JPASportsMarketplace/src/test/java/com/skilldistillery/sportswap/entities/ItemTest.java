@@ -1,6 +1,9 @@
 package com.skilldistillery.sportswap.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -69,6 +72,13 @@ class ItemTest {
 		assertNotNull(item.getUserItem());
 		assertEquals("Florence" ,item.getUserItem().getUsername());
 		assertEquals("fwftw@fldsjaf.org", item.getUserItem().getEmail());
+	}
+	
+	@Test
+	void test_Item_to_AgeGroup_OneToOne() {
+		assertNotNull(item);
+		assertNotNull(item.getAgeGroup());
+		assertEquals("ADULT" ,item.getAgeGroup().getAge());
 	}
 
 }
