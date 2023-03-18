@@ -16,23 +16,26 @@
 <body>
 <header>
 <h1>Welcome to SportSwap</h1>
+<div class="container">
 <c:choose>
     <c:when test="${loggedInUser==null}">
         <form method="POST" action="home.do">
-<label for="username">username:</label>
+<label for="username">username: </label>
   <input type="text" id="username" name="username">
-  <label for="password">password:</label>
+  <label for="password">password: </label>
   <input type="text" id="password" name="password">
-  <input type="submit" value="submit">
+  <input type="submit" value="login" name="login">
 </form>
   
     </c:when>    
     <c:otherwise>
          <p>Welcome to SportSwap, ${loggedInUser.username}!</p>
-        <br />
+         <form method="POST" action="home.do">
+         <input type="submit" value="logout" name="logout">
+         </form>
     </c:otherwise>
 </c:choose>
-
+</div>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">SportSwap</a>
