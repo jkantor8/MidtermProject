@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -72,5 +73,11 @@ class DonationListingTest {
 		assertNotNull(donationListing);
 		assertNotNull(donationListing.getDonationListingPosts());
 		assertTrue(donationListing.getDonationListingPosts().size() > 0);
+	}
+	@Test
+	void test_Sport_DonationListing_ManyToMany() {
+		assertNotNull(donationListing);
+		assertNotNull(donationListing.getSports());
+		assertFalse(donationListing.getSports().isEmpty());
 	}
 }

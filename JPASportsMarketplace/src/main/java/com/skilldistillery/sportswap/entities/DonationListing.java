@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -53,6 +54,9 @@ public class DonationListing {
 	
 	@OneToMany(mappedBy="donationListing")
 	private List<Post> donationListingPosts;
+	
+	@ManyToMany(mappedBy="sportDonationListings")
+	private List<Sport> sports;
 	
 	public DonationListing() {
 		
@@ -158,6 +162,16 @@ public class DonationListing {
 			donationListingPosts.remove(donationPost);
 			donationPost.setDonationListing(null);
 		}
+	}
+	
+	
+
+	public List<Sport> getSports() {
+		return sports;
+	}
+
+	public void setSports(List<Sport> sports) {
+		this.sports = sports;
 	}
 
 	@Override

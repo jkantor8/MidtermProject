@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -46,6 +47,9 @@ public class SwapListing {
 	
 	@OneToMany(mappedBy= "swapListing")
 	private List<Post> swapListingPosts;
+	
+	@ManyToMany(mappedBy="sportSwapListings")
+	private List<Sport> sports;
 	
 	
 	public SwapListing() {
@@ -138,6 +142,14 @@ public class SwapListing {
 		}
 	}
 	
+	public List<Sport> getSports() {
+		return sports;
+	}
+
+	public void setSports(List<Sport> sports) {
+		this.sports = sports;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

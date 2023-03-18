@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -100,5 +101,12 @@ class UserTest {
 		assertNotNull(user);
 		assertNotNull(user.getUsersItems());
 		assertTrue(user.getUsersItems().size() > 0);
+	}
+	@Test
+	void test_Sport_User_ManyToMany() {
+		user = em.find(User.class, 1);
+		assertNotNull(user);
+		assertNotNull(user.getFavoriteSports());
+		assertFalse(user.getFavoriteSports().isEmpty());
 	}
 }
