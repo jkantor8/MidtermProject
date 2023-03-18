@@ -57,6 +57,9 @@ public class User {
 	@OneToMany(mappedBy="swappingUser")
 	private List<SwapListing> swapListings;
 	
+	@OneToMany(mappedBy="userItem")
+	private List<Item> usersItems;
+	
 	
 	
 	public int getId() {
@@ -224,6 +227,14 @@ public class User {
 
 	public void setSwapListings(List<SwapListing> swapListings) {
 		this.swapListings = swapListings;
+	}
+
+	public List<Item> getUsersItems() {
+		return usersItems;
+	}
+
+	public void setUsersItems(List<Item> usersItems) {
+		this.usersItems = usersItems;
 	}
 
 	@Override
