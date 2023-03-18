@@ -4,6 +4,7 @@ package com.skilldistillery.sportswap.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -63,6 +64,13 @@ class SaleListingTest {
 		assertEquals("Punching Bag",saleListing.getItem().getName());
 		assertEquals("TKO",saleListing.getItem().getBrand());
 		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg",saleListing.getItem().getImageUrl());
+	}
+	
+	@Test
+	void test_SaleListing_Post_OneToMany_mapping() {
+		assertNotNull(saleListing);
+		assertNotNull(saleListing.getSaleListingPosts());
+		assertTrue(saleListing.getSaleListingPosts().size() > 0);
 	}
 
 }

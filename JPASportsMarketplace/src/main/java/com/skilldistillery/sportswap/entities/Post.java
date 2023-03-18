@@ -102,6 +102,38 @@ public class Post {
 		this.deactivated = deactivated;
 	}
 
+	public DonationListing getDonationListing() {
+		return donationListing;
+	}
+
+	public void setDonationListing(DonationListing donationListing) {
+		this.donationListing = donationListing;
+	}
+
+	public SwapListing getSwapListing() {
+		return swapListing;
+	}
+
+	public void setSwapListing(SwapListing swapListing) {
+		this.swapListing = swapListing;
+	}
+
+	public SaleListing getSaleListing() {
+		return saleListing;
+	}
+
+	public void setSaleListing(SaleListing saleListing) {
+		this.saleListing = saleListing;
+	}
+
+	public User getPostingUser() {
+		return postingUser;
+	}
+
+	public void setPostingUser(User postingUser) {
+		this.postingUser = postingUser;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

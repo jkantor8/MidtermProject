@@ -108,6 +108,14 @@ public class SwapListing {
 		this.swappingUser = swappingUser;
 	}
 
+	public List<Post> getSwapListingPosts() {
+		return swapListingPosts;
+	}
+
+	public void setSwapListingPosts(List<Post> swapListingPosts) {
+		this.swapListingPosts = swapListingPosts;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
