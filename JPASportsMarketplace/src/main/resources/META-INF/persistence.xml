@@ -6,6 +6,16 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	
 	
+	<class>com.skilldistillery.sportswap.entities.Address</class>
+	<class>com.skilldistillery.sportswap.entities.AgeGroup</class>
+	<class>com.skilldistillery.sportswap.entities.Condition</class>
+	<class>com.skilldistillery.sportswap.entities.DonationListing</class>
+	<class>com.skilldistillery.sportswap.entities.Item</class>
+	<class>com.skilldistillery.sportswap.entities.Message</class>
+	<class>com.skilldistillery.sportswap.entities.Post</class>
+	<class>com.skilldistillery.sportswap.entities.SaleListing</class>
+	<class>com.skilldistillery.sportswap.entities.Sport</class>
+	<class>com.skilldistillery.sportswap.entities.SwapListing</class>
 	<class>com.skilldistillery.sportswap.entities.User</class>
 	
 
