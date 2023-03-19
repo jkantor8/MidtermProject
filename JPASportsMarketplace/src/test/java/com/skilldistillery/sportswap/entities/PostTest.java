@@ -53,10 +53,11 @@ class PostTest {
 
 	@Test
 	void test_Post_SwapListing_ManyToOne() {
+		post = em.find(Post.class, 3);
 		assertNotNull(post);
-//		assertNotNull(post.getSwapListing());
-//		assertNull(post.getSwapListing().getSwapListingPosts());
-		assertNull(post.getSwapListing());
+		assertNotNull(post.getSwapListing());
+		assertTrue(post.getSwapListing().isActive());
+		
 
 	}
 

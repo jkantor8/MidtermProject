@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -53,6 +54,12 @@ public class DonationListing {
 	
 	@OneToMany(mappedBy="donationListing")
 	private List<Post> donationListingPosts;
+	
+	@ManyToMany(mappedBy="sportDonationListings")
+	private List<Sport> sports;
+	
+	@ManyToMany(mappedBy="donationListingItems")
+	private List<Item> items;
 	
 	public DonationListing() {
 		
@@ -157,6 +164,59 @@ public class DonationListing {
 		if (donationListingPosts != null && donationListingPosts.contains(donationPost)) {
 			donationListingPosts.remove(donationPost);
 			donationPost.setDonationListing(null);
+		}
+	}
+	
+	
+
+	public List<Sport> getSports() {
+		return sports;
+	}
+
+	public void setSports(List<Sport> sports) {
+		this.sports = sports;
+	}
+	
+	public void addSport(Sport sport) {
+		if(sports ==null) {
+			sports = new ArrayList<>();
+			}
+			if(!sports.contains(sport)) {
+				sports.add(sport);
+				sport.addDonationListing(this);
+				}
+			}
+	
+	public void removeSport(Sport sport) {
+		if(sports != null && sports.contains(sport)) {
+			sports.remove(sport);
+			sport.removeDonationListing(this);
+		}
+	}
+	
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	public void addItem(Item item) {
+		if(items ==null) {
+			items = new ArrayList<>();
+			}
+			if(!items.contains(item)) {
+				items.add(item);
+				item.addDonationListingItem(this);
+				}
+			}
+	
+	public void removeItem(Item item) {
+		if(items != null && items.contains(item)) {
+			items.remove(item);
+			item.removeDonationListingItem(this);
 		}
 	}
 

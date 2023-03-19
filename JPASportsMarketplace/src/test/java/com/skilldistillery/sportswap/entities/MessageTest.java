@@ -43,6 +43,7 @@ class MessageTest {
 	@Test
 	void test_Message_entity_mapping() {
 		assertNotNull(message);
+		assertEquals("Punching Bag", message.getSubject());
 		assertEquals("Hi! What color is the punching bag?",message.getContent());
 	}
 

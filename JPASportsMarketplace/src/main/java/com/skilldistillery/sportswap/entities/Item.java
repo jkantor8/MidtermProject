@@ -1,6 +1,8 @@
 package com.skilldistillery.sportswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -57,6 +61,19 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name="item_condition_id")
 	private Condition itemCondition;
+	
+	@ManyToMany
+	@JoinTable(name = "swap_listing_has_item", 
+	joinColumns = @JoinColumn(name = "item_id"), 
+	inverseJoinColumns = @JoinColumn(name = "swap_listing_id"))
+	private List<SwapListing> swapListingItems;
+	
+	@ManyToMany
+	@JoinTable(name = "donation_listing_has_item", 
+	joinColumns = @JoinColumn(name = "item_id"), 
+	inverseJoinColumns = @JoinColumn(name = "donation_listing_id"))
+	private List<DonationListing> donationListingItems;
+	
 	
 	
 	public Item() {
@@ -185,6 +202,60 @@ public class Item {
 	public void setItemCondition(Condition itemCondition) {
 		this.itemCondition = itemCondition;
 	}
+	
+
+	public List<SwapListing> getSwapListingItems() {
+		return swapListingItems;
+	}
+
+	public void setSwapListingItems(List<SwapListing> swapListingItems) {
+		this.swapListingItems = swapListingItems;
+	}
+	
+	public void addSwapListingItem(SwapListing swapListing) {
+		if(swapListingItems ==null) {
+			swapListingItems = new ArrayList<>();
+		}
+		if(!swapListingItems.contains(swapListing)) {
+			swapListingItems.add(swapListing);
+			swapListing.addItem(this);
+			}
+		}
+
+		public void removeSwapListingItem(SwapListing swapListing) {
+			if(swapListingItems != null && swapListingItems.contains(swapListing)) {
+				swapListingItems.remove(swapListing);
+				swapListing.removeItem(this);
+			}
+		}
+		
+		
+
+	public List<DonationListing> getDonationListingItems() {
+			return donationListingItems;
+		}
+
+	public void setDonationListingItems(List<DonationListing> donationListingItems) {
+			this.donationListingItems = donationListingItems;
+		}
+	
+	
+	public void addDonationListingItem(DonationListing donationListing) {
+		if(donationListingItems ==null) {
+			donationListingItems = new ArrayList<>();
+		}
+		if(!donationListingItems.contains(donationListing)) {
+			donationListingItems.add(donationListing);
+			donationListing.addItem(this);
+			}
+		}
+
+		public void removeDonationListingItem(DonationListing donationListing) {
+			if(donationListingItems != null && donationListingItems.contains(donationListing)) {
+				donationListingItems.remove(donationListing);
+				donationListing.removeItem(this);
+			}
+		}
 
 	@Override
 	public int hashCode() {

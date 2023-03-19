@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -63,6 +64,9 @@ public class User {
 
 	@OneToMany(mappedBy = "postingUser")
 	private List<Post> posts;
+	
+	@ManyToMany(mappedBy="userSports")
+	private List<Sport> favoriteSports;
 
 	public int getId() {
 		return id;
@@ -319,8 +323,7 @@ public class User {
 		}
 	}
 	
-//	@OneToMany(mappedBy = "postingUser")
-//	private List<Post> posts;
+
 
 	public List<Post> getPosts() {
 		return posts;
@@ -348,6 +351,33 @@ public class User {
 		if (posts != null && posts.contains(post)) {
 			posts.remove(post);
 			post.setPostingUser(null);
+		}
+	}
+	
+	
+
+	public List<Sport> getFavoriteSports() {
+		return favoriteSports;
+	}
+
+	public void setFavoriteSports(List<Sport> favoriteSports) {
+		this.favoriteSports = favoriteSports;
+	}
+	
+	public void addSport(Sport sport) {
+		if(favoriteSports ==null) {
+			favoriteSports = new ArrayList<>();
+			}
+			if(!favoriteSports.contains(sport)) {
+				favoriteSports.add(sport);
+				sport.addUserFavoriteSport(this);
+				}
+			}
+	
+	public void removeSport(Sport sport) {
+		if(favoriteSports != null && favoriteSports.contains(sport)) {
+			favoriteSports.remove(sport);
+			sport.removeUserFavoriteSport(this);
 		}
 	}
 
