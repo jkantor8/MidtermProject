@@ -16,28 +16,7 @@
 <body>
 <header>
 <h1>Welcome to SportSwap</h1>
-<div class="container">
 
-<c:choose>
-    <c:when test="${loggedInUser==null}">
-    <p><a href="createAccount.do">create an account</a></p>
-        <form method="POST" action="home.do">
-<label for="username">username: </label>
-  <input type="text" id="username" name="username">
-  <label for="password">password: </label>
-  <input type="text" id="password" name="password">
-  <input type="submit" value="login" name="login">
-</form>
-  
-    </c:when>    
-    <c:otherwise>
-         <p>Welcome to SportSwap, ${loggedInUser.username}!</p>
-         <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
-         </form>
-    </c:otherwise>
-</c:choose>
-</div>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">SportSwap</a>
@@ -76,37 +55,34 @@
 </nav>
 </header>
 
-<div class="row">
-  <div class="col-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Bat</h5>
-        <p class="card-text">This baseball bat is awesome. Awe-Inspring.</p>
-        <a href="#" class="btn btn-primary">(go to listing)</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Kids Baseball Glove</h5>
-        <p class="card-text">Barely used. My kid decided to be a nerd.</p>
-        <a href="#" class="btn btn-primary">(got to listing)</a>
-      </div>
-    </div>
-    </div>
-    <div class="col-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Set of Golf Clubs</h5>
-        <p class="card-text">Great for self-defense!.</p>
-        <a href="#" class="btn btn-primary">(go to listing)</a>
-      </div>
-    </div>
-  </div>
+
+<h2>Welcome, ${loggedInUser.username}!</h2>
+<div class="container">
+<form action="account.do" method="POST">
+<label for="username">username: </label>
+  	<input type="text" id="username" name="username" value="${loggedInUser.username}"><br>
+  	<label for="password">password: </label>
+  	<input type="text" id="password" name="password" value="${loggedInUser.password}"><br>
+  	<label for="email">email:</label>
+ 	<input type="email" id="email" name="email" value="${loggedInUser.email}"><br>
+ 	<label for="address">address:</label>
+ 	<input type="text" id="address" name="address" value="${loggedInUser.getUserAddress().getStreet() }"><br>
+	<label for="address2">address (Apt, Unit, etc.):</label>
+ 	<input type="text" id="address2" name="address2" value="${loggedInUser.getUserAddress().getStreet2()}"><br>
+ 	<label for="city">city: </label>
+ 	<input type="text" id="city" name="city" value="${loggedInUser.getUserAddress().getCity()}"><br>
+ 	<label for="state_province">state/province: </label>
+ 	<input type="text" id="state_province" name="state_province" value="${loggedInUser.getUserAddress().getState()}"><br>
+ 	<label for="postalCode">postal code: </label>
+ 	<input type="text" id="postalCode" name="postalCode" value="${loggedInUser.getUserAddress().getPostalCode()}"><br>
+ 	<label for="country">country: </label>
+ 	<input type="text" id="country" name="country" value="${loggedInUser.getUserAddress().getCountryCode()}"><br>
+ 	
+ 	<input type="submit" name="submit" value="update_account">
+ 	<input type="submit" name="delete" value="delete account">
+</form>
+<p>${result }</p>
 </div>
-
-
 <footer>
 <div id="disclaimer">
 <p>Unbearable Puppet is not responsible for any activities conducted offline.</p>

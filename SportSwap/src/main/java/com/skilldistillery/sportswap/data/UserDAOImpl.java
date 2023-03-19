@@ -32,4 +32,30 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 	
+	@Override
+	public User add(User user) {
+		em.persist(user);
+		
+		return user;
+	}
+	
+	@Override
+	public User findUserById(int id) {
+		User user = em.find(User.class, id);
+		return user;
+	}
+	
+	@Override
+	@Transactional
+	public User updateUser(int id, User updatedUser) {
+		
+		//get managed user
+		User user = em.find(User.class,id);
+		user.setUsername(updatedUser.getUsername());
+		user.setPassword(updatedUser.getPassword());
+		user.setUserAddress(updatedUser.getUserAddress());
+		
+		return user;
+	}
+	
 }
