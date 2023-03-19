@@ -13,7 +13,34 @@
 <meta charset="UTF-8">
 <title>SportSwap - Trade Up!</title>
 </head>
+
 <body>
+<header>
+<h1>Welcome to SportSwap</h1>
+
+<jsp:include page="nav.jsp" />
+</header>
+
+<main>
+	<form method="POST" action="listings.do">
+         <input type="submit" value="view swaps" name="swap_listings">
+         <input type="submit" value="view donations" name="donation_listings">
+         <input type="submit" value="view sales" name="sale_listings">
+    </form>
+    
+    <div id="listing_display">
+    <c:forEach var="listing" items="${listings}">
+    	<div>${listing.id}</div>
+    	
+    
+    
+    </c:forEach>
+    
+    </div>
+
+
+</main>
+
 
 <jsp:include page="footer.jsp" />
 
