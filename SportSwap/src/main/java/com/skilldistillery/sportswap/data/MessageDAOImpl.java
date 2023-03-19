@@ -19,19 +19,24 @@ public class MessageDAOImpl implements MessageDAO {
 
 	@Override
 	public List<Message> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT message FROM Message message";
+		return em.createQuery(query, Message.class).getResultList();
 	}
 
 	@Override
-	public List<Message> findMessageByKeyword(String message) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Message> findMessageBySubject(String subject) {
+		String query = "SELECT message FROM message WHERE message.subject"
+				+ " LIKE :subject";
+		List<Message> messageList = em.createQuery(query, Message.class)
+				.setParameter("subject", "%" + subject + "%")
+				.getResultList();
+		return messageList;
 	}
 
 	@Override
 	public Message add(Message message) {
-		// TODO Auto-generated method stub
-		return null;
+			em.persist(message);
+			em.flush();
+		return message;
 	}
 }

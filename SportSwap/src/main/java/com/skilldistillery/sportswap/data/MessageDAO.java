@@ -8,7 +8,7 @@ public interface MessageDAO {
 
 	List<Message> findAll();
 	
-	List<Message> findMessageByKeyword(String message);
+	List<Message> findMessageBySubject(String subject);
 	
 	Message add(Message message);
 	
