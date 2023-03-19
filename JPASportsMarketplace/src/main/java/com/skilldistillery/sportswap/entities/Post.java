@@ -1,6 +1,8 @@
 package com.skilldistillery.sportswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -9,49 +11,55 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Post {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String comment;
-	
+
 	private boolean active;
-	
+
 	@CreationTimestamp
 	private LocalDateTime created;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime updated;
-	
-	
+
 	private LocalDateTime deactivated;
-	
-	@ManyToOne 
-	@JoinColumn(name="donation_listing_id")
+
+	@ManyToOne
+	@JoinColumn(name = "donation_listing_id")
 	private DonationListing donationListing;
-	
-	@ManyToOne 
-	@JoinColumn(name="swap_listing_id")
+
+	@ManyToOne
+	@JoinColumn(name = "swap_listing_id")
 	private SwapListing swapListing;
-	
-	@ManyToOne 
-	@JoinColumn(name="sale_listing_id")
+
+	@ManyToOne
+	@JoinColumn(name = "sale_listing_id")
 	private SaleListing saleListing;
-	
-	@ManyToOne 
-	@JoinColumn(name="user_id")
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User postingUser;
-	
-	
+
+	@OneToMany(mappedBy = "originalPost")
+	private List<Post> replies;
+
+	@ManyToOne
+	@JoinColumn(name = "in_reply_to_id")
+	private Post originalPost;
+
 	public Post() {
-		
+
 	}
 
 	public int getId() {
@@ -134,6 +142,43 @@ public class Post {
 		this.postingUser = postingUser;
 	}
 
+	public List<Post> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<Post> replies) {
+		this.replies = replies;
+	}
+	
+	public void addReplies(Post reply) {
+		if (replies == null) {
+			replies = new ArrayList<>();
+		}
+		if (!replies.contains(reply)) {
+  
+			replies.add(reply);
+			if (reply.getOriginalPost() != null) {
+				reply.getOriginalPost().removeReplies(reply);
+			}
+			reply.setOriginalPost(this);
+		}
+	}
+
+	public void removeReplies(Post reply) {
+		if (replies != null && replies.contains(reply)) {
+			replies.remove(reply);
+			reply.setOriginalPost(null);
+		}
+	}
+
+	public Post getOriginalPost() {
+		return originalPost;
+	}
+
+	public void setOriginalPost(Post originalPost) {
+		this.originalPost = originalPost;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -156,7 +201,5 @@ public class Post {
 		return "Post [id=" + id + ", comment=" + comment + ", active=" + active + ", created=" + created + ", updated="
 				+ updated + ", deactivated=" + deactivated + "]";
 	}
-	
-	
 
 }
