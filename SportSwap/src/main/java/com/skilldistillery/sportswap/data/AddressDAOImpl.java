@@ -20,4 +20,17 @@ public class AddressDAOImpl implements AddressDAO {
 		em.persist(address);
 		return address;
 	}
+	
+	@Override
+	@Transactional
+	public Address updateAddress(int id, Address updatedAddress) {
+		Address address = em.find(Address.class, id);
+		address.setStreet(updatedAddress.getStreet());
+		address.setStreet2(updatedAddress.getStreet2());
+		address.setCity(updatedAddress.getCity());
+		address.setState(updatedAddress.getState());
+		address.setPostalCode(updatedAddress.getPostalCode());
+		address.setCountryCode(updatedAddress.getCountryCode());
+		return address;
+	}
 }

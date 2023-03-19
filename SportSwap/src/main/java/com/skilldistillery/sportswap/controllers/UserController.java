@@ -61,8 +61,8 @@ public class UserController {
 		return mv;
 	}
 	
-	//************* NEEDS TESING AND DAO UPDATES ************
-	//for posting account info after entered
+	//create an account
+	//with redirect mapping to account view/edit page
 	@RequestMapping(path ="createAccount.do", method=RequestMethod.POST)
 	public ModelAndView createAccount(
 			HttpSession session,
@@ -87,11 +87,13 @@ public class UserController {
 		newUser.setRole("ACTIVE_USER");
 		
 		//use the addressDAO to cretae and add address to database
+		//this will make sure it has an id that is not null
 		//then assign to user
 		Address add = new Address();
 		add.setStreet(address);
 		add.setStreet2(address2);
 		add.setCity(city);
+		add.setState(state_province);
 		add.setPostalCode(postalCode);
 		add.setCity(country);
 		add.setCountryCode(country);
@@ -104,8 +106,72 @@ public class UserController {
 		
 		//add user to session so that user will be logged in
 		session.setAttribute("loggedInUser", newUser);
-		mv.setViewName("account");
+		mv.setViewName("redirect:account.do");
 		return mv;
+	}
+	
+	//mapping to handle Redirect
+	@RequestMapping(path="account.do", method=RequestMethod.GET)
+	public ModelAndView account_created() {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("account");
+			return mv;
+	}
+	
+	//update the account
+	@RequestMapping(path="account.do", method=RequestMethod.POST)
+	public ModelAndView account_update(HttpSession session,
+			@RequestParam("username") String name,
+			@RequestParam("password") String pw,
+			@RequestParam("email") String email,
+			@RequestParam("address") String address,
+			@RequestParam("address2") String address2,
+			@RequestParam("city") String city,
+			@RequestParam("state_province") String state_province,
+			@RequestParam("postalCode") String postalCode,
+			@RequestParam("country") String country) {
+			//model
+			ModelAndView mv = new ModelAndView();
+			
+			//get the user from the db
+			//use the value of id of the session user
+			int id = ((User)session.getAttribute("loggedInUser")).getId();
+			
+			//get user by id
+			User updatedUser = userDao.findUserById(id);
+			
+			//update user info
+			updatedUser.setEmail(email);
+			updatedUser.setUsername(name);
+			updatedUser.setPassword(pw);
+			
+			Address updatedAddress= updatedUser.getUserAddress();
+			
+			updatedAddress.setStreet(address);
+			updatedAddress.setStreet2(address2);
+			updatedAddress.setCity(city);
+			updatedAddress.setPostalCode(postalCode);
+			updatedAddress.setCity(country);
+			updatedAddress.setCountryCode(country);
+			
+			//see if updating user will update address
+			
+			updatedUser.setUserAddress(updatedAddress);
+			
+			//send user to db
+			User user = userDao.updateUser(id, updatedUser);
+			//update session user
+			session.setAttribute("loggedInUser", user);
+			
+			if(user!=null) {
+				mv.addObject("result", "Account successfully updated!");
+			}
+			else {
+				mv.addObject("result", "Sorry, there was a problem updating your account.");
+			}
+			
+			mv.setViewName("account");
+			return mv;
 	}
 	
 	//for routing to the account creation page

@@ -7,4 +7,8 @@ public interface UserDAO {
 	User login(String name, String pw);
 	
 	User add(User user);
+	
+	User findUserById(int id);
+	
+	User updateUser(int id, User user);
 }
