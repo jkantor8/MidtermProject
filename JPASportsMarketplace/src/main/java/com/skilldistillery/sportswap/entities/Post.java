@@ -155,7 +155,7 @@ public class Post {
 			replies = new ArrayList<>();
 		}
 		if (!replies.contains(reply)) {
-
+  
 			replies.add(reply);
 			if (reply.getOriginalPost() != null) {
 				reply.getOriginalPost().removeReplies(reply);
