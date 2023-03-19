@@ -35,9 +35,7 @@ public class SportDAOImpl implements SportDAO {
 		return sport;
 	}
 
-	// REMINDER
-	// NO begin/commit
-	// NO em.close();
+	
 	@Override
 	public Sport update(int id, Sport sport) {
 
