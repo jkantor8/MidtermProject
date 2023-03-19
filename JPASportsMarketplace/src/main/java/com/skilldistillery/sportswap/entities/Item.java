@@ -16,6 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class Item {
 
@@ -37,8 +40,9 @@ public class Item {
 	
 	private boolean active;
 	
+	@CreationTimestamp
 	private LocalDateTime created;
-	
+	@UpdateTimestamp
 	private LocalDateTime updated;
 
 	private LocalDateTime deactivated;

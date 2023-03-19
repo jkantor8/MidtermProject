@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class Message {
 
@@ -23,9 +26,9 @@ public class Message {
 	private String subject;
 	
 	private String content;
-	
+	@CreationTimestamp
 	private LocalDateTime created;
-	
+	@UpdateTimestamp
 	private LocalDateTime deactivated;
 	
 	@ManyToOne
