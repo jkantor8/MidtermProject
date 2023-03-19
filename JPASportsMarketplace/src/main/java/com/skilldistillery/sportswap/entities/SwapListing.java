@@ -1,6 +1,8 @@
 package com.skilldistillery.sportswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,6 +44,16 @@ public class SwapListing {
 	@ManyToOne
 	@JoinColumn(name= "user_id")
 	private User swappingUser;
+	
+	@OneToMany(mappedBy= "swapListing")
+	private List<Post> swapListingPosts;
+	
+	@ManyToMany(mappedBy="sportSwapListings")
+	private List<Sport> sports;
+	
+	@ManyToMany(mappedBy="swapListingItems")
+	private List<Item> items;
+	
 	
 	
 	public SwapListing() {
@@ -101,6 +115,86 @@ public class SwapListing {
 
 	public void setSwappingUser(User swappingUser) {
 		this.swappingUser = swappingUser;
+	}
+
+	public List<Post> getSwapListingPosts() {
+		return swapListingPosts;
+	}
+
+	public void setSwapListingPosts(List<Post> swapListingPosts) {
+		this.swapListingPosts = swapListingPosts;
+	}
+
+	public void addSwapListingPost(Post swapPost) {
+		if (swapListingPosts == null) {
+			swapListingPosts = new ArrayList<>();
+		}
+		if (!swapListingPosts.contains(swapPost)) {
+
+			swapListingPosts.add(swapPost);
+			if (swapPost.getSwapListing() != null) {
+				swapPost.getSwapListing().removeSwapListingPost(swapPost);
+			}
+			swapPost.setSwapListing(this);
+		}
+	}
+
+	public void removeSwapListingPost(Post swapPost) {
+		if (swapListingPosts != null && swapListingPosts.contains(swapPost)) {
+			swapListingPosts.remove(swapPost);
+			swapPost.setSwapListing(null);
+		}
+	}
+	
+	public List<Sport> getSports() {
+		return sports;
+	}
+
+	public void setSports(List<Sport> sports) {
+		this.sports = sports;
+	}
+	
+	public void addSport(Sport sport) {
+		if(sports ==null) {
+			sports = new ArrayList<>();
+			}
+			if(!sports.contains(sport)) {
+				sports.add(sport);
+				sport.addSwapListing(this);
+				}
+			}
+	
+	public void removeSport(Sport sport) {
+		if(sports != null && sports.contains(sport)) {
+			sports.remove(sport);
+			sport.removeSwapListing(this);
+		}
+	}
+	
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	public void addItem(Item item) {
+		if(items ==null) {
+			items = new ArrayList<>();
+			}
+			if(!items.contains(item)) {
+				items.add(item);
+				item.addSwapListingItem(this);
+				}
+			}
+	
+	public void removeItem(Item item) {
+		if(items != null && items.contains(item)) {
+			items.remove(item);
+			item.removeSwapListingItem(this);
+		}
 	}
 
 	@Override

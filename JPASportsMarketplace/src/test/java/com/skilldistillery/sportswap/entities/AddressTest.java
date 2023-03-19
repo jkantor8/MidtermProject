@@ -47,6 +47,9 @@ class AddressTest {
 		assertNull(address.getStreet2());
 		assertEquals("Mendota Heights",address.getCity());
 		assertEquals("55555",address.getPostalCode());
+		assertEquals("MN", address.getState());
+		assertEquals("US", address.getCountryCode());
+		
 	}
 	
 	@Test

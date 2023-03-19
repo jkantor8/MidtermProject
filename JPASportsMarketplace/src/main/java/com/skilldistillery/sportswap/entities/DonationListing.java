@@ -1,6 +1,8 @@
 package com.skilldistillery.sportswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,7 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -47,6 +51,15 @@ public class DonationListing {
 	@ManyToOne 
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@OneToMany(mappedBy="donationListing")
+	private List<Post> donationListingPosts;
+	
+	@ManyToMany(mappedBy="sportDonationListings")
+	private List<Sport> sports;
+	
+	@ManyToMany(mappedBy="donationListingItems")
+	private List<Item> items;
 	
 	public DonationListing() {
 		
@@ -123,6 +136,88 @@ public class DonationListing {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Post> getDonationListingPosts() {
+		return donationListingPosts;
+	}
+
+	public void setDonationListingPosts(List<Post> donationListingPosts) {
+		this.donationListingPosts = donationListingPosts;
+	}
+	
+	public void addDonationListingPost(Post donationPost) {
+		if (donationListingPosts == null) {
+			donationListingPosts = new ArrayList<>();
+		}
+		if (!donationListingPosts.contains(donationPost)) {
+
+			donationListingPosts.add(donationPost);
+			if (donationPost.getDonationListing() != null) {
+				donationPost.getDonationListing().removeDonationListingPost(donationPost);
+			}
+			donationPost.setDonationListing(this);
+		}
+	}
+
+	public void removeDonationListingPost(Post donationPost) {
+		if (donationListingPosts != null && donationListingPosts.contains(donationPost)) {
+			donationListingPosts.remove(donationPost);
+			donationPost.setDonationListing(null);
+		}
+	}
+	
+	
+
+	public List<Sport> getSports() {
+		return sports;
+	}
+
+	public void setSports(List<Sport> sports) {
+		this.sports = sports;
+	}
+	
+	public void addSport(Sport sport) {
+		if(sports ==null) {
+			sports = new ArrayList<>();
+			}
+			if(!sports.contains(sport)) {
+				sports.add(sport);
+				sport.addDonationListing(this);
+				}
+			}
+	
+	public void removeSport(Sport sport) {
+		if(sports != null && sports.contains(sport)) {
+			sports.remove(sport);
+			sport.removeDonationListing(this);
+		}
+	}
+	
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	public void addItem(Item item) {
+		if(items ==null) {
+			items = new ArrayList<>();
+			}
+			if(!items.contains(item)) {
+				items.add(item);
+				item.addDonationListingItem(this);
+				}
+			}
+	
+	public void removeItem(Item item) {
+		if(items != null && items.contains(item)) {
+			items.remove(item);
+			item.removeDonationListingItem(this);
+		}
 	}
 
 	@Override

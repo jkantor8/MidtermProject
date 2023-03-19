@@ -3,6 +3,7 @@ package com.skilldistillery.sportswap.entities;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -69,5 +70,27 @@ class SwapListingTest {
 		assertEquals("fwftw@fldsjaf.org",swapListing.getSwappingUser().getEmail());
 		
 	}
+	
+	@Test
+	void test_SwapListing_Post_OneToMany_mapping() {
+	assertNotNull(swapListing);
+	assertNotNull(swapListing.getSwapListingPosts());
+	
+	}
+	
+	@Test
+	void test_SwapListing_Sport_ManyToMany() {
+		assertNotNull(swapListing);
+		assertNotNull(swapListing.getSports());
+		assertFalse(swapListing.getSports().isEmpty());
+	}
+	@Test
+	void test_SwapListing_item_ManyToMany() {
+		assertNotNull(swapListing);
+		assertNotNull(swapListing.getItems());
+		assertFalse(swapListing.getItems().isEmpty());
+	}
+	
+	
 
 }
