@@ -5,12 +5,10 @@ import org.springframework.stereotype.Controller;
 
 import com.skilldistillery.sportswap.data.UserDAO;
 
+@Controller
 public class ItemController {
 
-	@Controller
-	public class UserController {
+	@Autowired
+	private UserDAO userDao;
 
-		@Autowired
-		private UserDAO userDao;
-	}
 }

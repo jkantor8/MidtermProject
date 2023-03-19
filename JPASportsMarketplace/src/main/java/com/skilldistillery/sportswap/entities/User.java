@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class User {
 
@@ -33,9 +36,9 @@ public class User {
 	private String role;
 
 	private String email;
-
+	@CreationTimestamp
 	private LocalDateTime created;
-
+	@UpdateTimestamp
 	private LocalDateTime updated;
 
 	private LocalDateTime deactivated;
