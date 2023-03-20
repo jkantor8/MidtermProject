@@ -14,9 +14,9 @@
             Create Listing
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="create_listing?listing_type=donation">Donation Listing</a></li>
-            <li><a class="dropdown-item" href="create_listing?listing_type=swap">Swap Listing</a></li>
-            <li><a class="dropdown-item" href="crate_listing?listing_type=sale">Sale Listing</a></li>
+            <li><a class="dropdown-item" href="create_listing.do?listing_type=donation">Donation Listing</a></li>
+            <li><a class="dropdown-item" href="create_listing.do?listing_type=swap">Swap Listing</a></li>
+            <li><a class="dropdown-item" href="create_listing.do?listing_type=sale">Sale Listing</a></li>
           </ul>
         </li>
          <li class="nav-item">
