@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -47,13 +48,12 @@ class AgeGroupTest {
 		assertEquals("YOUTH",ageGroup.getAge());
 	}
 	@Test
-	void test_AgeGroup_to_Item_OneToOne() {
+	void test_AgeGroup_to_Item_OneToMany() {
 		ageGroup = em.find(AgeGroup.class, 3);
 		assertNotNull(ageGroup);
-//		assertNotNull(ageGroup.getItemAgeGroup());
-//		assertEquals("Punching Bag",ageGroup.getItemAgeGroup().getName());
-//		assertEquals("TKO", ageGroup.getItemAgeGroup().getBrand());
-		//assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg", ageGroup.getItemAgeGroup().getImageUrl());
+		assertNotNull(ageGroup.getItems());
+		assertFalse(ageGroup.getItems().isEmpty());
+
 	}
 
 }
