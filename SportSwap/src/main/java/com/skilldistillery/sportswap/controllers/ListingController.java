@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.sportswap.data.AddressDAO;
+import com.skilldistillery.sportswap.data.AgeGroupDAO;
 import com.skilldistillery.sportswap.data.ConditionDAO;
 import com.skilldistillery.sportswap.data.DonationListingDAO;
 import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.SportDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
-import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.AgeGroup;
 import com.skilldistillery.sportswap.entities.Condition;
 import com.skilldistillery.sportswap.entities.DonationListing;
@@ -46,7 +46,8 @@ public class ListingController {
 	private ConditionDAO conditionDAO;
 	@Autowired
 	private SportDAO sportDAO;
-	
+	@Autowired
+	private AgeGroupDAO ageGroupDAO;
 
 	// directs to page
 	@GetMapping(path = { "listings.do" })
@@ -118,12 +119,12 @@ public class ListingController {
 
 	// ******************* LISTING CREATION ************
 	//page direct
-	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET)
-	public ModelAndView loadCreateListing(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("create_listing");
-		return mv;
-	}
+//	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET)
+//	public ModelAndView loadCreateListing(HttpSession session) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("create_listing");
+//		return mv;
+//	}
 	
 	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET, params="create_listing")
 	public ModelAndView createListing(
@@ -176,5 +177,46 @@ public class ListingController {
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
+	
+//	@RequestMapping(path= "createItem.do")
+//	public String createItem() {
+//		return "createItem";
+//	
+//	
+//	}
+	
+//	@RequestMapping(path="addItem.do", method = RequestMethod.POST, params="listing_type" )
+//	public String addItem(HttpSession httpsession, Item item, int ageGroupId, int conditionId, int sportId ) {
+//		Sport sport = sportDAO.findById(sportId);
+//		Condition condition = conditionDAO.findById(conditionId);
+//		AgeGroup ageGroup = ageGroupDAO.findById(ageGroupId);
+//		Item newItem = ItemDAO.add(ageGroup, condition, sport);
+//			httpsession.setAttribute("Item", newItem);
+//			
+//			
+//			return "donation_create";
+//	}
 
+	@RequestMapping(path="create_listing.do", method = RequestMethod.GET, params="listing_type" )
+	public String routeTest(HttpSession httpsession, @RequestParam("listing_type") String type) {
+		httpsession.setAttribute("listing_type", type);
+		if (type.equals("donation")) {
+			return "address_check";
+		} else if (type.equals("swap")) {
+			
+			return "address_check";
+		} else if (type.equals("sale")) {
+			return "item_check";
+		} else {
+			return "home";
+		}
+			
+		
+	}
+	
+	
+	
+	
+	
+	
 }
