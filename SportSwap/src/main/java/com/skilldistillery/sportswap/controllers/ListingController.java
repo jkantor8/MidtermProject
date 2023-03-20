@@ -7,14 +7,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.sportswap.data.DonationListingDAO;
+import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.entities.DonationListing;
+import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
@@ -27,6 +31,9 @@ public class ListingController {
 	private DonationListingDAO donationListingDAO;
 	@Autowired
 	private SaleListingDAO saleListingDAO;
+	@Autowired
+	private ItemDAO itemDAO;
+	
 
 	// directs to page
 	@GetMapping(path = { "listings.do" })
@@ -76,7 +83,7 @@ public class ListingController {
 		return mv;
 	}
 
-	// view donations
+	// view sales
 	// use session for saving listings looked at?
 	@RequestMapping(path = "listings.do", method = RequestMethod.POST, params = "sale_listings")
 	public ModelAndView viewSales(HttpSession session) {
@@ -95,4 +102,49 @@ public class ListingController {
 		}
 		return mv;
 	}
+
+	// ******************* LISTING CREATION ************
+	//page direct
+	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET)
+	public ModelAndView loadCreateListing(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("create_listing");
+		return mv;
+	}
+	
+	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET, params="create_listing")
+	public ModelAndView createListing(
+			HttpSession session,
+			@RequestParam(name="create_listing",defaultValue="swap") String listingType) {
+		ModelAndView mv = new ModelAndView();
+		
+		String msg ="";
+		//test
+		if(listingType.equals("swap")) {
+			msg = "create_swap.jsp";
+			
+		}
+		else if(listingType.equals("donation")) {
+			msg = "DONATION";
+		}
+		else if(listingType.equals("sale")) {
+			msg = "SALE";
+		}
+		else {
+			msg="NOTHING";
+		}
+		mv.addObject("testMsg", msg);
+		mv.setViewName("create_listing");
+		return mv;
+	}
+	
+	@PostMapping(path="create_listing.do")
+	public ModelAndView createSwapListing(Item item, SwapListing swapListing) {
+		
+		item = itemDAO.add(item);
+		swapListing = swapListingDAO.add(swapListing);
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
+
 }
