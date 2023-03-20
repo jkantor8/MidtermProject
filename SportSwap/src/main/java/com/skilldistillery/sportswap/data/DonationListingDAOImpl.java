@@ -57,4 +57,10 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 		return listing;
 		
 	}
+	
+	public DonationListing update(DonationListing listing, int id) {
+		
+		return null;
+	}
+	
 }

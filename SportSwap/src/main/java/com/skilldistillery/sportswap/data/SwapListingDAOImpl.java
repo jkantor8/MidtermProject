@@ -59,5 +59,11 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		return swapListing;
 
 	}
+	
+	@Override
+	public SwapListing update(SwapListing listing, int id) {
+		
+		return null;
+	}
 
 }
