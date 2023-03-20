@@ -19,6 +19,13 @@ public class ItemDAOImpl implements ItemDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+	
+	@Override
+	public Item findItemById(int itemId) {
+		Item item = em.find(Item.class, itemId);
+		return item;
+	}
 
 	@Override
 	public List<Item> findAll() {

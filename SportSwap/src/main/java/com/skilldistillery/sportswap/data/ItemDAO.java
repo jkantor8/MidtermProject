@@ -6,6 +6,8 @@ import com.skilldistillery.sportswap.entities.Item;
 
 public interface ItemDAO {
 	
+	Item findItemById(int itemId);
+	
 	List<Item> findAll();
 	
 	List<Item> findItemByKeyword(String itemName);
