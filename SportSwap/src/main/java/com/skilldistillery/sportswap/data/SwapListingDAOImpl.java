@@ -25,5 +25,13 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		swaps = em.createQuery(query, SwapListing.class).getResultList();
 		return swaps;
 	}
+	
+	@Override
+	@Transactional
+	public SwapListing add(SwapListing swapListing) {
+		em.persist(swapListing);
+		return swapListing;
+		
+	}
 
 }

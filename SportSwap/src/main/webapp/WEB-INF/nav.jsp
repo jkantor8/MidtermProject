@@ -10,7 +10,7 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Create Listing</a>
+          <a class="nav-link" href="create_listing.do">Create Listing</a>
         </li>
          <li class="nav-item">
           <a class="nav-link" href="listings.do">View Listings</a>

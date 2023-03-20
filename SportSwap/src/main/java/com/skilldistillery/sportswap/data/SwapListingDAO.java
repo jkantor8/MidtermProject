@@ -7,4 +7,6 @@ import com.skilldistillery.sportswap.entities.SwapListing;
 public interface SwapListingDAO {
 
 	List<SwapListing> getAllSwapListings();
+	
+	SwapListing add(SwapListing swapListing);
 }
