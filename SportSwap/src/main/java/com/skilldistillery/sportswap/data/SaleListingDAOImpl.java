@@ -43,8 +43,16 @@ public class SaleListingDAOImpl implements SaleListingDAO{
 
 	@Override
 	public SaleListing update(SaleListing listing, int id) {
+		SaleListing updatedListing =em.find(SaleListing.class, id);
 		
-		return null;
+		updatedListing.setPrice(listing.getPrice());
+		updatedListing.setActive(listing.isActive());
+		updatedListing.setCreated(listing.getCreated());
+		updatedListing.setUpdated(listing.getUpdated());
+		updatedListing.setDeactivated(listing.getDeactivated());
+		
+		
+		return updatedListing;
 	}
 	
 	

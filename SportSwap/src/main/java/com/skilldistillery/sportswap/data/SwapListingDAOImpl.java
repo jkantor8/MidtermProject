@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Address;
+import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
@@ -58,11 +59,19 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		return swapListing;
 
 	}
-	
+
 	@Override
 	public SwapListing update(SwapListing listing, int id) {
+		SwapListing updatedListing = em.find(SwapListing.class, id);
+
+		updatedListing.setActive(listing.isActive());
+		updatedListing.setCreated(listing.getCreated());
+		updatedListing.setUpdated(listing.getUpdated());
+		updatedListing.setDeactivated(listing.getDeactivated());
 		
-		return null;
+
+		return updatedListing;
+		
 	}
 
 }
