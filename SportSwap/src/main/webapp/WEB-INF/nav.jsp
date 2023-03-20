@@ -9,8 +9,15 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="create_listing.do">Create Listing</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Create Listing
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="create_listing?listing_type=donation">Donation Listing</a></li>
+            <li><a class="dropdown-item" href="create_listing?listing_type=swap">Swap Listing</a></li>
+            <li><a class="dropdown-item" href="crate_listing?listing_type=sale">Sale Listing</a></li>
+          </ul>
         </li>
          <li class="nav-item">
           <a class="nav-link" href="listings.do">View Listings</a>

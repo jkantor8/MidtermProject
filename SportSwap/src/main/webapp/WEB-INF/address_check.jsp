@@ -11,26 +11,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
 <meta charset="UTF-8">
-<title>SportSwap - Trade Up!</title>
+<title>SportSwap - Trade up!</title>
 </head>
 <body>
+<h1>Address Info</h1>
+<p>Would you like to use your address or create a new location?</p>
+<form action="address_check.do" method="GET">
+	<input type="submit" value="Create a Location" name="create_address">
+	<input type="submit" value="Use My Address" name="use_user_address">
+</form>
 
-<header>
-<h1>Welcome to SportSwap</h1>
 
-<jsp:include page="nav.jsp" />
-</header>
-
-<main>
-<form method="GET" action="create_listing.do">
-         <input type="submit" value="sale" name="create_listing">
-         <input type="submit" value="donation" name="create_listing">
-         <input type="submit" value="swap" name="create_listing">
-    </form>
-
-<jsp:include page="${testMsg}" />
-
-</main>
 <jsp:include page="footer.jsp" />
 
 <!--  BOOTSTRAP JAVASCRIPT -->
