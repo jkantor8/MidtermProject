@@ -41,7 +41,7 @@
 				<table class="table">
 					<c:forEach var="listing" items="${listings}">
 							<tr>
-							<td>${listing.id} 
+							<td>${listing.id} ${listing.created} 
 							</tr>
 
 
