@@ -9,7 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.AgeGroup;
+import com.skilldistillery.sportswap.entities.Condition;
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.Sport;
 
 @Service
 @Transactional
@@ -34,11 +36,15 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	public Item add(Item item, int ageGroupId) {
+public Item add(Item item, int ageGroupId, int conditionId, int sportId) {
 		
 		AgeGroup ageGroup = em.find(AgeGroup.class, ageGroupId);
+		Condition condition  = em.find(Condition.class, conditionId);
+		Sport sport = em.find(Sport.class, sportId);
 		
 		item.setAgeGroup(ageGroup);
+		item.setItemCondition(condition);
+		item.setSportItem(sport);
 		
 		//persists will return the item
 		em.persist(item);
