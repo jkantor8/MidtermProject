@@ -10,5 +10,6 @@ public interface SaleListingDAO {
 	
 	List<SaleListing> getAllSaleListings();
 	
+	SaleListing add(SaleListing listing, int itemId);
 	
 }

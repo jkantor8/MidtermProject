@@ -1,5 +1,6 @@
 package com.skilldistillery.sportswap.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
+import com.skilldistillery.sportswap.entities.Item;
 
 @Transactional
 @Service
@@ -33,7 +35,19 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 	}
 	
 	@Override
-	public DonationListing add(DonationListing listing, int addressId) {
+	public DonationListing add(DonationListing listing, List<Integer> itemIds, int addressId) {
+		
+		List<Item> items = new ArrayList<>();
+		if (itemIds != null) {
+			for (Integer id : itemIds) {
+				Item itemToAdd = em.find(Item.class, id);
+				if (itemToAdd != null) {
+					items.add(itemToAdd);
+					itemToAdd.addDonationListingItem(listing);
+				}
+			}
+		}
+		
 		
 		Address address = em.find(Address.class, addressId);
 		

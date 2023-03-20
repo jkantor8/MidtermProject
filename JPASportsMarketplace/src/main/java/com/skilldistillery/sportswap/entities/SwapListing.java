@@ -51,7 +51,7 @@ public class SwapListing {
 	@ManyToMany(mappedBy="sportSwapListings")
 	private List<Sport> sports;
 	
-	@ManyToMany(mappedBy="swapListingItems")
+	@ManyToMany(mappedBy="swapListings")
 	private List<Item> items;
 	
 	
@@ -186,14 +186,14 @@ public class SwapListing {
 			}
 			if(!items.contains(item)) {
 				items.add(item);
-				item.addSwapListingItem(this);
+				item.addSwapListing(this);
 				}
 			}
 	
 	public void removeItem(Item item) {
 		if(items != null && items.contains(item)) {
 			items.remove(item);
-			item.removeSwapListingItem(this);
+			item.removeSwapListing(this);
 		}
 	}
 

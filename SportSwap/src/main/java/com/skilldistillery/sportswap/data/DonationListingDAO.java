@@ -10,5 +10,5 @@ public interface DonationListingDAO {
 
 	List<DonationListing> getAllDonationListings();
 	
-	DonationListing add(DonationListing listing, int addressId);
+	DonationListing add(DonationListing listing, List<Integer> itemIds, int addressId);
 }
