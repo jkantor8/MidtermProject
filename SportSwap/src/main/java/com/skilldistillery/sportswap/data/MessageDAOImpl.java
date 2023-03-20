@@ -34,9 +34,21 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 
 	@Override
-	public Message add(Message message) {
+	public Message save(Message message) {
 			em.persist(message);
 			em.flush();
 		return message;
 	}
+	
+	
+	@Override
+	public List<Message> findByReceiver(String username) {
+		String jpql = "SELECT m FROM Message m WHERE m.receiver.username = :username";
+		List<Message> messages = em.createQuery(jpql, Message.class)
+				.setParameter("username", username)
+				.getResultList();
+		return messages;
+	}
+
+	
 }

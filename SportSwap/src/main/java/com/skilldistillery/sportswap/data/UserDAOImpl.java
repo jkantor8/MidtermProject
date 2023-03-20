@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.data;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -57,5 +58,25 @@ public class UserDAOImpl implements UserDAO {
 		
 		return user;
 	}
+	
+	@Override
+    public User findByUsername(String username) {
+        String jpql = "SELECT u FROM User u WHERE u.username = :username";
+        User user = null;
+        try {
+            user = em.createQuery(jpql, User.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            // No user with the given username found
+            user = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            user = null;
+        }
+        return user;
+    }
+
+	
 	
 }
