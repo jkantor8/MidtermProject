@@ -70,7 +70,7 @@ public class Item {
 	@JoinTable(name = "swap_listing_has_item", 
 	joinColumns = @JoinColumn(name = "item_id"), 
 	inverseJoinColumns = @JoinColumn(name = "swap_listing_id"))
-	private List<SwapListing> swapListingItems;
+	private List<SwapListing> swapListings;
 	
 	@ManyToMany
 	@JoinTable(name = "donation_listing_has_item", 
@@ -207,27 +207,27 @@ public class Item {
 	}
 	
 
-	public List<SwapListing> getSwapListingItems() {
-		return swapListingItems;
+	public List<SwapListing> getSwapListings() {
+		return swapListings;
 	}
 
-	public void setSwapListingItems(List<SwapListing> swapListingItems) {
-		this.swapListingItems = swapListingItems;
+	public void setSwapListings(List<SwapListing> swapListingItems) {
+		this.swapListings = swapListingItems;
 	}
 	
-	public void addSwapListingItem(SwapListing swapListing) {
-		if(swapListingItems ==null) {
-			swapListingItems = new ArrayList<>();
+	public void addSwapListing(SwapListing swapListing) {
+		if(swapListings ==null) {
+			swapListings = new ArrayList<>();
 		}
-		if(!swapListingItems.contains(swapListing)) {
-			swapListingItems.add(swapListing);
+		if(!swapListings.contains(swapListing)) {
+			swapListings.add(swapListing);
 			swapListing.addItem(this);
 			}
 		}
 
-		public void removeSwapListingItem(SwapListing swapListing) {
-			if(swapListingItems != null && swapListingItems.contains(swapListing)) {
-				swapListingItems.remove(swapListing);
+		public void removeSwapListing(SwapListing swapListing) {
+			if(swapListings != null && swapListings.contains(swapListing)) {
+				swapListings.remove(swapListing);
 				swapListing.removeItem(this);
 			}
 		}

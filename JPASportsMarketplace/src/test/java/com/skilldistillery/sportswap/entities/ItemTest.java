@@ -98,8 +98,8 @@ class ItemTest {
 	@Test
 	void test_item_to_SwapListing_ManyToMany() {
 		assertNotNull(item);
-		assertNotNull(item.getSwapListingItems());
-		assertNotNull(item.getSwapListingItems().isEmpty());
+		assertNotNull(item.getSwapListings());
+		assertNotNull(item.getSwapListings().isEmpty());
 	}
 
 }
