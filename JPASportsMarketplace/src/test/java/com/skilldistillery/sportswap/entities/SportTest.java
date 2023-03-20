@@ -50,12 +50,10 @@ class SportTest {
 	}
 	
 	@Test
-	void test_sport_to_item_OneToOne() {
+	void test_sport_to_item_OneToMany() {
 		assertNotNull(sport);
-		assertNotNull(sport.getItem());
-		assertEquals("Punching Bag",sport.getItem().getName());
-		assertEquals("TKO",sport.getItem().getBrand());
-		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg",sport.getItem().getImageUrl());
+		assertNotNull(sport.getItems());
+		assertFalse(sport.getItems().isEmpty());
 		
 	}
 	

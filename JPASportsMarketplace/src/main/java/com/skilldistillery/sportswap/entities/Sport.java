@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Sport {
@@ -22,8 +22,8 @@ public class Sport {
 
 	private String name;
 
-	@OneToOne(mappedBy = "sportItem")
-	private Item item;
+	@OneToMany(mappedBy = "sportItem")
+	private List<Item> items;
 
 	@ManyToMany
 	@JoinTable(name = "swap_listing_has_sport",
@@ -63,12 +63,34 @@ public class Sport {
 		this.name = name;
 	}
 
-	public Item getItem() {
-		return item;
+
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	
+	public void addItem(Item item) {
+		if(items == null) {
+			items = new ArrayList<>();
+		}
+		if (!items.contains(item)) {
+			items.add(item);
+			if(item.getSportItem() != null) {
+				item.getSportItem().removeItem(item);
+			}
+			item.setSportItem(this);
+		}
+	}
+
+	public void removeItem(Item item) {
+		if (items != null && items.contains(item)) {
+			items.remove(item);
+			item.setSportItem(null);
+		}
 	}
 
 	public List<SwapListing> getSportSwapListings() {

@@ -54,11 +54,11 @@ public class Item {
 	@JoinColumn(name="user_id")
 	private User userItem;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name= "age_group_id")
 	private AgeGroup ageGroup;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name= "sport_id")
 	private Sport sportItem;
 	

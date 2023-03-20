@@ -75,14 +75,14 @@ class ItemTest {
 	}
 	
 	@Test
-	void test_Item_to_AgeGroup_OneToOne() {
+	void test_Item_to_AgeGroup_ManyToOne() {
 		assertNotNull(item);
-		//assertNotNull(item.getAgeGroup());
-		//assertEquals("ADULT" ,item.getAgeGroup().getAge());
+		assertNotNull(item.getAgeGroup());
+		assertEquals("ADULT" ,item.getAgeGroup().getAge());
 	}
 	
 	@Test
-	void test_Item_to_Sport_OneToOne() {
+	void test_Item_to_Sport_ManyToOne() {
 		assertNotNull(item);
 		assertNotNull(item.getSportItem());
 		assertEquals("Boxing", item.getSportItem().getName());
