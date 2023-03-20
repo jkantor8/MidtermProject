@@ -60,18 +60,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `sport`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `sport` ;
-
-CREATE TABLE IF NOT EXISTS `sport` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `age_group`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `age_group` ;
@@ -79,6 +67,18 @@ DROP TABLE IF EXISTS `age_group` ;
 CREATE TABLE IF NOT EXISTS `age_group` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `age` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sport`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sport` ;
+
+CREATE TABLE IF NOT EXISTS `sport` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -117,22 +117,22 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_condition_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_item_user1_idx` (`user_id` ASC),
-  INDEX `fk_item_sport1_idx` (`sport_id` ASC),
   INDEX `fk_item_age_group1_idx` (`age_group_id` ASC),
+  INDEX `fk_item_sport1_idx` (`sport_id` ASC),
   INDEX `fk_item_item_condition1_idx` (`item_condition_id` ASC),
   CONSTRAINT `fk_item_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_item_sport1`
-    FOREIGN KEY (`sport_id`)
-    REFERENCES `sport` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_item_age_group1`
     FOREIGN KEY (`age_group_id`)
     REFERENCES `age_group` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_item_sport1`
+    FOREIGN KEY (`sport_id`)
+    REFERENCES `sport` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_item_item_condition1`
@@ -468,6 +468,18 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `age_group`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sportswapdb`;
+INSERT INTO `age_group` (`id`, `age`) VALUES (1, 'YOUTH');
+INSERT INTO `age_group` (`id`, `age`) VALUES (2, 'INTERMEDIATE');
+INSERT INTO `age_group` (`id`, `age`) VALUES (3, 'ADULT');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `sport`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -482,18 +494,6 @@ INSERT INTO `sport` (`id`, `name`) VALUES (7, 'Baseball');
 INSERT INTO `sport` (`id`, `name`) VALUES (8, 'Softball');
 INSERT INTO `sport` (`id`, `name`) VALUES (9, 'Basketball');
 INSERT INTO `sport` (`id`, `name`) VALUES (10, 'Weightlifting');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `age_group`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `sportswapdb`;
-INSERT INTO `age_group` (`id`, `age`) VALUES (1, 'YOUTH');
-INSERT INTO `age_group` (`id`, `age`) VALUES (2, 'INTERMEDIATE');
-INSERT INTO `age_group` (`id`, `age`) VALUES (3, 'ADULT');
 
 COMMIT;
 
@@ -516,8 +516,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sportswapdb`;
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `item_condition_id`) VALUES (1, 'Punching Bag', 'A punching bag that hangs from the ceiling. Attachment not included.', 'https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg', NULL, 'TKO', 1, NULL, NULL, NULL, 3, 3, 1, 1);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `item_condition_id`) VALUES (2, 'Hockey Stick', 'Got this new but it was too short.', 'https://xanimal37.github.io/figures/img/GAG_fig_06.jpg', NULL, 'Bauer', 1, NULL, NULL, NULL, 2, 2, 2, 3);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `item_condition_id`) VALUES (1, 'Punching Bag', 'A punching bag that hangs from the ceiling. Attachment not included.', 'https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg', NULL, 'TKO', 1, NULL, NULL, NULL, 3, 1, 4, 1);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `gender`, `brand`, `active`, `created`, `updated`, `deactivated`, `user_id`, `age_group_id`, `sport_id`, `item_condition_id`) VALUES (2, 'Hockey Stick', 'Got this new but it was too short.', 'https://xanimal37.github.io/figures/img/GAG_fig_06.jpg', NULL, 'Bauer', 1, NULL, NULL, NULL, 2, 2, 5, 1);
 
 COMMIT;
 

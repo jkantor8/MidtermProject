@@ -19,8 +19,8 @@ public class AgeGroup {
 	
 	private String age;
 	
-	@OneToOne(mappedBy="ageGroup")
-	private Item itemAgeGroup;
+//	@OneToOne(mappedBy="ageGroup")
+//	private Item itemAgeGroup;
 	
 	public AgeGroup() {
 		
@@ -42,13 +42,13 @@ public class AgeGroup {
 		this.age = age;
 	}
 
-	public Item getItemAgeGroup() {
-		return itemAgeGroup;
-	}
-
-	public void setItemAgeGroup(Item itemAgeGroup) {
-		this.itemAgeGroup = itemAgeGroup;
-	}
+//	public Item getItemAgeGroup() {
+//		return itemAgeGroup;
+//	}
+//
+//	public void setItemAgeGroup(Item itemAgeGroup) {
+//		this.itemAgeGroup = itemAgeGroup;
+//	}
 
 	@Override
 	public int hashCode() {

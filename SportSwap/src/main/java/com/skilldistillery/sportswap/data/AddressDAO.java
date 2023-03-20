@@ -7,4 +7,6 @@ public interface AddressDAO {
 	Address add(Address address);
 	
 	Address updateAddress(int id, Address address);
+	
+	Address findById(int id);
 }
