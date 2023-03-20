@@ -12,7 +12,7 @@ public interface ItemDAO {
 	
 	List<Item> findItemByKeyword(String itemName);
 
-	Item add(Item item, int ageGroupId, int conditionId, int sportId);
+	Item add(Item item, int ageGroupId, int sportId, int conditionId);
 	
 	Item update(int id, Item item);
 }

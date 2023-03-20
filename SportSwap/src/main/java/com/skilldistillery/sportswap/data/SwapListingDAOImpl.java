@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
 @Transactional
@@ -27,9 +28,14 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 	}
 	
 	@Override
-	@Transactional
-	public SwapListing add(SwapListing swapListing) {
+	public SwapListing add(SwapListing swapListing, int addressId) {
+		
+		Address address = em.find(Address.class, addressId);
+		
+		swapListing.setSwapAddress(address);
+		
 		em.persist(swapListing);
+		em.flush();
 		return swapListing;
 		
 	}

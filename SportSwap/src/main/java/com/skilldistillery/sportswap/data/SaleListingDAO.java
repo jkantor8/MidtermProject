@@ -6,6 +6,9 @@ import com.skilldistillery.sportswap.entities.SaleListing;
 
 public interface SaleListingDAO {
 	
+	SaleListing findById(int id);
+	
 	List<SaleListing> getAllSaleListings();
-
+	
+	
 }

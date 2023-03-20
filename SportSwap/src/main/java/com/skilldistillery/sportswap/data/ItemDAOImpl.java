@@ -43,11 +43,11 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-public Item add(Item item, int ageGroupId, int conditionId, int sportId) {
+public Item add(Item item, int ageGroupId, int sportId, int conditionId) {
 		
 		AgeGroup ageGroup = em.find(AgeGroup.class, ageGroupId);
-		Condition condition  = em.find(Condition.class, conditionId);
 		Sport sport = em.find(Sport.class, sportId);
+		Condition condition  = em.find(Condition.class, conditionId);
 		
 		item.setAgeGroup(ageGroup);
 		item.setItemCondition(condition);
