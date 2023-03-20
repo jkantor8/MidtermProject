@@ -181,7 +181,6 @@ public class Item {
 		this.userItem = userItem;
 	}
 	
-
 	public AgeGroup getAgeGroup() {
 		return ageGroup;
 	}

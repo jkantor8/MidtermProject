@@ -13,13 +13,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.sportswap.data.AddressDAO;
+import com.skilldistillery.sportswap.data.ConditionDAO;
 import com.skilldistillery.sportswap.data.DonationListingDAO;
 import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
+import com.skilldistillery.sportswap.data.SportDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
+import com.skilldistillery.sportswap.entities.Address;
+import com.skilldistillery.sportswap.entities.AgeGroup;
+import com.skilldistillery.sportswap.entities.Condition;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
+import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
 @Controller
@@ -33,6 +40,12 @@ public class ListingController {
 	private SaleListingDAO saleListingDAO;
 	@Autowired
 	private ItemDAO itemDAO;
+	@Autowired
+	private AddressDAO addressDAO;
+	@Autowired
+	private ConditionDAO conditionDAO;
+	@Autowired
+	private SportDAO sportDAO;
 	
 
 	// directs to page
@@ -125,24 +138,41 @@ public class ListingController {
 			
 		}
 		else if(listingType.equals("donation")) {
-			msg = "DONATION";
+			msg = "create_donation.jsp";
 		}
 		else if(listingType.equals("sale")) {
-			msg = "SALE";
+			msg = "create_sale.jsp";
 		}
 		else {
-			msg="NOTHING";
+			msg="Sorry, there was a problem.";
 		}
 		mv.addObject("testMsg", msg);
 		mv.setViewName("create_listing");
 		return mv;
 	}
 	
+	//this method assumes the user is always creating a new item
 	@PostMapping(path="create_listing.do")
-	public ModelAndView createSwapListing(Item item, SwapListing swapListing) {
+	public ModelAndView createItem(SwapListing swapListing, HttpSession httpsession,
+			@RequestParam(name="age_group_id",defaultValue="1")int ageGroupId,
+			@RequestParam("useraddress") int addressId,
+			@RequestParam("condition_id") int conditionId,
+			@RequestParam("sport_id") int sportId) {
 		
-		item = itemDAO.add(item);
-		swapListing = swapListingDAO.add(swapListing);
+		
+		
+//		Address address = addressDAO.findById(addressId);
+//		Condition condition = conditionDAO.findById(conditionId);
+//		AgeGroup ageGroup = ageGroupDAO.findById(ageGroupId);
+//		//test
+//		Sport sport = sportDAO.findById(1);
+//		
+//		session.setAttribute("CreatedItemId", itemId);
+//		item = itemDAO.add(item, ageGroup,condition,sport);
+		
+		
+//		SwapListing swapListing=SwapListingDAO()
+		
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}

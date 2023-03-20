@@ -33,4 +33,10 @@ public class AddressDAOImpl implements AddressDAO {
 		address.setCountryCode(updatedAddress.getCountryCode());
 		return address;
 	}
+	
+	@Override
+	public Address findById(int id) {
+		Address address = em.find(Address.class, id);
+		return address;
+	}
 }
