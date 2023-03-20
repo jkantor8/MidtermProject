@@ -14,29 +14,18 @@
 <title>SportSwap - Trade up!</title>
 </head>
 <body>
-<header>
-<header>
-<h1>Welcome to SportSwap</h1>
-<jsp:include page="nav.jsp" />
-</header>
+<h1>Items for ${loggedInUser.username}</h1>
+<c:if test="${items not empty}">
+	<c:forEach var="item" items="${items}">
+	<!--  these should become links to the address check page with item id stored in either session or passed as parameter -->
+	<!-- for now just show id to get it working -->
+	<p>${item.id }</p>
+	</c:forEach>
+</c:if>
+<c:if test="${empty items}">
+	<p>Sorry, you have no active items associated with your account.</p>
+</c:if>
 
-<h1>Create a new Address</h1>
-<p>Please enter the address information.
-<form action="address_create.do" method="POST">
-	<label for="street">Street:</label>
-	<input type="text" id="street" name="street"><br>
-	<label for="street2">Apt #, unit information, etc.:</label>
-	<input type="text" id="street2" name="street2"><br>
-	<label for="city">City:</label>
-	<input type="text" id="city" name="city"><br>
-	<label for="stateProvince">State/Province:</label>
-	<input type="text" id="stateProvince" name="stateProvince"><br>
-	<label for="postalCode">Postal Code:</label>
-	<input type="text" id="postalCode" name="postalCode"><br>
-	<label for="countryCode">Country Code:</label>
-	<input type="text" id="countryCode" name="countryCode"><br>
-	<input type="submit" value="submit">
-</form>
 
 
 <jsp:include page="footer.jsp" />
