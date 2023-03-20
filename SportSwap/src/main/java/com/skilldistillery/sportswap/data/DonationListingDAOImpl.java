@@ -59,8 +59,14 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 	}
 	
 	public DonationListing update(DonationListing listing, int id) {
+		DonationListing updatedListing = em.find(DonationListing.class, id);
 		
-		return null;
+		updatedListing.setActive(listing.isActive());
+		updatedListing.setUpdated(listing.getUpdated());
+		updatedListing.setEventStart(listing.getEventStart());
+		updatedListing.setEventEnd(listing.getEventEnd());
+		
+		return updatedListing;
 	}
 	
 }
