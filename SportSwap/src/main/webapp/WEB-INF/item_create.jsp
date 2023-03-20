@@ -14,15 +14,9 @@
 <title>SportSwap - Trade up!</title>
 </head>
 <body>
-<header>
-<header>
-<h1>Welcome to SportSwap</h1>
-<jsp:include page="nav.jsp" />
-</header>
-
-<h1>Create a new Address</h1>
-<p>Please enter the address information.
-<form action="address_create.do" method="POST">
+<h1>Create a new item</h1>
+<p>Please enter the item information.
+<form action="item_create.do" method="POST">
 	<label for="street">Street:</label>
 	<input type="text" id="street" name="street"><br>
 	<label for="street2">Apt #, unit information, etc.:</label>

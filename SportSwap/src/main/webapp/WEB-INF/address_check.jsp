@@ -14,11 +14,14 @@
 <title>SportSwap - Trade up!</title>
 </head>
 <body>
+<header>
 <h1>Address Info</h1>
+<jsp:include page="nav.jsp" />
+</header>
 <p>Would you like to use your address or create a new location?</p>
 <form action="address_check.do" method="GET">
-	<input type="submit" value="Create a Location" name="create_address">
-	<input type="submit" value="Use My Address" name="use_user_address">
+	<input type="submit" value="Create a Location" name="which_address">
+	<input type="submit" value="Use My Address" name="which_address">
 </form>
 
 

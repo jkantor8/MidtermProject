@@ -16,7 +16,7 @@
 
 <body>
 <header>
-<h1>Welcome to SportSwap</h1>
+<h1>Listings</h1>
 
 <jsp:include page="nav.jsp" />
 </header>
