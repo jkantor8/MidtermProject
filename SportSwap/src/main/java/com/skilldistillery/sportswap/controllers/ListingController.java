@@ -13,20 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.skilldistillery.sportswap.data.AddressDAO;
-import com.skilldistillery.sportswap.data.AgeGroupDAO;
-import com.skilldistillery.sportswap.data.ConditionDAO;
 import com.skilldistillery.sportswap.data.DonationListingDAO;
-import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
-import com.skilldistillery.sportswap.data.SportDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
-import com.skilldistillery.sportswap.entities.AgeGroup;
-import com.skilldistillery.sportswap.entities.Condition;
 import com.skilldistillery.sportswap.entities.DonationListing;
-import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
-import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
 @Controller
@@ -38,16 +29,6 @@ public class ListingController {
 	private DonationListingDAO donationListingDAO;
 	@Autowired
 	private SaleListingDAO saleListingDAO;
-	@Autowired
-	private ItemDAO itemDAO;
-	@Autowired
-	private AddressDAO addressDAO;
-	@Autowired
-	private ConditionDAO conditionDAO;
-	@Autowired
-	private SportDAO sportDAO;
-	@Autowired
-	private AgeGroupDAO ageGroupDAO;
 
 	// directs to page
 	@GetMapping(path = { "listings.do" })
@@ -117,106 +98,46 @@ public class ListingController {
 		return mv;
 	}
 
-	// ******************* LISTING CREATION ************
-	//page direct
-//	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET)
-//	public ModelAndView loadCreateListing(HttpSession session) {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("create_listing");
-//		return mv;
-//	}
-	
-	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET, params="create_listing")
-	public ModelAndView createListing(
-			HttpSession session,
-			@RequestParam(name="create_listing",defaultValue="swap") String listingType) {
-		ModelAndView mv = new ModelAndView();
-		
-		String msg ="";
-		//test
-		if(listingType.equals("swap")) {
-			msg = "create_swap.jsp";
-			
-		}
-		else if(listingType.equals("donation")) {
-			msg = "create_donation.jsp";
-		}
-		else if(listingType.equals("sale")) {
-			msg = "create_sale.jsp";
-		}
-		else {
-			msg="Sorry, there was a problem.";
-		}
-		mv.addObject("testMsg", msg);
-		mv.setViewName("create_listing");
-		return mv;
-	}
-	
-	//this method assumes the user is always creating a new item
-	@PostMapping(path="create_listing.do")
-	public ModelAndView createItem(SwapListing swapListing, HttpSession httpsession,
-			@RequestParam(name="age_group_id",defaultValue="1")int ageGroupId,
-			@RequestParam("useraddress") int addressId,
-			@RequestParam("condition_id") int conditionId,
-			@RequestParam("sport_id") int sportId) {
-		
-		
-		
-//		Address address = addressDAO.findById(addressId);
-//		Condition condition = conditionDAO.findById(conditionId);
-//		AgeGroup ageGroup = ageGroupDAO.findById(ageGroupId);
-//		//test
-//		Sport sport = sportDAO.findById(1);
-//		
-//		session.setAttribute("CreatedItemId", itemId);
-//		item = itemDAO.add(item, ageGroup,condition,sport);
-		
-		
-//		SwapListing swapListing=SwapListingDAO()
-		
-		ModelAndView mv = new ModelAndView();
-		return mv;
-	}
-	
-//	@RequestMapping(path= "createItem.do")
-//	public String createItem() {
-//		return "createItem";
-//	
-//	
-//	}
-	
-//	@RequestMapping(path="addItem.do", method = RequestMethod.POST, params="listing_type" )
-//	public String addItem(HttpSession httpsession, Item item, int ageGroupId, int conditionId, int sportId ) {
-//		Sport sport = sportDAO.findById(sportId);
-//		Condition condition = conditionDAO.findById(conditionId);
-//		AgeGroup ageGroup = ageGroupDAO.findById(ageGroupId);
-//		Item newItem = ItemDAO.add(ageGroup, condition, sport);
-//			httpsession.setAttribute("Item", newItem);
-//			
-//			
-//			return "donation_create";
-//	}
+	// *********** CREATE LISTINGS MAPPINGS
+	// *********************************************************
 
-	@RequestMapping(path="create_listing.do", method = RequestMethod.GET, params="listing_type" )
-	public String routeTest(HttpSession httpsession, @RequestParam("listing_type") String type) {
-		httpsession.setAttribute("listing_type", type);
-		if (type.equals("donation")) {
-			return "address_check";
-		} else if (type.equals("swap")) {
-			
+	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET, params = "listing_type")
+	public String routeTest(HttpSession session, @RequestParam("listing_type") String type) {
+		session.setAttribute("listing_type", type);
+		if (type.equals("donation") || type.equals("swap")) {
 			return "address_check";
 		} else if (type.equals("sale")) {
 			return "item_check";
 		} else {
 			return "home";
 		}
-			
-		
 	}
-	
-	
-	
-	
-	
-	
+
+	@RequestMapping(path="address_check.do", method=RequestMethod.GET, params="which_address")
+	public ModelAndView addressOption(HttpSession session, @RequestParam("which_address") String option) {
+		ModelAndView mv = new ModelAndView();
+		String context = session.getAttribute("listing_type").toString();
+		if(option.equals("Create a Location")) {
+			//go to address creation page
+			mv.setViewName("address_create");
+		}
+		else if(!option.equals("Create a Location") && context.equals("swap")) {
+			//check if the user wants to create an item
+			mv.setViewName("item_check");
+		}
+		else if(!option.equals("Create a Location") && context.equals("donation"))
+			//take user to the donation creation page
+			mv.setViewName("donation_create");
+		return mv;
+	}
+
+	// NEED DAO METHODS FOR THIS
+	@PostMapping(path = "donation_create.do")
+	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
+		ModelAndView mv = new ModelAndView();
+		//DonationListing donationListing = donationListingDAO.add(donationListing,);
+		mv.setViewName("listings");
+		return mv;
+	}
+
 }

@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
 	<header>
 		<h1>Welcome to SportSwap</h1>
 
