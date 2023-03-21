@@ -1,6 +1,5 @@
 package com.skilldistillery.sportswap.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
 @Service
@@ -35,9 +35,14 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 	}
 
 	@Override
-	public DonationListing add(DonationListing listing, List<Item> donationItems, int addressId) {
+	public DonationListing add(DonationListing listing, List<Item> items, Address address, User user) {
 
-		for (Item item : donationItems) {
+		// get managed objects
+		User managedUser = em.find(User.class, user.getId());
+		Address managedAddress = em.find(Address.class, address.getId());
+
+		for (Item item : items) {
+
 			Item itemToAdd = em.find(Item.class, item.getId());
 			if (itemToAdd != null) {
 				listing.addItem(itemToAdd);
@@ -45,13 +50,13 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 			}
 		}
 
-		Address address = em.find(Address.class, addressId);
+		listing.setDonationAddress(managedAddress);
+		listing.setUser(managedUser);
+		listing.setActive(true);
 
-		listing.setDonationAddress(address);
 		em.persist(listing);
 		em.flush();
 		return listing;
-
 	}
 
 	@Override
@@ -68,26 +73,24 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 		return updatedListing;
 	}
 
-	
 	@Override
 	public List<DonationListing> findDonationListingsByUser(int userId) {
-	    String jpql = "SELECT d FROM DonationListing d WHERE d.user.id = :user";
-	    List<DonationListing> userDonationListings = em.createQuery(jpql, DonationListing.class).setParameter("user", userId).getResultList();
-	    return userDonationListings;
+		String jpql = "SELECT d FROM DonationListing d WHERE d.user.id = :user";
+		List<DonationListing> userDonationListings = em.createQuery(jpql, DonationListing.class)
+				.setParameter("user", userId).getResultList();
+		return userDonationListings;
 	}
-
-
 
 	@Override
 	public boolean deactivate(int id) {
 		boolean deactivated = false;
-		
+
 		DonationListing donation = em.find(DonationListing.class, id);
 		if (em.contains(donation)) {
 			donation.setActive(false);
 			deactivated = true;
 		}
-		
+
 		return deactivated;
 	}
 

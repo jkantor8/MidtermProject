@@ -54,18 +54,12 @@ public class AddressController {
 		if (option.equals("Create a Location")) {
 			// go to address creation page
 			mv.setViewName("redirect:address_create.do");
-		} else if (!option.equals("Create a Location") && context.equals("swap")) {
+		} else if (!option.equals("Create a Location") && (context.equals("swap") || context.equals("donation"))) {
 			// check if the user wants to create an item
-			// saev address to session
 			address = ((User) session.getAttribute("loggedInUser")).getUserAddress();
 			session.setAttribute("address", address);
-			mv.setViewName("item_check");
-		} else if (!option.equals("Create a Location") && context.equals("donation")) {
-			// take user to the donation creation page
-			address = ((User) session.getAttribute("loggedInUser")).getUserAddress();
-			session.setAttribute("address", address);
-			mv.setViewName("donation_create");
-		}
+			mv.setViewName("redirect:item_option.do");
+		} 
 		return mv;
 	}
 }
