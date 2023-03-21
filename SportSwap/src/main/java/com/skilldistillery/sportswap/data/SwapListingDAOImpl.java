@@ -73,5 +73,16 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		return updatedListing;
 
 	}
-
+	@Override
+	public boolean deactivate(int id) {
+		boolean deactivated = false;
+		
+		SwapListing swap = em.find(SwapListing.class, id);
+		if (em.contains(swap)) {
+			swap.setActive(false);
+			deactivated = true;
+		}
+		
+		return deactivated;
+	}
 }

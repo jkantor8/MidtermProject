@@ -16,4 +16,6 @@ public interface SaleListingDAO {
 
 	List<SaleListing> findSaleListingsByUser(int userId);
 	
+	boolean deactivate(int id);
+	
 }
