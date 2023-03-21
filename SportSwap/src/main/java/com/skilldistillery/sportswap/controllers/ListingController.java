@@ -141,18 +141,45 @@ public class ListingController {
 	}
 	
 	@GetMapping(path="swap_create.do")
-	public ModelAndView createSwap(HttpSession httpsession, DonationListing donationListing) {
+	public ModelAndView createSwap(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		//DonationListing donationListing = donationListingDAO.add(donationListing,);
-		mv.setViewName("listings");
+		//List of items to add
+		List<String> itemIds = (List<String>)session.getAttribute("itemsForListing");
+		//swapListing=swapListingDAO.add(swapListing, null, 0);
+		mv.addObject("test",itemIds);
+		mv.setViewName("swap_create");
 		return mv;
 	}
 	
-	@PostMapping(path="finish_listing.do")
-	public ModelAndView finishListing(HttpSession httpsession) {
+	@PostMapping(path="swap_create.do")
+	
+	//after item select, this mapping will save the list of item ids to a string in the session
+	//and route the user to the correct listing creation page
+	@PostMapping(path="finish_listing.do", params="selectable_item")
+	public ModelAndView finishListing(
+			HttpSession session,
+			@RequestParam("selectable_item")List<String> selectable_items) {
+		//save ITEM IDs in the session
+		session.setAttribute("itemsForListing",selectable_items);
 		ModelAndView mv = new ModelAndView();
+		
 		//finish listing based on context and items
-		mv.setViewName("home"); //for now
+		String context = session.getAttribute("listing_type").toString();
+		switch(context) {
+		case "swap":
+			mv.setViewName("redirect:swap_create.do"); 
+			break;
+		case "donation":
+			mv.setViewName("redirect:donation_create.do");
+			break;
+		case "sale":
+			mv.setViewName("redirect:sale_create.do");
+			break;
+		default:
+			mv.setViewName("redirect:home.do");
+			break;
+		}
+	
 		return mv;
 	}
 
