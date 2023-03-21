@@ -18,4 +18,6 @@ public interface SwapListingDAO {
 	SwapListing update(SwapListing listing, int id);
 	
 	boolean deactivate(int id);
+
+	List<SwapListing> findSwapListingsByUser(int userId);
 }

@@ -85,4 +85,12 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		
 		return deactivated;
 	}
+	
+	@Override
+	public List<SwapListing> findSwapListingsByUser(int swappingUser) {
+	    String jpql = "SELECT s FROM SwapListing s WHERE s.swappingUser.id = :swappingUser";
+	    List<SwapListing> userSwapListings = em.createQuery(jpql, SwapListing.class).setParameter("swappingUser", swappingUser).getResultList();
+	    return userSwapListings;
+	}
+
 }
