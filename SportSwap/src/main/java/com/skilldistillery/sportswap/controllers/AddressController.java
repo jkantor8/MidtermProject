@@ -12,15 +12,23 @@ import com.skilldistillery.sportswap.entities.Address;
 
 @Controller
 public class AddressController {
-	
+
 	@Autowired
 	private AddressDAO addressDAO;
-	
-	@PostMapping(path="address_create.do")
+
+	@PostMapping(path = "address_create.do")
 	public ModelAndView createAddress(HttpSession session, Address address) {
 		ModelAndView mv = new ModelAndView();
 		addressDAO.add(address);
-		mv.setViewName("home");
+		// change routing depending on context
+		String context = session.getAttribute("listing_type").toString();
+		if (context.equals("donation")) {
+			mv.setViewName("donation_create");
+		} else if (context.equals("swap")) {
+			mv.setViewName("swap_create");
+		} else {
+			mv.setViewName("home");
+		}
 		return mv;
 	}
 

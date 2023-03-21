@@ -17,6 +17,7 @@ import com.skilldistillery.sportswap.data.DonationListingDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.entities.DonationListing;
+import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
@@ -132,11 +133,29 @@ public class ListingController {
 	}
 
 	// NEED DAO METHODS FOR THIS
-	@PostMapping(path = "donation_create.do")
+	@GetMapping(path = "donation_create.do")
 	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
+		ModelAndView mv = new ModelAndView();
+		
+		DonationListing createdDonationListing = donationListingDAO.add(donationListing, donationListing.getItems(), donationListing.getDonationAddress().getId());
+		mv.addObject("listings", createdDonationListing);
+		mv.setViewName("listings");
+		return mv;
+	}
+	
+	@GetMapping(path="swap_create.do")
+	public ModelAndView createSwap(HttpSession httpsession, DonationListing donationListing) {
 		ModelAndView mv = new ModelAndView();
 		//DonationListing donationListing = donationListingDAO.add(donationListing,);
 		mv.setViewName("listings");
+		return mv;
+	}
+	
+	@PostMapping(path="finish_listing.do")
+	public ModelAndView finishListing(HttpSession httpsession) {
+		ModelAndView mv = new ModelAndView();
+		//finish listing based on context and items
+		mv.setViewName("home"); //for now
 		return mv;
 	}
 

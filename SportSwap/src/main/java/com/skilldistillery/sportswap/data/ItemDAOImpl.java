@@ -12,6 +12,7 @@ import com.skilldistillery.sportswap.entities.AgeGroup;
 import com.skilldistillery.sportswap.entities.Condition;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.Sport;
+import com.skilldistillery.sportswap.entities.User;
 
 @Service
 @Transactional
@@ -43,15 +44,20 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-public Item add(Item item, int ageGroupId, int sportId, int conditionId) {
+	public Item add(Item item, int ageGroupId, int sportId, int conditionId, int userId) {
 		
 		AgeGroup ageGroup = em.find(AgeGroup.class, ageGroupId);
 		Sport sport = em.find(Sport.class, sportId);
 		Condition condition  = em.find(Condition.class, conditionId);
+		//associate user
+		User user = em.find(User.class,userId);
 		
 		item.setAgeGroup(ageGroup);
 		item.setItemCondition(condition);
 		item.setSportItem(sport);
+		item.setUserItem(user);
+		
+		item.setActive(true);
 		
 		//persists will return the item
 		em.persist(item);
@@ -73,6 +79,13 @@ public Item add(Item item, int ageGroupId, int sportId, int conditionId) {
 		updatedItem.setDeactivated(item.getDeactivated());
 		
 		return updatedItem;
+	}
+	
+	@Override
+	public List<Item> findItemsByUser(User user) {
+		String query = "SELECT i FROM Item i WHERE i.userItem =:u AND i.active = 1";
+		List<Item> items = em.createQuery(query, Item.class).setParameter("u",user).getResultList();
+		return items;
 	}
 
 }

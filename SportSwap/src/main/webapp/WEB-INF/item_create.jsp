@@ -17,18 +17,44 @@
 <h1>Create a new item</h1>
 <p>Please enter the item information.
 <form action="item_create.do" method="POST">
-	<label for="street">Street:</label>
-	<input type="text" id="street" name="street"><br>
-	<label for="street2">Apt #, unit information, etc.:</label>
-	<input type="text" id="street2" name="street2"><br>
-	<label for="city">City:</label>
-	<input type="text" id="city" name="city"><br>
-	<label for="stateProvince">State/Province:</label>
-	<input type="text" id="stateProvince" name="stateProvince"><br>
-	<label for="postalCode">Postal Code:</label>
-	<input type="text" id="postalCode" name="postalCode"><br>
-	<label for="countryCode">Country Code:</label>
-	<input type="text" id="countryCode" name="countryCode"><br>
+	<label for="name">name:</label>
+	<input type="text" id="name" name="name"><br>
+	<label for="description">description:</label>
+	<input type="text" id="description" name="description"><br>
+	<label for="imageUrl">image url:</label>
+	<input type="text" id="imageUrl" name="imageUrl"><br>
+	<label for="brand">brand:</label>
+	<input type="text" id="brand" name="brand"><br>
+	<label for="sportId">sport:</label>
+		<select name="sportId" id="sportId">
+  			<option value="1">Boxing</option>
+  			<option value="2">Hockey</option>
+  			<option value="3">Golf</option>
+  			<option value="4">Football</option>
+  			<option value="5">Soccer</option>
+  			<option value="6">Curling</option>
+
+		</select><br>
+	<label for="conditionId">condition:</label>
+		<select name="conditionId" id="conditionId">
+  			<option value="1">New</option>
+  			<option value="2">Lightly Used</option>
+  			<option value="3">Used</option>
+  			<option value="4">Heavily Used</option>
+		</select><br>
+	<label for="gender">gender:</label>
+		<select name="gender" id="gender">
+  			<option value="Unisex">Unisex</option>
+  			<option value="Female">Female</option>
+  			<option value="Male">Male</option>
+		</select><br>
+		<label for="ageGroupId">age group:</label>
+		<select name="ageGroupId" id="ageGroupId">
+  			<option value="1">Youth</option>
+  			<option value="2">Intermediate</option>
+  			<option value="3">Adult</option>
+		</select><br>
+	
 	<input type="submit" value="submit">
 </form>
 

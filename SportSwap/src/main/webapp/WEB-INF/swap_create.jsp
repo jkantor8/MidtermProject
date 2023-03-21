@@ -11,30 +11,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
 <meta charset="UTF-8">
-<title>SportSwap - Trade Up!</title>
+<title>Insert title here</title>
 </head>
 <body>
 <header>
-<h1>Select Item(s)</h1>
+<h1>Create swap listing</h1>
 <jsp:include page="nav.jsp" />
 </header>
-
-<!--  show a selectable list of all active items associated with the user -->
-<p>${message}</p>
 <main>
-<form action="finish_listing.do" method="POST">
-<c:forEach var="item" items="${items}">
-<div class="selectable_item">
-<div>
-<input type="checkbox" id="${item.id}" name="selectable_item" value="${item.id}">
-</div>
-<div>
-<p>${item.name }</p>
-</div>
-</div>
-</c:forEach>
-<input type="submit" value="submit">
-</form>
+
+
 </main>
+
+<jsp:include page="footer.jsp" />
+<!--  BOOTSTRAP JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+<!--  end  -->
 </body>
 </html>
