@@ -11,4 +11,6 @@ public interface DonationListingDAO {
 	List<DonationListing> getAllDonationListings();
 	
 	DonationListing add(DonationListing listing, List<Integer> itemIds, int addressId);
+	
+	DonationListing update(DonationListing listing, int id);
 }

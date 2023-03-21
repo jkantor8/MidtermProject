@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Address;
+import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
@@ -58,6 +58,20 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		em.flush();
 		return swapListing;
 
+	}
+
+	@Override
+	public SwapListing update(SwapListing listing, int id) {
+		SwapListing updatedListing = em.find(SwapListing.class, id);
+
+		updatedListing.setActive(listing.isActive());
+		updatedListing.setCreated(listing.getCreated());
+		updatedListing.setUpdated(listing.getUpdated());
+		updatedListing.setDeactivated(listing.getDeactivated());
+		
+
+		return updatedListing;
+		
 	}
 
 }
