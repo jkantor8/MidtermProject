@@ -13,5 +13,7 @@ public interface MessageDAO {
 	Message save(Message message);
 
 	List<Message> findByReceiver(String receiver);
+	
+	List<Message> findBySender(String senderUsername);
 
 }
