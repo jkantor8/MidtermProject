@@ -17,6 +17,7 @@ import com.skilldistillery.sportswap.data.DonationListingDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.entities.DonationListing;
+import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.SwapListing;
 
@@ -135,7 +136,9 @@ public class ListingController {
 	@GetMapping(path = "donation_create.do")
 	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
 		ModelAndView mv = new ModelAndView();
-		//DonationListing donationListing = donationListingDAO.add(donationListing,);
+		
+		DonationListing createdDonationListing = donationListingDAO.add(donationListing, donationListing.getItems(), donationListing.getDonationAddress().getId());
+		mv.addObject("listings", createdDonationListing);
 		mv.setViewName("listings");
 		return mv;
 	}
