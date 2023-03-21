@@ -14,4 +14,6 @@ public interface DonationListingDAO {
 	DonationListing add(DonationListing listing, List<Item> donationItems, int addressId);
 	
 	DonationListing update(DonationListing listing, int id);
+
+	List<DonationListing> findDonationListingsByUser(int user);
 }
