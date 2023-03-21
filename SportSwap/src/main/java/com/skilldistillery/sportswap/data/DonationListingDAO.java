@@ -2,8 +2,10 @@ package com.skilldistillery.sportswap.data;
 
 import java.util.List;
 
+import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.User;
 
 public interface DonationListingDAO {
 	
@@ -11,7 +13,7 @@ public interface DonationListingDAO {
 
 	List<DonationListing> getAllDonationListings();
 	
-	DonationListing add(DonationListing listing, List<Item> donationItems, int addressId);
+	DonationListing add(DonationListing listing, List<Item> items, Address address, User user);
 	
 	DonationListing update(DonationListing listing, int id);
 
