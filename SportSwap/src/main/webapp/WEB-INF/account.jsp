@@ -45,11 +45,12 @@
  	<input type="submit" name="submit" value="update_account">
  	<input type="submit" name="delete" value="delete account">
 </form>
+<br>
 
 
-
-<a href= "/messages">Show Messages</a>
-<a href= "viewUserSaleListings.do">Show My Sales Listings</a>
+<a href= "/messages">Show Messages</a><br>
+<a href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
+<a href= "viewUserDonationListings.do">Show My Donation Listings</a>
 <p>${result }</p>
 </div>
 <jsp:include page="footer.jsp" />
