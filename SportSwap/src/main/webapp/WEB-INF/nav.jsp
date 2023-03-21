@@ -23,7 +23,7 @@
           <a class="nav-link" href="listings.do">View Listings</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Account</a>
+          <a class="nav-link" href="account.do">Account</a>
         </li>
        
        

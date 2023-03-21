@@ -7,9 +7,11 @@ import com.skilldistillery.sportswap.entities.Message;
 public interface MessageDAO {
 
 	List<Message> findAll();
-	
+
 	List<Message> findMessageBySubject(String subject);
-	
-	Message add(Message message);
-	
+
+	Message save(Message message);
+
+	List<Message> findByReceiver(String receiver);
+
 }

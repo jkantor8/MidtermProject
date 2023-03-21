@@ -45,6 +45,9 @@
  	<input type="submit" name="submit" value="update_account">
  	<input type="submit" name="delete" value="delete account">
 </form>
+
+
+<a href= "/messages">Show Messages</a>
 <p>${result }</p>
 </div>
 <jsp:include page="footer.jsp" />

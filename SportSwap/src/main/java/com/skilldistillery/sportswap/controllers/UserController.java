@@ -40,6 +40,8 @@ public class UserController {
 		if (user != null) {
 			// Add user to session to remember who is logged in
 			session.setAttribute("loggedInUser", user);
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("username", user.getUsername());
 			mv.addObject("user", user);
 		} else {
 
