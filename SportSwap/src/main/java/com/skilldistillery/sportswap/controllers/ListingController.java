@@ -189,6 +189,30 @@ public class ListingController {
 		return mv;
 	}
 	
+	
+	
+	@RequestMapping(path = "singleListing", method = RequestMethod.GET, params = "listing_type")
+	public String viewSingleListing(HttpSession session, @RequestParam("listing_type") String type) {
+		session.setAttribute("listing_type", type);
+		if (type.equals("donation")) {
+			return "singleDonation";
+		}
+		else if(type.equals("Swap")) {
+			return "singleSwap";
+		}else if (type.equals("Sale")) {
+			return "singleSale";
+		}else {
+			return "home";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 //	@PostMapping(path = "deactivate.do"), params
 
 }
