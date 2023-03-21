@@ -72,6 +72,7 @@
 </div>
 
 
+
 <jsp:include page="footer.jsp" />
 
 <!--  BOOTSTRAP JAVASCRIPT -->
