@@ -2,7 +2,7 @@ package com.skilldistillery.sportswap.data;
 
 import java.util.List;
 
-import com.skilldistillery.sportswap.entities.Item;
+
 import com.skilldistillery.sportswap.entities.SwapListing;
 
 public interface SwapListingDAO {
@@ -13,5 +13,5 @@ public interface SwapListingDAO {
 	
 	SwapListing add(SwapListing swapListing, List<Integer> itemIds, int addressId);
 	
-	
+	SwapListing update(SwapListing listing, int id);
 }
