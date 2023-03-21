@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.sportswap.data.DonationListingDAO;
+import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
+import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.SwapListing;
+import com.skilldistillery.sportswap.entities.User;
 
 @Controller
 public class ListingController {
@@ -30,6 +33,8 @@ public class ListingController {
 	private DonationListingDAO donationListingDAO;
 	@Autowired
 	private SaleListingDAO saleListingDAO;
+	@Autowired
+	private ItemDAO itemDAO;
 
 	// directs to page
 	@GetMapping(path = { "listings.do" })
@@ -41,66 +46,39 @@ public class ListingController {
 
 	// view swaps
 	// use session for saving listings looked at?
-	@RequestMapping(path = "listings.do", method = RequestMethod.POST, params = "swap_listings")
-	public ModelAndView viewSwaps(HttpSession session) {
+	@RequestMapping(path = "listings.do", method = RequestMethod.POST, params = "list_view")
+	public ModelAndView viewSwaps(HttpSession session, @RequestParam("list_view") String listView) {
 		ModelAndView mv = new ModelAndView();
+		
+		//set a session variable to tell single listing view page what type to look for 
+		//which dao to use
+		
 
-		String noswaps = "Sorry, no swap listings matching those criteria were found.";
+		String noListings = "Sorry, no listings matching those criteria were found.";
 
-		List<SwapListing> swaps = swapListingDAO.getAllSwapListings();
-
-		if (swaps != null && swaps.size() > 0) {
-			// hand a list of swap listings to the page
-
-			mv.addObject("listings", swaps);
-		} else {
-			mv.addObject("message", noswaps);
-		}
-		return mv;
-	}
-
-	// view donations
-	// use session for saving listings looked at?
-	@RequestMapping(path = "listings.do", method = RequestMethod.POST, params = "donation_listings")
-	public ModelAndView viewDonations(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-
-		String noDonations = "Sorry, no donation listings matching those criteria were found.";
-
-		List<DonationListing> donations = donationListingDAO.getAllDonationListings();
-
-		if (donations != null && donations.size() > 0) {
-			// hand a list of swap listings to the page
-
-			mv.addObject("listings", donations);
-		} else {
-			mv.addObject("message", noDonations);
-		}
-		return mv;
-	}
-
-	// view sales
-	// use session for saving listings looked at?
-	@RequestMapping(path = "listings.do", method = RequestMethod.POST, params = "sale_listings")
-	public ModelAndView viewSales(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-
-		String noSales = "Sorry, no sales listings matching those criteria were found.";
-
-		List<SaleListing> sales = saleListingDAO.getAllSaleListings();
-
-		if (sales != null && sales.size() > 0) {
-			// hand a list of swap listings to the page
-
-			mv.addObject("listings", sales);
-		} else {
-			mv.addObject("message", noSales);
+		switch (listView) {
+		case "view donations":
+			List<DonationListing> donList = donationListingDAO.getAllDonationListings();
+			//session.setAttribute("singleListViewType", "donationView");
+			mv.addObject("listings", donList);
+			break;
+		case "view sales":
+			List<SaleListing> saleList = saleListingDAO.getAllSaleListings();
+			//session.setAttribute("singleListViewType", "saleView");
+			mv.addObject("listings", saleList);
+			break;
+		case "view swaps":
+			List<SwapListing> swapList = swapListingDAO.getAllSwapListings();
+			//session.setAttribute("singleListViewType", "swapView");
+			mv.addObject("listings", swapList);
+			break;
+		default:
+			break;
 		}
 		return mv;
 	}
 
 	// *********** CREATE LISTINGS MAPPINGS
-	// *********************************************************
 
 	@RequestMapping(path = "create_listing.do", method = RequestMethod.GET, params = "listing_type")
 	public String routeTest(HttpSession session, @RequestParam("listing_type") String type) {
@@ -114,48 +92,67 @@ public class ListingController {
 		}
 	}
 
-	@RequestMapping(path="address_check.do", method=RequestMethod.GET, params="which_address")
-	public ModelAndView addressOption(HttpSession session, @RequestParam("which_address") String option) {
+//	@RequestMapping(path = "donation_create.do")
+//	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
+//		ModelAndView mv = new ModelAndView();
+//
+//		DonationListing createdDonationListing = donationListingDAO.add(donationListing, donationListing.getItems(),
+//				donationListing.getDonationAddress().getId());
+//		mv.addObject("listings", createdDonationListing);
+//		mv.setViewName("listings");
+//		return mv;
+//	}
+
+	// SWAP
+	@GetMapping(path = "swap_create.do")
+	public ModelAndView routeToCreateSwap(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		String context = session.getAttribute("listing_type").toString();
-		if(option.equals("Create a Location")) {
-			//go to address creation page
-			mv.setViewName("address_create");
-		}
-		else if(!option.equals("Create a Location") && context.equals("swap")) {
-			//check if the user wants to create an item
-			mv.setViewName("item_check");
-		}
-		else if(!option.equals("Create a Location") && context.equals("donation"))
-			//take user to the donation creation page
-			mv.setViewName("donation_create");
+		mv.addObject("itemsToAdd", session.getAttribute("items"));
+		mv.setViewName("swap_create");
 		return mv;
 	}
 
-	// NEED DAO METHODS FOR THIS
-	@RequestMapping(path = "donation_create.do")
-	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
+	@PostMapping(path = "submit_swap.do")
+	public ModelAndView createSwap(HttpSession session, SwapListing listing) {
 		ModelAndView mv = new ModelAndView();
 		
-		DonationListing createdDonationListing = donationListingDAO.add(donationListing, donationListing.getItems(), donationListing.getDonationAddress().getId());
-		mv.addObject("listings", createdDonationListing);
+		List<Item> items = (List<Item>) session.getAttribute("items");
+		Address address = (Address) session.getAttribute("address");
+		User user = (User) session.getAttribute("loggedInUser");
+
+		SwapListing createdSwapListing = swapListingDAO.add(listing, items, address,user);
 		mv.setViewName("listings");
 		return mv;
 	}
-	
-	@GetMapping(path="swap_create.do")
-	public ModelAndView createSwap(HttpSession httpsession, DonationListing donationListing) {
+
+	// after item select, this mapping will save the list of item ids to a string in
+	// the session
+	// and route the user to the correct listing creation page
+	@PostMapping(path = "finish_listing.do", params = "selectable_item")
+	public ModelAndView finishListing(HttpSession session,
+			@RequestParam("selectable_item") List<String> selectable_items) {
+		// save ITEMs selected in the session
+		List<Item> items = itemDAO.findItemsByIds(selectable_items);
+		session.setAttribute("items", items);
 		ModelAndView mv = new ModelAndView();
-		//DonationListing donationListing = donationListingDAO.add(donationListing,);
-		mv.setViewName("listings");
-		return mv;
-	}
-	
-	@PostMapping(path="finish_listing.do")
-	public ModelAndView finishListing(HttpSession httpsession) {
-		ModelAndView mv = new ModelAndView();
-		//finish listing based on context and items
-		mv.setViewName("home"); //for now
+
+		// finish listing based on context and items
+		String context = session.getAttribute("listing_type").toString();
+		switch (context) {
+		case "swap":
+			mv.setViewName("redirect:swap_create.do");
+			break;
+		case "donation":
+			mv.setViewName("redirect:donation_create.do");
+			break;
+		case "sale":
+			mv.setViewName("redirect:sale_create.do");
+			break;
+		default:
+			mv.setViewName("redirect:home.do");
+			break;
+		}
+
 		return mv;
 	}
 

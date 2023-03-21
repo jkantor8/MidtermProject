@@ -37,7 +37,7 @@ public class SwapListing {
 	
 	private LocalDateTime deactivated;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn (name= "address_id")
 	private Address swapAddress;
 	

@@ -18,4 +18,6 @@ public interface ItemDAO {
 	Item update(int id, Item item);
 	
 	List<Item> findItemsByUser(User user);
+	
+	List<Item> findItemsByIds(List<String> ids);
 }

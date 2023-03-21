@@ -1,5 +1,6 @@
 package com.skilldistillery.sportswap.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -33,11 +34,11 @@ public class Address {
 	@Column(name = "country_code")
 	private String countryCode;
 	
-	@OneToOne(mappedBy= "donationAddress")
-	private DonationListing donationListing;
-	
-	@OneToOne(mappedBy= "swapAddress")
-	private SwapListing swapListing;
+//	@OneToMany(mappedBy= "donationAddress")
+//	private List<DonationListing> donationListings;
+//	
+//	@OneToMany(mappedBy= "swapAddress")
+//	private List<SwapListing> swapListings;
 	
 	public Address() {
 		
@@ -97,22 +98,6 @@ public class Address {
 
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
-	}
-
-	public DonationListing getDonationListing() {
-		return donationListing;
-	}
-
-	public void setDonationListing(DonationListing donationListing) {
-		this.donationListing = donationListing;
-	}
-
-	public SwapListing getSwapListing() {
-		return swapListing;
-	}
-
-	public void setSwapListing(SwapListing swapListing) {
-		this.swapListing = swapListing;
 	}
 
 	@Override
