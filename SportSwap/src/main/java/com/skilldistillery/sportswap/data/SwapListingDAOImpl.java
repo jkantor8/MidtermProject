@@ -37,26 +37,23 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 	}
 
 	@Override
-	public SwapListing add(SwapListing swapListing, List<Integer> itemIds, int addressId) {
+	public SwapListing add(SwapListing listing, List<Item> items, int addressId) {
 
-		List<Item> items = new ArrayList<>();
-		if (itemIds != null) {
-			for (Integer id : itemIds) {
-				Item itemToAdd = em.find(Item.class, id);
-				if (itemToAdd != null) {
-					items.add(itemToAdd);
-					itemToAdd.addSwapListing(swapListing);
-				}
+		for (Item item : items) {
+			Item itemToAdd = em.find(Item.class, item.getId());
+			if (itemToAdd != null) {
+				listing.addItem(itemToAdd);
+				itemToAdd.addSwapListing(listing);
 			}
 		}
 
 		Address address = em.find(Address.class, addressId);
-		swapListing.setItems(items);
-		swapListing.setSwapAddress(address);
+		listing.setItems(items);
+		listing.setSwapAddress(address);
 
-		em.persist(swapListing);
+		em.persist(listing);
 		em.flush();
-		return swapListing;
+		return listing;
 
 	}
 
@@ -68,10 +65,9 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		updatedListing.setCreated(listing.getCreated());
 		updatedListing.setUpdated(listing.getUpdated());
 		updatedListing.setDeactivated(listing.getDeactivated());
-		
 
 		return updatedListing;
-		
+
 	}
 
 }

@@ -19,7 +19,7 @@
 <jsp:include page="nav.jsp" />
 </header>
 <main>
-<form action="create_swap.do" method="POST">
+<form action="submit_swap.do" method="POST">
 <label for="title">title: </label>
 <input type="text" id="title" name="title" value="[title]"><br>
 <label for="description">title: </label>

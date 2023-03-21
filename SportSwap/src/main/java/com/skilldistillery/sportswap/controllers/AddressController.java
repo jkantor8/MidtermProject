@@ -19,6 +19,8 @@ public class AddressController {
 	@PostMapping(path = "address_create.do")
 	public ModelAndView createAddress(HttpSession session, Address address) {
 		ModelAndView mv = new ModelAndView();
+		//save to session on creation
+		session.setAttribute("address", address);
 		addressDAO.add(address);
 		// change routing depending on context
 		String context = session.getAttribute("listing_type").toString();

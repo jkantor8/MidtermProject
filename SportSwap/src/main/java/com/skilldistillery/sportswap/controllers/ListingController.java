@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.sportswap.data.DonationListingDAO;
+import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
+import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.SwapListing;
+import com.skilldistillery.sportswap.entities.User;
 
 @Controller
 public class ListingController {
@@ -30,6 +33,8 @@ public class ListingController {
 	private DonationListingDAO donationListingDAO;
 	@Autowired
 	private SaleListingDAO saleListingDAO;
+	@Autowired
+	private ItemDAO itemDAO;
 
 	// directs to page
 	@GetMapping(path = { "listings.do" })
@@ -114,9 +119,10 @@ public class ListingController {
 		}
 	}
 
-	@RequestMapping(path="address_check.do", method=RequestMethod.GET, params="which_address")
+	@RequestMapping(path="address_check.do", method=RequestMethod.POST, params="which_address")
 	public ModelAndView addressOption(HttpSession session, @RequestParam("which_address") String option) {
 		ModelAndView mv = new ModelAndView();
+		Address address = null;
 		String context = session.getAttribute("listing_type").toString();
 		if(option.equals("Create a Location")) {
 			//go to address creation page
@@ -124,10 +130,15 @@ public class ListingController {
 		}
 		else if(!option.equals("Create a Location") && context.equals("swap")) {
 			//check if the user wants to create an item
+			//saev address to session
+			address = ((User)session.getAttribute("loggedInUser")).getUserAddress();
+			session.setAttribute("address", address);
 			mv.setViewName("item_check");
 		}
 		else if(!option.equals("Create a Location") && context.equals("donation"))
 			//take user to the donation creation page
+			address = ((User)session.getAttribute("loggedInUser")).getUserAddress();
+			session.setAttribute("address", address);
 			mv.setViewName("donation_create");
 		return mv;
 	}
@@ -136,41 +147,53 @@ public class ListingController {
 	@GetMapping(path = "donation_create.do")
 	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
 		ModelAndView mv = new ModelAndView();
-		
-		DonationListing createdDonationListing = donationListingDAO.add(donationListing, donationListing.getItems(), donationListing.getDonationAddress().getId());
+
+		DonationListing createdDonationListing = donationListingDAO.add(donationListing, donationListing.getItems(),
+				donationListing.getDonationAddress().getId());
 		mv.addObject("listings", createdDonationListing);
 		mv.setViewName("listings");
 		return mv;
 	}
-	
-	@GetMapping(path="swap_create.do")
-	public ModelAndView createSwap(HttpSession session) {
+
+	// SWAP
+	@GetMapping(path = "swap_create.do")
+	public ModelAndView routeToCreateSwap(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		//List of items to add
-		List<String> itemIds = (List<String>)session.getAttribute("itemsForListing");
-		//swapListing=swapListingDAO.add(swapListing, null, 0);
-		mv.addObject("test",itemIds);
+		mv.addObject("itemsToAdd", session.getAttribute("items"));
 		mv.setViewName("swap_create");
 		return mv;
 	}
-	
-	@PostMapping(path="swap_create.do")
-	
-	//after item select, this mapping will save the list of item ids to a string in the session
-	//and route the user to the correct listing creation page
-	@PostMapping(path="finish_listing.do", params="selectable_item")
-	public ModelAndView finishListing(
-			HttpSession session,
-			@RequestParam("selectable_item")List<String> selectable_items) {
-		//save ITEM IDs in the session
-		session.setAttribute("itemsForListing",selectable_items);
+
+	@PostMapping(path="submit_swap.do")
+	public ModelAndView createSwap(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
-		//finish listing based on context and items
+		List<Item> items=(List<Item>) session.getAttribute("items");
+		Address address = (Address)session.getAttribute("address");
+		SwapListing listing = new SwapListing();
+		listing.setActive(true);
+		listing.setItems(items);
+	
+		SwapListing createdSwapListing = swapListingDAO.add(listing, listing.getItems(),listing.getSwapAddress().getId());
+		mv.setViewName("listings");
+		return mv;
+	}
+
+	// after item select, this mapping will save the list of item ids to a string in
+	// the session
+	// and route the user to the correct listing creation page
+	@PostMapping(path = "finish_listing.do", params = "selectable_item")
+	public ModelAndView finishListing(HttpSession session,
+			@RequestParam("selectable_item") List<String> selectable_items) {
+		// save ITEMs selected in the session
+		List<Item> items = itemDAO.findItemsByIds(selectable_items);
+		session.setAttribute("items", items);
+		ModelAndView mv = new ModelAndView();
+
+		// finish listing based on context and items
 		String context = session.getAttribute("listing_type").toString();
-		switch(context) {
+		switch (context) {
 		case "swap":
-			mv.setViewName("redirect:swap_create.do"); 
+			mv.setViewName("redirect:swap_create.do");
 			break;
 		case "donation":
 			mv.setViewName("redirect:donation_create.do");
@@ -182,7 +205,7 @@ public class ListingController {
 			mv.setViewName("redirect:home.do");
 			break;
 		}
-	
+
 		return mv;
 	}
 
