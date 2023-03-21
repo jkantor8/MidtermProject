@@ -18,6 +18,10 @@
 <h1>Create swap listing</h1>
 <jsp:include page="nav.jsp" />
 </header>
+<main>
+
+
+</main>
 
 <jsp:include page="footer.jsp" />
 <!--  BOOTSTRAP JAVASCRIPT -->

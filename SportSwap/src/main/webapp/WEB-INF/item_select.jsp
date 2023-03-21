@@ -21,14 +21,20 @@
 
 <!--  show a selectable list of all active items associated with the user -->
 <p>${message}</p>
+<main>
+<form action="finish_listing.do" method="POST">
 <c:forEach var="item" items="${items}">
-
+<div class="selectable_item">
 <div>
 <input type="checkbox" id="${item.id}" name="selectable_item" value="${item.id}">
+</div>
+<div>
 <p>${item.name }</p>
 </div>
-
+</div>
 </c:forEach>
-
+<input type="submit" value="submit">
+</form>
+</main>
 </body>
 </html>

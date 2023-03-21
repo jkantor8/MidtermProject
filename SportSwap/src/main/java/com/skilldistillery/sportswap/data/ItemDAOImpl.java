@@ -44,7 +44,6 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	@Transactional
 	public Item add(Item item, int ageGroupId, int sportId, int conditionId, int userId) {
 		
 		AgeGroup ageGroup = em.find(AgeGroup.class, ageGroupId);
@@ -58,6 +57,8 @@ public class ItemDAOImpl implements ItemDAO {
 		item.setSportItem(sport);
 		item.setUserItem(user);
 		
+		item.setActive(true);
+		
 		//persists will return the item
 		em.persist(item);
 		em.flush();
@@ -65,7 +66,6 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	@Transactional
 	public Item update(int id, Item item) {
 		Item updatedItem = em.find(Item.class, id);
 		updatedItem.setName(item.getName());
@@ -82,9 +82,9 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	
 	@Override
-	public List<Item> findItemsByUser(int id) {
-		String query = "SELECT i FROM Item i WHERE s.userId=:uid";
-		List<Item> items = em.createQuery(query, Item.class).setParameter("uid", id).getResultList();
+	public List<Item> findItemsByUser(User user) {
+		String query = "SELECT i FROM Item i WHERE i.userItem =:u AND i.active = 1";
+		List<Item> items = em.createQuery(query, Item.class).setParameter("u",user).getResultList();
 		return items;
 	}
 
