@@ -1,5 +1,7 @@
 package com.skilldistillery.sportswap.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.sportswap.data.AddressDAO;
+import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.UserDAO;
 import com.skilldistillery.sportswap.entities.Address;
+import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.User;
 
 @Controller
@@ -22,6 +26,8 @@ public class UserController {
 	private UserDAO userDao;
 	@Autowired
 	private AddressDAO addressDAO;
+	@Autowired
+	private SaleListingDAO saleListingDAO;
 
 	// directs to home page
 	@RequestMapping(path = { "/", "home.do" })
@@ -165,6 +171,11 @@ public class UserController {
 			//update session user
 			session.setAttribute("loggedInUser", user);
 			
+			 // Retrieve user sale listings
+		    List<SaleListing> userSaleListings = saleListingDAO.findSaleListingsByUser(id);
+		    System.out.println("User sale listings: " + userSaleListings);
+		    mv.addObject("userSaleListings", userSaleListings);
+			
 			if(user!=null) {
 				mv.addObject("result", "Account successfully updated!");
 			}
@@ -183,5 +194,19 @@ public class UserController {
 		mv.setViewName("create_account");
 		return mv;
 	}
+	
+	
+	
+	 // Retrieve user sale listings
+	
+	@RequestMapping(path ="viewUserSaleListings.do", method=RequestMethod.GET)
+	public String viewUserSaleListings(HttpSession session, Model model ) {
+	int id = ((User)session.getAttribute("loggedInUser")).getId();
 
+    List<SaleListing> userSaleListings = saleListingDAO.findSaleListingsByUser(id);
+   
+   model.addAttribute("userSaleListings", userSaleListings);
+   
+   return "viewUserSaleListings";
+	}
 }
