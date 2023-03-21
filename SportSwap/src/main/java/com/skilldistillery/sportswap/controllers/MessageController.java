@@ -30,7 +30,8 @@ public class MessageController {
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
 			String username = user.getUsername();
-			model.addAttribute("messages", messageDAO.findByReceiver(username));
+			model.addAttribute("receivedMessages", messageDAO.findByReceiver(username));
+			model.addAttribute("sentMessages", messageDAO.findBySender(username));
 		} else {
 			// Handle the case when the username is not found in the session
 			return "home";
