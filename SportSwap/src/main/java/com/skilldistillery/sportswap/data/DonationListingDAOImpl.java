@@ -67,12 +67,28 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 
 		return updatedListing;
 	}
+
 	
 	@Override
 	public List<DonationListing> findDonationListingsByUser(int userId) {
 	    String jpql = "SELECT d FROM DonationListing d WHERE d.user.id = :user";
 	    List<DonationListing> userDonationListings = em.createQuery(jpql, DonationListing.class).setParameter("user", userId).getResultList();
 	    return userDonationListings;
+	}
+
+
+
+	@Override
+	public boolean deactivate(int id) {
+		boolean deactivated = false;
+		
+		DonationListing donation = em.find(DonationListing.class, id);
+		if (em.contains(donation)) {
+			donation.setActive(false);
+			deactivated = true;
+		}
+		
+		return deactivated;
 	}
 
 }

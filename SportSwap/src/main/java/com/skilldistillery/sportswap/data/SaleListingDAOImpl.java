@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
+import com.skilldistillery.sportswap.entities.SwapListing;
 
 @Transactional
 @Service
@@ -61,4 +62,18 @@ public class SaleListingDAOImpl implements SaleListingDAO {
 				.getResultList();
 		return userSaleListings;
 	}
+	
+	@Override
+	public boolean deactivate(int id) {
+		boolean deactivated = false;
+		
+		SaleListing sale = em.find(SaleListing.class, id);
+		if (em.contains(sale)) {
+			sale.setActive(false);
+			deactivated = true;
+		}
+		
+		return deactivated;
+	}
+
 }

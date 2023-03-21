@@ -15,5 +15,11 @@ public interface DonationListingDAO {
 	
 	DonationListing update(DonationListing listing, int id);
 
+
 	List<DonationListing> findDonationListingsByUser(int user);
+
+	
+	
+	boolean deactivate(int id);
+
 }
