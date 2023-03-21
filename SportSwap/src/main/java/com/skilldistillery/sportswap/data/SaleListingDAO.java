@@ -14,4 +14,6 @@ public interface SaleListingDAO {
 	
 	SaleListing update(SaleListing listing, int id);
 	
+	
+	
 }

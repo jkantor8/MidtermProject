@@ -16,4 +16,6 @@ public interface SwapListingDAO {
 	SwapListing add(SwapListing listing, List<Item> items, Address address, User user);
 	
 	SwapListing update(SwapListing listing, int id);
+	
+	boolean deactivate(int id);
 }

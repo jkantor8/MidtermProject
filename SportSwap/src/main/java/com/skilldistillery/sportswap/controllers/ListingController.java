@@ -155,5 +155,7 @@ public class ListingController {
 
 		return mv;
 	}
+	
+//	@PostMapping(path = "deactivate.do"), params
 
 }
