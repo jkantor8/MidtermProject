@@ -133,7 +133,7 @@ public class ListingController {
 	}
 
 	// NEED DAO METHODS FOR THIS
-	@PostMapping(path = "donation_create.do")
+	@RequestMapping(path = "donation_create.do")
 	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
 		ModelAndView mv = new ModelAndView();
 		
