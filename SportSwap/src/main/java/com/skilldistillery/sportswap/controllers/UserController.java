@@ -15,10 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.sportswap.data.AddressDAO;
 import com.skilldistillery.sportswap.data.DonationListingDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
+import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.data.UserDAO;
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.SaleListing;
+import com.skilldistillery.sportswap.entities.SwapListing;
 import com.skilldistillery.sportswap.entities.User;
 
 @Controller
@@ -32,6 +34,8 @@ public class UserController {
 	private SaleListingDAO saleListingDAO;
 	@Autowired
 	private DonationListingDAO donationListingDAO;
+	@Autowired
+	private SwapListingDAO swapListingDAO;
 
 	// directs to home page
 	@RequestMapping(path = { "/", "home.do" })
@@ -206,5 +210,14 @@ public class UserController {
 		model.addAttribute("userDonationListings", userDonationListings);
 		return "viewUserDonationListings";
 	}
+	
+	@RequestMapping(path="viewUserSwapListings.do", method=RequestMethod.GET)
+	public String viewUserSwapListings(HttpSession session, Model model) {
+	    int userId = ((User)session.getAttribute("loggedInUser")).getId();
+	    List<SwapListing> userSwapListings = swapListingDAO.findSwapListingsByUser(userId);
+	    model.addAttribute("userSwapListings", userSwapListings);
+	    return "viewUserSwapListings";
+	}
+
 
 }

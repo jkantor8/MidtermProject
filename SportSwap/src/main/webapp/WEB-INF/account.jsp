@@ -50,7 +50,8 @@
 
 <a href= "/messages">Show Messages</a><br>
 <a href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
-<a href= "viewUserDonationListings.do">Show My Donation Listings</a>
+<a href= "viewUserDonationListings.do">Show My Donation Listings</a><br>
+<a href= "viewUserSwapListings.do">Show My Swap Listings</a>
 <p>${result }</p>
 </div>
 <jsp:include page="footer.jsp" />
