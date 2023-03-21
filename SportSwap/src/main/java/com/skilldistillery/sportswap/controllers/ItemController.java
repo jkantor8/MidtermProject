@@ -22,9 +22,17 @@ public class ItemController {
 
 	@Autowired
 	private ItemDAO itemDAO;
+	
+	@GetMapping(path="item_option.do")
+	public ModelAndView itemCheck(HttpSession session) {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("item_check");
+		return mv;
+	}
 
 	@RequestMapping(path = "item_option.do", method = RequestMethod.POST, params = "need_item")
-	public ModelAndView itemCheck(HttpSession session, @RequestParam("need_item") String option) {
+	public ModelAndView itemCheckSubmit(HttpSession session, @RequestParam("need_item") String option) {
 
 		ModelAndView mv = new ModelAndView();
 

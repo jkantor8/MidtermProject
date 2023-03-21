@@ -17,7 +17,7 @@
 <h1>Create a new donation</h1>
 ${listing_type }
 <p>Please enter the address information.
-<form action="donation_create.do" method="POST">
+<form action="submit_donation.do" method="POST">
 	<label for="start">Start date:</label>
 	<input type="date" id="start" name="event-start"
        value="2023-01-01"

@@ -92,16 +92,27 @@ public class ListingController {
 		}
 	}
 
-//	@RequestMapping(path = "donation_create.do")
-//	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
-//		ModelAndView mv = new ModelAndView();
-//
-//		DonationListing createdDonationListing = donationListingDAO.add(donationListing, donationListing.getItems(),
-//				donationListing.getDonationAddress().getId());
-//		mv.addObject("listings", createdDonationListing);
-//		mv.setViewName("listings");
-//		return mv;
-//	}
+	//DONATION
+	@GetMapping(path = "donation_create.do")
+	public ModelAndView routeToCreateDonation(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("itemsToAdd", session.getAttribute("items"));
+		mv.setViewName("donation_create");
+		return mv;
+	}
+	
+	@PostMapping(path="submit_donation.do")
+	public ModelAndView createDonation(HttpSession session,DonationListing listing ) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Item> items = (List<Item>) session.getAttribute("items");
+		Address address = (Address) session.getAttribute("address");
+		User user = (User) session.getAttribute("loggedInUser");
+		
+		DonationListing createDonationListing = donationListingDAO.add(listing, items, address,user);
+		mv.setViewName("listings");
+		return mv;
+	}
 
 	// SWAP
 	@GetMapping(path = "swap_create.do")
