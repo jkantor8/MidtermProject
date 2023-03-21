@@ -23,51 +23,53 @@ public class ItemController {
 	@Autowired
 	private ItemDAO itemDAO;
 
-	@RequestMapping(path = "item_check.do", method = RequestMethod.GET, params = "need_item")
+	@RequestMapping(path = "item_option.do", method = RequestMethod.POST, params = "need_item")
 	public ModelAndView itemCheck(HttpSession session, @RequestParam("need_item") String option) {
-		
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		if (option.equals("create a new item")) {
 			mv.setViewName("item_create");
 		} else {
 
-			mv.setViewName("item_select");
+			mv.setViewName("redirect:item_select.do");
 		}
 		return mv;
 	}
 
 	@PostMapping(path = "item_create.do")
 	public String addItem(HttpSession session, Item item, int ageGroupId, int conditionId, int sportId) {
-		//need user id for item 
-		int userId = ((User)session.getAttribute("loggedInUser")).getId();
-		
-		Item newItem = itemDAO.add(item, ageGroupId, conditionId, sportId,userId);
+		// need user id for item
+		int userId = ((User) session.getAttribute("loggedInUser")).getId();
 
-		//take user to item select page
-		return "item_select";
+		Item newItem = itemDAO.add(item, ageGroupId, conditionId, sportId, userId);
+
+		// take user to item select page
+		return "redirect:item_select.do";
 	}
-	
-	//this is for when the user is trying to select items for a listing
-	@GetMapping(path="item_select.do")
+
+	// this is for when the user is trying to select items for a listing
+	@GetMapping(path = "item_select.do")
 	public ModelAndView showItemsForSelection(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		List<Item> items = null;
-		int userId=0;
-		//use the logged in users id to filter items
-		if(session.getAttribute("loggedInUser")!=null) {
-			userId = ((User)session.getAttribute("loggedInUser")).getId();
-			items = itemDAO.findItemsByUser(userId);
+		User user = null;
+		// use the logged in users id to filter items
+		if (session.getAttribute("loggedInUser") != null) {
+			user = (User) session.getAttribute("loggedInUser");
+			items = itemDAO.findItemsByUser(user);
 		}
-		if(items!=null && items.size()>0) {
-			mv.addObject("items",items);
+		if (items != null && items.size() > 0) {
+			mv.addObject("items", items);
 			String msg = "Found " + items.size() + " items associated with your acount.";
-			mv.addObject("message",msg);
+			mv.addObject("message", msg);
+		} else {
+			mv.addObject("message", "Sorry, did not find any items associated with your account.");
 		}
-		else {
-			mv.addObject("message","Sorry, did not find any items associated with your account.");
-		}
+		mv.setViewName("item_select");
 		return mv;
 	}
+	
+	
 
 }

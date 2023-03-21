@@ -3,6 +3,7 @@ package com.skilldistillery.sportswap.data;
 import java.util.List;
 
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.User;
 
 public interface ItemDAO {
 	
@@ -16,5 +17,5 @@ public interface ItemDAO {
 	
 	Item update(int id, Item item);
 	
-	List<Item> findItemsByUser(int id);
+	List<Item> findItemsByUser(User user);
 }

@@ -132,11 +132,27 @@ public class ListingController {
 	}
 
 	// NEED DAO METHODS FOR THIS
-	@PostMapping(path = "donation_create.do")
+	@GetMapping(path = "donation_create.do")
 	public ModelAndView createDonation(HttpSession httpsession, DonationListing donationListing) {
 		ModelAndView mv = new ModelAndView();
 		//DonationListing donationListing = donationListingDAO.add(donationListing,);
 		mv.setViewName("listings");
+		return mv;
+	}
+	
+	@GetMapping(path="swap_create.do")
+	public ModelAndView createSwap(HttpSession httpsession, DonationListing donationListing) {
+		ModelAndView mv = new ModelAndView();
+		//DonationListing donationListing = donationListingDAO.add(donationListing,);
+		mv.setViewName("listings");
+		return mv;
+	}
+	
+	@PostMapping(path="finish_listing.do")
+	public ModelAndView finishListing(HttpSession httpsession) {
+		ModelAndView mv = new ModelAndView();
+		//finish listing based on context and items
+		mv.setViewName("home"); //for now
 		return mv;
 	}
 

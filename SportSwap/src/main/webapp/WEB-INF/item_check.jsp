@@ -16,7 +16,7 @@
 <body>
 <h1>Item</h1>
 <p>Would you like to create a new item or use one from your inventory?</p>
-<form action="item_check.do" method="GET">
+<form action="item_option.do" method="POST">
 	<input type="submit" value="use existing item" name="need_item"><br>
 	<input type="submit" value="create a new item" name="need_item"><br>
 </form>
