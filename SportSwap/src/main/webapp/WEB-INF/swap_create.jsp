@@ -19,6 +19,24 @@
 <jsp:include page="nav.jsp" />
 </header>
 <main>
+${listing_type }
+<form action="submit_swap.do" method="POST">
+<label for="title">title: </label>
+<input type="text" id="title" name="title" value="[title]"><br>
+<label for="description">title: </label>
+<input type="text" id="description" name="description" value="[description]"><br>
+<h3>items for listing</h3>
+<ul>
+<c:forEach var="item" items="${itemsToAdd}">
+
+	<li>${item.name}</li>
+
+</c:forEach>
+</ul>
+
+
+<input type="submit" value="submit">
+</form>
 
 
 </main>

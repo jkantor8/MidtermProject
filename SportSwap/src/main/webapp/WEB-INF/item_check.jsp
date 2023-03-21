@@ -15,6 +15,7 @@
 </head>
 <body>
 <h1>Item</h1>
+${listing_type }
 <p>Would you like to create a new item or use one from your inventory?</p>
 <form action="item_option.do" method="POST">
 	<input type="submit" value="use existing item" name="need_item"><br>

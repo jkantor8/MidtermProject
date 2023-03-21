@@ -14,6 +14,7 @@
 <title>SportSwap - Trade up!</title>
 </head>
 <body>
+${listing_type }
 <h1>Create a new item</h1>
 <p>Please enter the item information.
 <form action="item_create.do" method="POST">

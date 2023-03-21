@@ -1,5 +1,6 @@
 package com.skilldistillery.sportswap.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -86,6 +87,17 @@ public class ItemDAOImpl implements ItemDAO {
 		String query = "SELECT i FROM Item i WHERE i.userItem =:u AND i.active = 1";
 		List<Item> items = em.createQuery(query, Item.class).setParameter("u",user).getResultList();
 		return items;
+	}
+	
+	@Override
+	public List<Item> findItemsByIds(List<String> ids){
+		List<Item> items = new ArrayList<>();
+		for(String id : ids) {
+			int id_number = Integer.parseInt(id);
+			items.add(findItemById(id_number));
+		}
+		return items;
+		
 	}
 
 }

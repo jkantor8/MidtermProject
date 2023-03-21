@@ -28,9 +28,9 @@
 
 	<main>
 		<form method="POST" action="listings.do">
-			<input type="submit" value="view swaps" name="swap_listings">
-			<input type="submit" value="view donations" name="donation_listings">
-			<input type="submit" value="view sales" name="sale_listings">
+			<input type="submit" value="view swaps" name="list_view">
+			<input type="submit" value="view donations" name="list_view">
+			<input type="submit" value="view sales" name="list_view">
 		</form>
 
 
@@ -41,7 +41,7 @@
 				<table class="table">
 					<c:forEach var="listing" items="${listings}">
 							<tr>
-							<td>${listing.id} ${listing.created} 
+							<td><a href="#"> ${listing.id} ${listing.created} </a></td>
 							</tr>
 
 

@@ -19,56 +19,52 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public DonationListing findById(int id) {
 		return em.find(DonationListing.class, id);
 	}
-	
+
 	@Override
-	public List<DonationListing> getAllDonationListings(){
+	public List<DonationListing> getAllDonationListings() {
 		List<DonationListing> donations = null;
 		String query = "SELECT d FROM DonationListing d";
 		donations = em.createQuery(query, DonationListing.class).getResultList();
 		return donations;
-		
+
 	}
-	
+
 	@Override
 	public DonationListing add(DonationListing listing, List<Item> donationItems, int addressId) {
-		
-		
-		
-			for (Item item : donationItems) {
-				Item itemToAdd = em.find(Item.class, item.getId());
-				if (itemToAdd != null) {
-					listing.addItem(itemToAdd);
-					itemToAdd.addDonationListingItem(listing);
-				}
+
+		for (Item item : donationItems) {
+			Item itemToAdd = em.find(Item.class, item.getId());
+			if (itemToAdd != null) {
+				listing.addItem(itemToAdd);
+				itemToAdd.addDonationListingItem(listing);
 			}
-		
-		
-		
+		}
+
 		Address address = em.find(Address.class, addressId);
-		
+
 		listing.setDonationAddress(address);
 		em.persist(listing);
 		em.flush();
 		return listing;
-		
+
 	}
-	
+
+	@Override
 	public DonationListing update(DonationListing listing, int id) {
 		DonationListing updatedListing = em.find(DonationListing.class, id);
-		
+
 		updatedListing.setActive(listing.isActive());
 		updatedListing.setCreated(listing.getCreated());
 		updatedListing.setUpdated(listing.getUpdated());
 		updatedListing.setDeactivated(listing.getDeactivated());
 		updatedListing.setEventStart(listing.getEventStart());
 		updatedListing.setEventEnd(listing.getEventEnd());
-		
+
 		return updatedListing;
 	}
-	
 }
