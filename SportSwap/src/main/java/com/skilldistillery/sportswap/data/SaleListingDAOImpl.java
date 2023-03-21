@@ -55,5 +55,25 @@ public class SaleListingDAOImpl implements SaleListingDAO {
 		return updatedListing;
 	}
 
+	@Override
+	public List<SaleListing> findSaleListingsByUser(int sellingUser) {
+		String jpql = "SELECT s FROM SaleListing s WHERE s.sellingUser.id = :sellingUser";
+		List<SaleListing> userSaleListings = em.createQuery(jpql, SaleListing.class).setParameter("sellingUser", sellingUser)
+				.getResultList();
+		return userSaleListings;
+	}
 	
+	@Override
+	public boolean deactivate(int id) {
+		boolean deactivated = false;
+		
+		SaleListing sale = em.find(SaleListing.class, id);
+		if (em.contains(sale)) {
+			sale.setActive(false);
+			deactivated = true;
+		}
+		
+		return deactivated;
+	}
+
 }
