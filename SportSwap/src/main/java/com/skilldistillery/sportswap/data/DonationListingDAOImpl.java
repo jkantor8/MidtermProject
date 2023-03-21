@@ -35,18 +35,18 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 	}
 	
 	@Override
-	public DonationListing add(DonationListing listing, List<Integer> itemIds, int addressId) {
+	public DonationListing add(DonationListing listing, List<Item> donationItems, int addressId) {
 		
-		List<Item> items = new ArrayList<>();
-		if (itemIds != null) {
-			for (Integer id : itemIds) {
-				Item itemToAdd = em.find(Item.class, id);
+		
+		
+			for (Item item : donationItems) {
+				Item itemToAdd = em.find(Item.class, item.getId());
 				if (itemToAdd != null) {
-					items.add(itemToAdd);
+					listing.addItem(itemToAdd);
 					itemToAdd.addDonationListingItem(listing);
 				}
 			}
-		}
+		
 		
 		
 		Address address = em.find(Address.class, addressId);
