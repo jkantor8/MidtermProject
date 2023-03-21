@@ -35,6 +35,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public User add(User user) {
+		user.setActive(true);
 		em.persist(user);
 		
 		return user;

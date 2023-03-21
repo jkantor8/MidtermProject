@@ -8,9 +8,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
-import com.skilldistillery.sportswap.entities.SwapListing;
+import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
 @Service
@@ -33,12 +34,17 @@ public class SaleListingDAOImpl implements SaleListingDAO {
 	}
 
 	@Override
-	public SaleListing add(SaleListing listing, int itemId) {
+	public SaleListing add(SaleListing listing, Item item, User user) {
 
-		Item item = em.find(Item.class, itemId);
+		Item managedItem = em.find(Item.class, item.getId());
+		User managedUser = em.find(User.class, user.getId());
+		
+		listing.setItem(managedItem);
+		listing.setSellingUser(managedUser);
+		listing.setActive(true);
 
-		listing.setItem(item);
-
+		em.persist(listing);
+		em.flush();
 		return listing;
 	}
 
