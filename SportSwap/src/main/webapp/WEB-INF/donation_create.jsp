@@ -15,6 +15,7 @@
 </head>
 <body>
 <h1>Create a new donation</h1>
+${listing_type }
 <p>Please enter the address information.
 <form action="donation_create.do" method="POST">
 	<label for="start">Start date:</label>

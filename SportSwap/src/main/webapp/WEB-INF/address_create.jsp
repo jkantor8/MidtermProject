@@ -19,7 +19,7 @@
 <h1>Welcome to SportSwap</h1>
 <jsp:include page="nav.jsp" />
 </header>
-
+${listing_type }
 <h1>Create a new Address</h1>
 <p>Please enter the address information.
 <form action="address_create.do" method="POST">

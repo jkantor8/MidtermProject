@@ -1,6 +1,5 @@
 package com.skilldistillery.sportswap.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,9 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Address;
-import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SwapListing;
+import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
 @Service
@@ -37,20 +36,25 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 	}
 
 	@Override
-	public SwapListing add(SwapListing listing, List<Item> items, int addressId) {
+	public SwapListing add(SwapListing listing, List<Item> items, Address address, User user) {
 
+		//get managed objects
+		User managedUser = em.find(User.class, user.getId());
+		Address managedAddress = em.find(Address.class, address.getId());
+		
 		for (Item item : items) {
+			
 			Item itemToAdd = em.find(Item.class, item.getId());
 			if (itemToAdd != null) {
 				listing.addItem(itemToAdd);
 				itemToAdd.addSwapListing(listing);
 			}
 		}
-
-		Address address = em.find(Address.class, addressId);
-		listing.setItems(items);
-		listing.setSwapAddress(address);
-
+		
+		listing.setSwapAddress(managedAddress);
+		listing.setSwappingUser(managedUser);
+		listing.setActive(true);
+		
 		em.persist(listing);
 		em.flush();
 		return listing;

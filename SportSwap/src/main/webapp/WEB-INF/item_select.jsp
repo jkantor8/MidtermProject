@@ -19,9 +19,11 @@
 <jsp:include page="nav.jsp" />
 </header>
 
+
+<main>
 <!--  show a selectable list of all active items associated with the user -->
 <p>${message}</p>
-<main>
+${listing_type }
 <form action="finish_listing.do" method="POST">
 <c:forEach var="item" items="${items}">
 <div class="selectable_item">
