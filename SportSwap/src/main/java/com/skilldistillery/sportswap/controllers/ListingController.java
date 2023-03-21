@@ -135,6 +135,28 @@ public class ListingController {
 		mv.setViewName("listings");
 		return mv;
 	}
+	
+	//SALE
+	@GetMapping(path = "sale_create.do")
+	public ModelAndView routeToCreateSale(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("itemsToAdd", session.getAttribute("items"));
+		mv.setViewName("sale_create");
+		return mv;
+	}
+	
+	@PostMapping(path = "submit_sale.do")
+	public ModelAndView createSwap(HttpSession session, SaleListing listing) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Item> items = (List<Item>) session.getAttribute("items");
+		Item itemToSell = items.get(0);
+		User user = (User) session.getAttribute("loggedInUser");
+
+		SaleListing createdSaleListing = saleListingDAO.add(listing, itemToSell,user);
+		mv.setViewName("listings");
+		return mv;
+	}
 
 	// after item select, this mapping will save the list of item ids to a string in
 	// the session
