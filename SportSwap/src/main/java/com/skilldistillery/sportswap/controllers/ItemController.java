@@ -1,9 +1,12 @@
 package com.skilldistillery.sportswap.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.User;
 
 @Controller
 public class ItemController {
@@ -35,18 +39,35 @@ public class ItemController {
 
 	@PostMapping(path = "item_create.do")
 	public String addItem(HttpSession session, Item item, int ageGroupId, int conditionId, int sportId) {
+		//need user id for item 
+		int userId = ((User)session.getAttribute("loggedInUser")).getId();
+		
+		Item newItem = itemDAO.add(item, ageGroupId, conditionId, sportId,userId);
 
-		Item newItem = itemDAO.add(item, ageGroupId, conditionId, sportId);
-		session.setAttribute("Item", newItem);
-
-		String context = session.getAttribute("listing_type").toString();
-
-		if (context.equals("swap")) {
-			return "swap_create";
-		} else {
-			return "sale_create";
+		//take user to item select page
+		return "item_select";
+	}
+	
+	//this is for when the user is trying to select items for a listing
+	@GetMapping(path="item_select.do")
+	public ModelAndView showItemsForSelection(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		List<Item> items = null;
+		int userId=0;
+		//use the logged in users id to filter items
+		if(session.getAttribute("loggedInUser")!=null) {
+			userId = ((User)session.getAttribute("loggedInUser")).getId();
+			items = itemDAO.findItemsByUser(userId);
 		}
-
+		if(items!=null && items.size()>0) {
+			mv.addObject("items",items);
+			String msg = "Found " + items.size() + " items associated with your acount.";
+			mv.addObject("message",msg);
+		}
+		else {
+			mv.addObject("message","Sorry, did not find any items associated with your account.");
+		}
+		return mv;
 	}
 
 }

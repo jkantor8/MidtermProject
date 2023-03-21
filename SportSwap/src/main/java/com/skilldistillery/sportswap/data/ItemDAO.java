@@ -12,7 +12,9 @@ public interface ItemDAO {
 	
 	List<Item> findItemByKeyword(String itemName);
 
-	Item add(Item item, int ageGroupId, int sportId, int conditionId);
+	Item add(Item item, int ageGroupId, int sportId, int conditionId, int userId);
 	
 	Item update(int id, Item item);
+	
+	List<Item> findItemsByUser(int id);
 }
