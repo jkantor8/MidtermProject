@@ -47,7 +47,9 @@
 </form>
 
 
+
 <a href= "/messages">Show Messages</a>
+<a href= "viewUserSaleListings.do">Show My Sales Listings</a>
 <p>${result }</p>
 </div>
 <jsp:include page="footer.jsp" />
