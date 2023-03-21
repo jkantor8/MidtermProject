@@ -17,9 +17,9 @@
         </tr>
         <c:forEach items="${messages}" var="message">
             <tr>
-                <td>${message.sender}</td>
+                <td>${message.sender.username}</td>
                 <td>${message.content}</td>
-                <td>${message.timestamp}</td>
+                <td>${message.created}</td>
             </tr>
         </c:forEach>
     </table>
