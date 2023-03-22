@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.data;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.SwapListing;
 import com.skilldistillery.sportswap.entities.User;
 
@@ -84,6 +86,14 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 		}
 		
 		return deactivated;
+	}
+	
+	@Override
+	public SwapListing getRandom() {
+		Random rand = new Random();
+		List<SwapListing> listings= getAllSwapListings();
+		SwapListing listing = listings.get(rand.nextInt(listings.size()));
+		return listing;
 	}
 	
 	@Override

@@ -17,10 +17,9 @@ public interface DonationListingDAO {
 	
 	DonationListing update(DonationListing listing, int id);
 
-
 	List<DonationListing> findDonationListingsByUser(int user);
-
 	
+	DonationListing getRandom();
 	
 	boolean deactivate(int id);
 

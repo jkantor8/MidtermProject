@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.data;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Address;
+import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.User;
@@ -67,6 +69,14 @@ public class SaleListingDAOImpl implements SaleListingDAO {
 		List<SaleListing> userSaleListings = em.createQuery(jpql, SaleListing.class).setParameter("sellingUser", sellingUser)
 				.getResultList();
 		return userSaleListings;
+	}
+	
+	@Override
+	public SaleListing getRandom() {
+		Random rand = new Random();
+		List<SaleListing> listings= getAllSaleListings();
+		SaleListing listing = listings.get(rand.nextInt(listings.size()));
+		return listing;
 	}
 	
 	@Override
