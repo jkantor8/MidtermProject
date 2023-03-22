@@ -82,8 +82,17 @@
 				
 				</tbody>
 				
-				<br>
-				<img src="${listing.item.imageUrl}" alt="${listing.item.name}" width="200" height="auto">
+				<c:choose>
+				<c:when test="${not empty item.imageUrl }">
+				<blockquote>
+					<img src="${item.imageUrl}" alt="${item.name}" width="150"
+						height="150">
+				</blockquote>
+				</c:when>
+				<c:otherwise>
+				<p>no image provided<p>
+				</c:otherwise>
+				</c:choose>
 				
 				
 				
