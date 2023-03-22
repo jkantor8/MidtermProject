@@ -41,7 +41,12 @@
  	<input type="text" id="postalCode" name="postalCode" value="${loggedInUser.getUserAddress().getPostalCode()}"><br>
  	<label for="country">country: </label>
  	<input type="text" id="country" name="country" value="${loggedInUser.getUserAddress().getCountryCode()}"><br>
- 	
+ 	<p>favorite sports:</p>
+ 	<ul>
+ 	<c:forEach var="sport" items="${favSports}">
+ 	<li>${sport.getName()}</li>
+ 	</c:forEach>
+ 	</ul>
  	<input type="submit" name="submit" value="update_account">
  	<input type="submit" name="delete" value="delete account">
 </form>

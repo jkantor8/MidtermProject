@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sportswap.entities.Address;
+import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
@@ -34,7 +36,15 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public User add(User user) {
+	public User add(User user, Address address, int sportId, int sportId2) {
+		
+		Address managedAddress = em.find(Address.class, address.getId());
+		Sport managedSport1 = em.find(Sport.class, sportId);
+		Sport managedSport2 = em.find(Sport.class, sportId2);
+		
+		user.setUserAddress(managedAddress);
+		user.addSport(managedSport1);
+		user.addSport(managedSport2);
 		user.setActive(true);
 		em.persist(user);
 		
