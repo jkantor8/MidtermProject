@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -68,7 +69,7 @@ public class User {
 	@OneToMany(mappedBy = "postingUser")
 	private List<Post> posts;
 	
-	@ManyToMany(mappedBy="userSports")
+	@ManyToMany(mappedBy="userSports",fetch=FetchType.EAGER)
 	private List<Sport> favoriteSports;
 
 	public int getId() {

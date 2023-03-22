@@ -15,11 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.sportswap.data.AddressDAO;
 import com.skilldistillery.sportswap.data.DonationListingDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
+import com.skilldistillery.sportswap.data.SportDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.data.UserDAO;
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.SaleListing;
+import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.SwapListing;
 import com.skilldistillery.sportswap.entities.User;
 
@@ -36,6 +38,8 @@ public class UserController {
 	private DonationListingDAO donationListingDAO;
 	@Autowired
 	private SwapListingDAO swapListingDAO;
+	@Autowired
+	private SportDAO sportDAO;
 
 	// directs to home page
 	@RequestMapping(path = { "/", "home.do" })
@@ -56,6 +60,7 @@ public class UserController {
 			session.setAttribute("loggedInUser", user);
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("username", user.getUsername());
+			session.setAttribute("favSports", user.getFavoriteSports());
 			mv.addObject("user", user);
 		} else {
 
@@ -84,10 +89,10 @@ public class UserController {
 			@RequestParam("password") String pw, @RequestParam("email") String email,
 			@RequestParam("address") String address, @RequestParam("address2") String address2,
 			@RequestParam("city") String city, @RequestParam("state_province") String state_province,
-			@RequestParam("postalCode") String postalCode, @RequestParam("country") String country) {
+			@RequestParam("postalCode") String postalCode, @RequestParam("country") String country,
+			@RequestParam("sport1") int sport1, @RequestParam("sport2") int sport2) {
 		ModelAndView mv = new ModelAndView();
-		// create command object
-		// --> add user to database
+		
 		User newUser = new User();
 		newUser.setActive(true);
 		newUser.setEmail(email);
@@ -106,15 +111,14 @@ public class UserController {
 		add.setPostalCode(postalCode);
 		add.setCity(country);
 		add.setCountryCode(country);
+		
+		Address newAddress = addressDAO.add(add);
 
-		add = addressDAO.add(add);
-
-		newUser.setUserAddress(add);
-
-		newUser = userDao.add(newUser);
+		newUser = userDao.add(newUser,newAddress,sport1,sport2);
 
 		// add user to session so that user will be logged in
 		session.setAttribute("loggedInUser", newUser);
+		session.setAttribute("favSports", newUser.getFavoriteSports());
 		mv.setViewName("redirect:account.do");
 		return mv;
 	}

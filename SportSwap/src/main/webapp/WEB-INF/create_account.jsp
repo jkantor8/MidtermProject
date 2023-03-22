@@ -39,6 +39,26 @@
  	<input type="text" id="postalCode" name="postalCode"><br>
  	<label for="country">country: </label>
  	<input type="text" id="country" name="country"><br>
+ 	<label for="sport1">favorite sport:</label>
+		<select name="sport1" id="sport1">
+  			<option value="1">Boxing</option>
+  			<option value="2">Hockey</option>
+  			<option value="3">Golf</option>
+  			<option value="4">Football</option>
+  			<option value="5">Soccer</option>
+  			<option value="6">Curling</option>
+
+		</select><br>
+		<label for="sport2">favorite sport:</label>
+		<select name="sport2" id="sport2">
+  			<option value="1">Boxing</option>
+  			<option value="2">Hockey</option>
+  			<option value="3">Golf</option>
+  			<option value="4">Football</option>
+  			<option value="5">Soccer</option>
+  			<option value="6">Curling</option>
+
+		</select><br>
  	
  	<input type="submit" name="submit" value="create account">
 </form>
