@@ -1,6 +1,7 @@
 package com.skilldistillery.sportswap.data;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -80,6 +81,15 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 				.setParameter("user", userId).getResultList();
 		return userDonationListings;
 	}
+	
+	@Override
+	public DonationListing getRandom() {
+		Random rand = new Random();
+		List<DonationListing> listings= getAllDonationListings();
+		DonationListing listing = listings.get(rand.nextInt(listings.size()));
+		return listing;
+	}
+	
 
 	@Override
 	public boolean deactivate(int id) {
@@ -93,5 +103,7 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 
 		return deactivated;
 	}
+	
+	
 
 }

@@ -56,34 +56,59 @@
 </header>
 <main class="container p-4">
 
+<!--  this container holds 3 recommended items  -->
+<!--  random if not logged in user -->
+<!--  focused on users favorite sport(S) if there are related posts -->
+<div class="row p-2"><h3>Listings that may interest you...</h3></div>
 <div class="row justify-content-center">
+<c:if test="${not empty swapListing}">
   <div class="col-3">
     <div class="card">
+    <img src="${swapListing.getItems().get(0).getImageUrl()}" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Bat</h5>
-        <p class="card-text">This baseball bat is awesome. Awe-Inspring.</p>
+        <h5 class="card-title">Swap Listing</h5>
+        <p class="card-text"><ul>
+        <c:forEach var="item" items="${swapListing.getItems()}">
+        	<li>${item.name}</li>
+        	</c:forEach>
+        </ul></p>
         <a href="#" class="btn btn-primary">(go to listing)</a>
       </div>
     </div>
   </div>
-  <div class="col-3">
+  </c:if>
+  
+  <c:if test="${not empty donationListing}">
+   <div class="col-3">
     <div class="card">
+    <img src="${swapListing.getItems().get(0).getImageUrl()}" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Kids Baseball Glove</h5>
-        <p class="card-text">Barely used. My kid decided to be a nerd.</p>
-        <a href="#" class="btn btn-primary">(got to listing)</a>
-      </div>
-    </div>
-    </div>
-    <div class="col-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Set of Golf Clubs</h5>
-        <p class="card-text">Great for self-defense!.</p>
+        <h5 class="card-title">Donation Listing</h5>
+        <p class="card-text"><ul>
+        <c:forEach var="item" items="${donationListing.getItems()}">
+        	<li>${item.name}</li>
+        	</c:forEach>
+        </ul></p>
         <a href="#" class="btn btn-primary">(go to listing)</a>
       </div>
     </div>
   </div>
+  </c:if>
+  
+   <c:if test="${not empty saleListing}">
+   <div class="col-3">
+    <div class="card">
+    <img src="${saleListing.getItem().getImageUrl()}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Sale Listing</h5>
+        <p class="card-text">${saleListing.getItem().name}</p>
+        <a href="#" class="btn btn-primary">(go to listing)</a>
+      </div>
+    </div>
+  </div>
+</c:if>
+ 
+  
 </div>
 </main>
 

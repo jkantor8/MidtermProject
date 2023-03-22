@@ -1,5 +1,6 @@
 package com.skilldistillery.sportswap.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,12 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.sportswap.data.AddressDAO;
 import com.skilldistillery.sportswap.data.DonationListingDAO;
+import com.skilldistillery.sportswap.data.ItemDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
-import com.skilldistillery.sportswap.data.SportDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.data.UserDAO;
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
+import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.SwapListing;
@@ -39,11 +41,31 @@ public class UserController {
 	@Autowired
 	private SwapListingDAO swapListingDAO;
 	@Autowired
-	private SportDAO sportDAO;
+	private ItemDAO itemDAO;
 
 	// directs to home page
+	// select what to show based on session (if there is a logged in user
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model, HttpSession session) {
+		DonationListing donationListing=null;
+		SwapListing swapListing=null;
+		SaleListing saleListing=null;
+		
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			List<Sport> userSports = user.getFavoriteSports();
+			// items = itemDAO.getItemsByOnSports(userSports);
+		} else {
+			// get three random listings
+			donationListing = donationListingDAO.getRandom();
+			swapListing = swapListingDAO.getRandom();
+			saleListing = saleListingDAO.getRandom();
+		}
+		
+		model.addAttribute("swapListing",swapListing);
+		model.addAttribute("donationListing",donationListing);
+		model.addAttribute("saleListing",saleListing);
+
 		return "home";
 	}
 
@@ -92,7 +114,7 @@ public class UserController {
 			@RequestParam("postalCode") String postalCode, @RequestParam("country") String country,
 			@RequestParam("sport1") int sport1, @RequestParam("sport2") int sport2) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		User newUser = new User();
 		newUser.setActive(true);
 		newUser.setEmail(email);
@@ -111,10 +133,10 @@ public class UserController {
 		add.setPostalCode(postalCode);
 		add.setCity(country);
 		add.setCountryCode(country);
-		
+
 		Address newAddress = addressDAO.add(add);
 
-		newUser = userDao.add(newUser,newAddress,sport1,sport2);
+		newUser = userDao.add(newUser, newAddress, sport1, sport2);
 
 		// add user to session so that user will be logged in
 		session.setAttribute("loggedInUser", newUser);
@@ -214,14 +236,13 @@ public class UserController {
 		model.addAttribute("userDonationListings", userDonationListings);
 		return "viewUserDonationListings";
 	}
-	
-	@RequestMapping(path="viewUserSwapListings.do", method=RequestMethod.GET)
-	public String viewUserSwapListings(HttpSession session, Model model) {
-	    int userId = ((User)session.getAttribute("loggedInUser")).getId();
-	    List<SwapListing> userSwapListings = swapListingDAO.findSwapListingsByUser(userId);
-	    model.addAttribute("userSwapListings", userSwapListings);
-	    return "viewUserSwapListings";
-	}
 
+	@RequestMapping(path = "viewUserSwapListings.do", method = RequestMethod.GET)
+	public String viewUserSwapListings(HttpSession session, Model model) {
+		int userId = ((User) session.getAttribute("loggedInUser")).getId();
+		List<SwapListing> userSwapListings = swapListingDAO.findSwapListingsByUser(userId);
+		model.addAttribute("userSwapListings", userSwapListings);
+		return "viewUserSwapListings";
+	}
 
 }

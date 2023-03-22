@@ -2,6 +2,7 @@ package com.skilldistillery.sportswap.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,11 +19,10 @@ import com.skilldistillery.sportswap.entities.User;
 @Service
 @Transactional
 public class ItemDAOImpl implements ItemDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
-	
+
 	@Override
 	public Item findItemById(int itemId) {
 		Item item = em.find(Item.class, itemId);
@@ -32,35 +32,34 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public List<Item> findAll() {
 		String query = "SELECT item FROM Item item";
-		return  em.createQuery(query, Item.class).getResultList();
+		return em.createQuery(query, Item.class).getResultList();
 	}
 
 	@Override
 	public List<Item> findItemByKeyword(String itemName) {
 		String query = "SELECT item FROM Item item WHERE item.name LIKE :itemName";
-		List <Item> itemList = em.createQuery(query, Item.class)
-				.setParameter("itemName", "%" + itemName + "%")
+		List<Item> itemList = em.createQuery(query, Item.class).setParameter("itemName", "%" + itemName + "%")
 				.getResultList();
 		return itemList;
 	}
 
 	@Override
 	public Item add(Item item, int ageGroupId, int sportId, int conditionId, int userId) {
-		
+
 		AgeGroup ageGroup = em.find(AgeGroup.class, ageGroupId);
 		Sport sport = em.find(Sport.class, sportId);
-		Condition condition  = em.find(Condition.class, conditionId);
-		//associate user
-		User user = em.find(User.class,userId);
-		
+		Condition condition = em.find(Condition.class, conditionId);
+		// associate user
+		User user = em.find(User.class, userId);
+
 		item.setAgeGroup(ageGroup);
 		item.setItemCondition(condition);
 		item.setSportItem(sport);
 		item.setUserItem(user);
-		
+
 		item.setActive(true);
-		
-		//persists will return the item
+
+		// persists will return the item
 		em.persist(item);
 		em.flush();
 		return item;
@@ -78,26 +77,51 @@ public class ItemDAOImpl implements ItemDAO {
 		updatedItem.setCreated(item.getCreated());
 		updatedItem.setUpdated(item.getUpdated());
 		updatedItem.setDeactivated(item.getDeactivated());
-		
+
 		return updatedItem;
 	}
-	
+
 	@Override
 	public List<Item> findItemsByUser(User user) {
 		String query = "SELECT i FROM Item i WHERE i.userItem =:u AND i.active = 1";
-		List<Item> items = em.createQuery(query, Item.class).setParameter("u",user).getResultList();
+		List<Item> items = em.createQuery(query, Item.class).setParameter("u", user).getResultList();
 		return items;
 	}
-	
+
 	@Override
-	public List<Item> findItemsByIds(List<String> ids){
+	public List<Item> findItemsByIds(List<String> ids) {
 		List<Item> items = new ArrayList<>();
-		for(String id : ids) {
+		for (String id : ids) {
 			int id_number = Integer.parseInt(id);
 			items.add(findItemById(id_number));
 		}
 		return items;
-		
+
+	}
+
+	@Override
+	public List<Item> getRandomItems(int numItems) {
+		List<Item> items = new ArrayList<>();
+		String query = "SELECT i FROM Item i";
+		List<Item> itemPool = em.createQuery(query, Item.class).getResultList();
+
+		for (int i = 0; i < numItems; i++) {
+			Random rand = new Random();
+			Item picked = itemPool.get(rand.nextInt(itemPool.size()));
+			if (!items.contains(picked)) {
+				items.add(picked);
+				itemPool.remove(picked);
+			}
+		}
+
+		return items;
+	}
+
+	@Override
+	public List<Item> getItemsBySports(List<Sport> sports) {
+		List<Item> items = null;
+
+		return items;
 	}
 
 }
