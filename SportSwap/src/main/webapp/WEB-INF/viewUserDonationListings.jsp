@@ -18,6 +18,9 @@
 				<th>ID</th>
 
 				<th>Address</th>
+				
+				<th>Actions</th>
+				
 			</tr>
 		</thead>
 		<tbody>

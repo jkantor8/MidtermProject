@@ -18,7 +18,7 @@
 				<th>ID</th>
 
 				<th>Created Date</th>
-				<th>View Listing Page</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,7 +29,11 @@
 					<td>${listing.created}</td>
 					
 					<td>${listing.swapAddress}</td>
-
+<td><form action="singleListing.do" method="get">
+  <input type="hidden" name="id" value="${listing.id}">
+  <input type="hidden" name="listing_type" value="swap">
+  <button type="submit">View Swap Listing</button>
+</form></td>
 				</tr>
 			</c:forEach>
 		</tbody>

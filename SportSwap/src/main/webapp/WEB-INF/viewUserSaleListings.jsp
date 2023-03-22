@@ -18,6 +18,8 @@
 				<th>ID</th>
 
 				<th>Price</th>
+				
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,7 +28,11 @@
 					<td>${listing.id}</td>
 
 					<td>${listing.price}</td>
-
+<td><form action="singleListing.do" method="get">
+  <input type="hidden" name="id" value="${listing.id}">
+  <input type="hidden" name="listing_type" value="sale">
+  <button type="submit">View Sale Listing</button>
+</form></td>
 				</tr>
 			</c:forEach>
 		</tbody>
