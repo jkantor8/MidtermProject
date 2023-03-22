@@ -6,22 +6,56 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--  FONTS GOOGLE -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One">
 <!--  CSS (BOOTSTRAP) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
 <meta charset="UTF-8">
 <title>SportSwap - Trade Up!</title>
 </head>
 <body>
-<header>
-<h1>Welcome to SportSwap</h1>
+<header class="container">
+<div class="row p-2">
+	<h1>SportSwap</h1>
+</div>
+<div class="row justify-content-end">
+<c:choose>
+    <c:when test="${loggedInUser==null}">
+   <div class="col-md-auto">
+        <form method="POST" action="home.do">
+			<label for="username">username: </label>
+  			<input type="text" id="username" name="username">
+  			<label for="password">password: </label>
+  			<input type="text" id="password" name="password">
+  			<input type="submit" value="login" name="login">
+		</form>
+	</div>
+    </c:when>    
+    <c:otherwise>
+		<div class="col-md-auto">
+         <p>Welcome to SportSwap, ${loggedInUser.username}!</p>
+         </div>
+         <div class="col-md-auto">
+         <form method="POST" action="home.do">
+         <input type="submit" value="logout" name="logout">
+         </form>
+         </div>
+    </c:otherwise>
+</c:choose>
+</div>
+
+<div class="row">
 <jsp:include page="nav.jsp" />
+</div>
 </header>
+<main class="container p-4">
 
-
-<h2>Welcome, ${loggedInUser.username}!</h2>
-<div class="container">
+<div class="row justify-content-center">
+<div class="col-6">
+<h2>${loggedInUser.username}'s Account Details</h2>
 <form action="account.do" method="POST">
 <label for="username">username: </label>
   	<input type="text" id="username" name="username" value="${loggedInUser.username}"><br>
@@ -50,15 +84,18 @@
  	<input type="submit" name="submit" value="update_account">
  	<input type="submit" name="delete" value="delete account">
 </form>
-<br>
-
-
+</div>
+</div>
+<div class="row">
+<div class="col">
 <a href= "/messages">Show Messages</a><br>
 <a href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
 <a href= "viewUserDonationListings.do">Show My Donation Listings</a><br>
 <a href= "viewUserSwapListings.do">Show My Swap Listings</a>
 <p>${result }</p>
 </div>
+</div>
+</main>
 <jsp:include page="footer.jsp" />
 <!--  BOOTSTRAP JAVASCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
