@@ -20,7 +20,6 @@
 			<thead> 
 				<tr>
 					<th> Item Name </th>
-					<th> Price </th>
 					<th> Description </th>
 					<th> Gender </th>
 					<th> Brand </th>
@@ -29,13 +28,17 @@
 				<tbody>
 				<tr>
 					<td> ${item.name }</td>	
-					<td> ${item.price }</td>	
 					<td> ${item.description }</td>	
 					<td> ${item.Gender }</td>	
 					<td> ${item.Brand }</td>	
 				</tr>
 				
 				</tbody>
+				<tfoot>
+			
+				
+				
+				</tfoot>
 		</table>
 				<a class="btn btn-light" href="update.do?donationListingId=${donationListing.id}"
 				role="button">Update</a>
@@ -44,6 +47,13 @@
 					value="${donationListing.id}" /> <input type="submit" class="btn btn-dark"
 					value="Delete" />
 					</form>
+					
+			<form action="makePost.do" method ="POST">
+				
+				<textarea id="comment" name="comment" rows="4"></textarea>
+				<input type="submit" value="Post Comment">
+				</form>
+				
 	
 
 
