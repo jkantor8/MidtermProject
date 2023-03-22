@@ -100,16 +100,16 @@ public class UserController {
 			donationListing = donationListingDAO.getLatestBySport(favSport1, favSport2);
 			swapListing = swapListingDAO.getLatestBySport(favSport1, favSport2);
 			saleListing = saleListingDAO.getLatestBySport(favSport1, favSport2);
-
-			mv.addObject("swapListing", swapListing);
-			mv.addObject("donationListing", donationListing);
-			mv.addObject("saleListing", saleListing);
 		} else {
 			// get three random listings
 			donationListing = donationListingDAO.getRandom();
 			swapListing = swapListingDAO.getRandom();
 			saleListing = saleListingDAO.getRandom();
 		}
+
+		mv.addObject("swapListing", swapListing);
+		mv.addObject("donationListing", donationListing);
+		mv.addObject("saleListing", saleListing);
 		return mv;
 	}
 
@@ -121,9 +121,15 @@ public class UserController {
 		if (session.getAttribute("loggedInUser") != null) {
 			// remove user from session and reload
 			session.setAttribute("loggedInUser", null);
-		} else {
-
 		}
+		DonationListing donationListing = donationListingDAO.getRandom();
+		SwapListing swapListing = swapListingDAO.getRandom();
+		SaleListing saleListing = saleListingDAO.getRandom();
+		
+		mv.addObject("swapListing", swapListing);
+		mv.addObject("donationListing", donationListing);
+		mv.addObject("saleListing", saleListing);
+
 		return mv;
 	}
 

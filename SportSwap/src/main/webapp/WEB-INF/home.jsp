@@ -18,15 +18,12 @@
 </head>
 <body>
 <header class="container">
-<div class="row">
+<div class="row p-2">
 	<h1>SportSwap</h1>
 </div>
 <div class="row justify-content-end">
 <c:choose>
     <c:when test="${loggedInUser==null}">
-    <div class="col-md-auto">
-   	<p><a href="createAccount.do">create an account</a></p>
-   </div>
    <div class="col-md-auto">
         <form method="POST" action="home.do">
 			<label for="username">username: </label>
