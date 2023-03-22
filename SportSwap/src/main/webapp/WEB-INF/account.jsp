@@ -18,7 +18,7 @@
 </head>
 <body>
 <header class="container">
-<div class="row">
+<div class="row p-2">
 	<h1>SportSwap</h1>
 </div>
 <div class="row justify-content-end">
@@ -51,10 +51,10 @@
 <jsp:include page="nav.jsp" />
 </div>
 </header>
-<main class="container p-4"></main>
+<main class="container p-4">
 <div class="row">
 <div class="col">
-<h2>Welcome, ${loggedInUser.username}!</h2>
+<h2>${loggedInUser.username}'s Account</h2>
 <form action="account.do" method="POST">
 <label for="username">username: </label>
   	<input type="text" id="username" name="username" value="${loggedInUser.username}"><br>
@@ -83,15 +83,18 @@
  	<input type="submit" name="submit" value="update_account">
  	<input type="submit" name="delete" value="delete account">
 </form>
-<br>
+</div>
 
 
+<div class="col">
 <a href= "/messages">Show Messages</a><br>
 <a href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
 <a href= "viewUserDonationListings.do">Show My Donation Listings</a><br>
 <a href= "viewUserSwapListings.do">Show My Swap Listings</a>
 <p>${result }</p>
 </div>
+</div>
+</main>
 <jsp:include page="footer.jsp" />
 <!--  BOOTSTRAP JAVASCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
