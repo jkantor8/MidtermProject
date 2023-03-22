@@ -72,7 +72,7 @@
 	<input type="text" id="postalCode" name="postalCode"><br>
 	<label for="countryCode">Country Code:</label>
 	<input type="text" id="countryCode" name="countryCode"><br>
-	<input type="submit" value="submit">
+	<input type="submit" value="submit" class="btn btn-outline-red">
 </form>
 </div>
 </div>

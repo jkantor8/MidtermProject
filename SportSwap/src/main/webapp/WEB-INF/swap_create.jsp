@@ -52,7 +52,13 @@
 </div>
 </header>
 <main class="container p-4">
+<<<<<<< HEAD
+<div class="row">
+<div class="col">
+<h2>${listing_type }</h2>
+=======
 ${listing_type }
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <form action="submit_swap.do" method="POST">
 <label for="title">title: </label>
 <input type="text" id="title" name="title" value="[title]"><br>
@@ -68,10 +74,10 @@ ${listing_type }
 </ul>
 
 
-<input type="submit" value="submit">
+<input type="submit" value="submit" class="">
 </form>
-
-
+</div>
+</div>
 </main>
 
 <jsp:include page="footer.jsp" />

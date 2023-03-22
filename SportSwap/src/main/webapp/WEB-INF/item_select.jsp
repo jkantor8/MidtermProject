@@ -52,13 +52,17 @@
 </div>
 </header>
 <main class="container p-4">
+<<<<<<< HEAD
+=======
 <main class="container p-4">
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <!--  show a selectable list of all active items associated with the user -->
-<p>${message}</p>
+<div class="row">
+<div class="col">
 ${listing_type }
 <form action="finish_listing.do" method="POST">
 <c:forEach var="item" items="${items}">
-<div class="selectable_item">
+<div class="selectable_item p-2">
 <div>
 <input type="checkbox" id="${item.id}" name="selectable_item" value="${item.id}">
 </div>
@@ -69,6 +73,16 @@ ${listing_type }
 </c:forEach>
 <input type="submit" value="submit">
 </form>
+<p>${message}</p>
+</div>
+</div>
 </main>
+
+<jsp:include page="footer.jsp" />
+
+<!--  BOOTSTRAP JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+<!--  end  -->
 </body>
 </html>
