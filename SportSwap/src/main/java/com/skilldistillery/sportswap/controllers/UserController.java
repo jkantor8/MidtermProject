@@ -94,12 +94,25 @@ public class UserController {
 			session.setAttribute("favSports", user.getFavoriteSports());
 			mv.addObject("user", user);
 
-			Sport favSport1 = user.getFavoriteSports().get(0);
-			Sport favSport2 = user.getFavoriteSports().get(1);
+			Sport favSport1=null;
+			Sport favSport2 = null;
+			// check for favorite sports
+			if (user.getFavoriteSports().size() > 0) {
+				favSport1 = user.getFavoriteSports().get(0);
+				favSport2 = user.getFavoriteSports().get(1);
+			}
 
-			donationListing = donationListingDAO.getLatestBySport(favSport1, favSport2);
-			swapListing = swapListingDAO.getLatestBySport(favSport1, favSport2);
-			saleListing = saleListingDAO.getLatestBySport(favSport1, favSport2);
+			if (favSport1 != null && favSport2 != null) {
+				donationListing = donationListingDAO.getLatestBySport(favSport1, favSport2);
+				swapListing = swapListingDAO.getLatestBySport(favSport1, favSport2);
+				saleListing = saleListingDAO.getLatestBySport(favSport1, favSport2);
+			} else {
+				// get three random listings
+				donationListing = donationListingDAO.getRandom();
+				swapListing = swapListingDAO.getRandom();
+				saleListing = saleListingDAO.getRandom();
+			}
+
 		} else {
 			// get three random listings
 			donationListing = donationListingDAO.getRandom();
@@ -125,7 +138,7 @@ public class UserController {
 		DonationListing donationListing = donationListingDAO.getRandom();
 		SwapListing swapListing = swapListingDAO.getRandom();
 		SaleListing saleListing = saleListingDAO.getRandom();
-		
+
 		mv.addObject("swapListing", swapListing);
 		mv.addObject("donationListing", donationListing);
 		mv.addObject("saleListing", saleListing);

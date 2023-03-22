@@ -15,7 +15,7 @@
           <a class="nav-link" href="listings.do">View Listings</a>
         </li>
         <c:if test="${empty loggedInUser }">
-        <li class="nav-item"><a class="nav-link" href="createAccount.do">create an account</a></li>
+        <li class="nav-item"><a class="nav-link" href="createAccount.do">Create an Account</a></li>
         </c:if>
            <c:if test="${not empty loggedInUser}">
         <li class="nav-item dropdown">

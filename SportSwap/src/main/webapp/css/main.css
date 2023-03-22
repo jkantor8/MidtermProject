@@ -36,7 +36,9 @@ a {
 }
 
 .btn-outline-red {
+	background-color:white;
 	border:1px solid red;
+	color:#3B3D5E;
 }
 
 .btn-outline-red:hover{
