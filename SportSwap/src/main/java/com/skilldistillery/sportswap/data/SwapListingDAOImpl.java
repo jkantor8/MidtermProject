@@ -92,9 +92,12 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 
 	@Override
 	public SwapListing getRandom() {
+		SwapListing listing=null;
 		Random rand = new Random();
 		List<SwapListing> listings = getAllSwapListings();
-		SwapListing listing = listings.get(rand.nextInt(listings.size()));
+		if(listings!=null && listings.size()>0) {
+			listing = listings.get(rand.nextInt(listings.size()));
+		}
 		return listing;
 	}
 
