@@ -42,13 +42,15 @@
 				</tfoot>
 		</table>
 				
-				<c:choose>
+		<c:choose>
 		<c:when test="${loggedInUser !=null}">
 			<form action="makePost.do" method ="POST">
 				
 				<textarea id="comment" name="comment" rows="4"></textarea>
 				<br>
-				<input type="submit" value="Post Comment">
+				<input type="hidden" name="user" value="${loggedInUser}">
+				<input type="hidden" name="listing" value="${listing.id}">
+				<input type="submit" value="Post to Donation" name="commentType">
 				</form>
 	
 		</c:when>

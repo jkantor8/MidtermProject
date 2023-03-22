@@ -46,7 +46,9 @@
 				
 				<textarea id="comment" name="comment" rows="4"></textarea>
 				<br>
-				<input type="submit" value="Post Comment">
+				
+				<input type="hidden" name="listingId" value="${listing.id}">
+				<input type="submit" value="Post for Seller" name="commentType">
 				</form>
 	
 		</c:when>
