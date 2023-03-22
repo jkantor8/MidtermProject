@@ -66,6 +66,7 @@
 				</thead>
 				<tbody>
 				<tr>
+					<td> ${listing.id}</td>
 					<td> ${item.name }</td>	
 					<td> ${item.price }</td>	
 					<td> ${item.description }</td>	
@@ -77,16 +78,20 @@
 	
 		</table>
 				
-		<a class="btn btn-light" href="update.do?saleListingId=${saleListing.id}"
-				role="button">Update</a>
-		<form action="deactivate.do" method="POST">
-				<label for="saleListingId"></label> <input type="hidden" name="saleListingId"
-					value="${saleListing.id}" /> <input type="submit" class="btn btn-dark"
-					value="Delete" />
-					</form>
+			<c:choose>
+		<c:when test="${loggedInUser !=null}">
+			<form action="makePost.do" method ="POST">
+				
+				<textarea id="comment" name="comment" rows="4"></textarea>
+				<br>
+				<input type="submit" value="Post Comment">
+				</form>
 	
-	
-
+		</c:when>
+		<c:otherwise>
+		
+		</c:otherwise>
+		</c:choose>
 
 
 <jsp:include page="footer.jsp" />

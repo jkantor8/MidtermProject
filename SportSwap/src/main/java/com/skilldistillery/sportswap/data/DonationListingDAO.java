@@ -5,6 +5,7 @@ import java.util.List;
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.User;
 
 public interface DonationListingDAO {
@@ -17,10 +18,11 @@ public interface DonationListingDAO {
 	
 	DonationListing update(DonationListing listing, int id);
 
-
 	List<DonationListing> findDonationListingsByUser(int user);
-
 	
+	DonationListing getRandom();
+	
+	DonationListing getLatestBySport(Sport sport1, Sport sport2);
 	
 	boolean deactivate(int id);
 

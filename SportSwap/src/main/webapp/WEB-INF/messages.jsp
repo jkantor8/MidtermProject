@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <!--  FONTS GOOGLE -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One">
 <!--  CSS (BOOTSTRAP) -->
@@ -13,10 +14,12 @@
 <link rel="stylesheet" href="css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
+
 <meta charset="UTF-8">
 <title>SportSwap - Trade Up!</title>
 </head>
 <body>
+
 <header class="container">
 <div class="row p-2">
 	<h1>SportSwap</h1>
@@ -52,11 +55,12 @@
 </div>
 </header>
 <main class="container p-4">
-<main class="container p-4">
+
 <div class="row"> <h2>Your Messages</h2></div>
 <div class="row">
 <div class="col">
     <h3>Received Message1s</h3>
+
     <table>
         <tr>
             <th>Sender</th>
@@ -89,6 +93,7 @@
         </c:forEach>
     </table>
     <a href="/new-message">New Message</a>
+
     </div>
     </div>
     </main>
@@ -98,5 +103,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <!--  end  -->
+   
 </body>
 </html>

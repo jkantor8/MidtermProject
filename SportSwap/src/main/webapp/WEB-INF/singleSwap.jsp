@@ -58,7 +58,7 @@
 			<thead> 
 				<tr>
 					<th> Item Name </th>
-					<th> Price </th>
+					
 					<th> Description </th>
 					<th> Gender </th>
 					<th> Brand </th>
@@ -66,8 +66,9 @@
 				</thead>
 				<tbody>
 				<tr>
+					<td> ${listing.id}</td>
 					<td> ${item.name }</td>	
-					<td> ${item.price }</td>	
+						
 					<td> ${item.description }</td>	
 					<td> ${item.Gender }</td>	
 					<td> ${item.Brand }</td>	
@@ -76,17 +77,20 @@
 				</tbody>
 	
 		</table>
-		<a class="btn btn-light" href="update.do?swapListingId=${swapListing.id}"
-				role="button">Update</a>
-		<form action="deactivate.do" method="POST">
-				<label for="swapListingId"></label> <input type="hidden" name="swapListingId"
-					value="${swapListing.id}" /> <input type="submit" class="btn btn-dark"
-					value="Delete" />
-					</form>
+		<c:choose>
+		<c:when test="${loggedInUser !=null}">
+			<form action="makePost.do" method ="POST">
+				
+				<textarea id="comment" name="comment" rows="4"></textarea>
+				<br>
+				<input type="submit" value="Post Comment">
+				</form>
 	
-	
-
-
+		</c:when>
+		<c:otherwise>
+		
+		</c:otherwise>
+		</c:choose>
 
 <jsp:include page="footer.jsp" />
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

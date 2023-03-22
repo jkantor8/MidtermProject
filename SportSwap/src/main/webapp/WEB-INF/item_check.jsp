@@ -51,15 +51,21 @@
 <jsp:include page="nav.jsp" />
 </div>
 </header>
+
+
 <main class="container p-4">
-<h1>Item</h1>
-${listing_type }
+<div class="row">
+<div class="col">
+<h2>${listing_type }</h2>
+
 <p>Would you like to create a new item or use one from your inventory?</p>
 <form action="item_option.do" method="POST">
-	<input type="submit" value="use existing item" name="need_item"><br>
-	<input type="submit" value="create a new item" name="need_item"><br>
+	<input type="submit" value="use existing item" name="need_item" class="btn btn-outline-red"><br>
+	<input type="submit" value="create a new item" name="need_item" class="btn btn-outline-red"><br>
 </form>
-
+</div>
+</div>
+</main>
 
 <jsp:include page="footer.jsp" />
 

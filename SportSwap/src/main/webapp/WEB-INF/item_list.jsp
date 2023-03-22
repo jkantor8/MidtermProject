@@ -52,19 +52,28 @@
 </div>
 </header>
 <main class="container p-4">
-<h1>Items for ${loggedInUser.username}</h1>
+<div class="row"><h2>Items for ${loggedInUser.username}</h2></div>
+<div class="row">
+
 <c:if test="${items not empty}">
 	<c:forEach var="item" items="${items}">
-	<!--  these should become links to the address check page with item id stored in either session or passed as parameter -->
-	<!-- for now just show id to get it working -->
-	<p>${item.id }</p>
+	  <div class="col-3">
+    	<div class="card">
+    		<img src="${item.getImageUrl()}" class="card-img-top" alt="...">
+   		<div class="card-body">
+        <h5 class="card-title">${item.name }</h5>
+        <p class="card-text">${item.description}"></p>
+      </div>
+    </div>
+  </div>
 	</c:forEach>
 </c:if>
 <c:if test="${empty items}">
 	<p>Sorry, you have no active items associated with your account.</p>
 </c:if>
 
-
+</div>
+</main>
 
 <jsp:include page="footer.jsp" />
 

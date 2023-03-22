@@ -12,10 +12,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/main.css">
 <!-- end -->
 <meta charset="UTF-8">
 <title>SportSwap - Trade Up!</title>
 </head>
+
 <body>
 <header class="container">
 <div class="row p-2">
@@ -52,7 +54,11 @@
 </div>
 </header>
 <main class="container p-4">
-<div class="container">
+
+<div class="row justify-content-center">
+<div class="col-6">
+<h2>Create an Account</h2>
+
 <form action="createAccount.do" method="POST">
 <label for="username">username: </label>
   	<input type="text" id="username" name="username"><br>
@@ -93,10 +99,11 @@
 
 		</select><br>
  	
- 	<input type="submit" name="submit" value="create account">
+ 	<input type="submit" name="submit" value="create account" class="btn btn-outline-red">
 </form>
-
 </div>
+</div>
+</main>
 <jsp:include page="footer.jsp" />
 <!--  BOOTSTRAP JAVASCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

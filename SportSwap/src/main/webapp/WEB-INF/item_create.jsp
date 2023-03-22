@@ -52,9 +52,13 @@
 </div>
 </header>
 <main class="container p-4">
-${listing_type }
-<h1>Create a new item</h1>
-<p>Please enter the item information.
+
+<div class="row"></div>
+<div class="col">
+<h2>${listing_type }</h2>
+<h3>Create a new item</h3>
+<p>Please enter the item information.</p>
+
 <form action="item_create.do" method="POST">
 	<label for="name">name:</label>
 	<input type="text" id="name" name="name"><br>
@@ -96,7 +100,9 @@ ${listing_type }
 	
 	<input type="submit" value="submit">
 </form>
-
+</div>
+</div>
+</main>
 
 <jsp:include page="footer.jsp" />
 

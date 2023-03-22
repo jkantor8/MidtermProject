@@ -68,7 +68,7 @@
 				<table class="table">
 					<c:forEach var="listing" items="${listings}">
 							<tr>
-							<td><a href="#"> ${listing.id} ${listing.created} </a></td>
+							<td><a href="singleListing.do?listingId=${listing.id}"> ${listing.id} ${listing.created} </a></td>
 							</tr>
 
 

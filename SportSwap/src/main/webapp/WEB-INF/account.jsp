@@ -52,9 +52,11 @@
 </div>
 </header>
 <main class="container p-4">
-<div class="row">
-<div class="col">
-<h2>${loggedInUser.username}'s Account</h2>
+
+<div class="row justify-content-center">
+<div class="col-6">
+<h2>${loggedInUser.username}'s Account Details</h2>
+
 <form action="account.do" method="POST">
 <label for="username">username: </label>
   	<input type="text" id="username" name="username" value="${loggedInUser.username}"><br>
@@ -84,7 +86,6 @@
  	<input type="submit" name="delete" value="delete account">
 </form>
 </div>
-
 
 <div class="col">
 <a href= "/messages">Show Messages</a><br>

@@ -51,10 +51,14 @@
 <jsp:include page="nav.jsp" />
 </div>
 </header>
+
 <main class="container p-4">
-<h1>Create a new donation</h1>
-${listing_type }
-<p>Please enter the address information.
+<div class="row">
+<div class="col">
+<h2>${listing_type }</h2>
+<h3>Create a new donation event.</h3>
+<p>Please enter the event information.</p>
+
 <form action="submit_donation.do" method="POST">
 	<label for="start">Start date:</label>
 	<input type="date" id="start" name="event-start"
@@ -66,7 +70,9 @@ ${listing_type }
        min="2023-01-01" max="2040-12-31"><br>
 	<input type="submit" value="create donation">
 </form>
-
+</div>
+</div>
+</main>
 <jsp:include page="footer.jsp" />
 
 <!--  BOOTSTRAP JAVASCRIPT -->

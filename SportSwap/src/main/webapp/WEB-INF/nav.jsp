@@ -15,9 +15,11 @@
           <a class="nav-link" href="listings.do">View Listings</a>
         </li>
         <c:if test="${empty loggedInUser }">
+
          <li class="nav-item">
           <a class="nav-link" href="createAccount.do">Create Account</a>
         </li>
+
         </c:if>
            <c:if test="${not empty loggedInUser}">
         <li class="nav-item dropdown">
@@ -37,7 +39,9 @@
          </c:if>
        
       </ul>
-      <!--  ** remove for now **
+
+      <!--  hidden for now 
+
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-red" type="submit">Search</button>
