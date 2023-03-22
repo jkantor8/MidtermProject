@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.Item;
-import com.skilldistillery.sportswap.entities.SaleListing;
+import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.SwapListing;
 import com.skilldistillery.sportswap.entities.User;
 
@@ -21,6 +21,8 @@ public interface SwapListingDAO {
 	boolean deactivate(int id);
 	
 	SwapListing getRandom();
+	
+	SwapListing getLatestBySport(Sport sport1, Sport sport2);
 
 	List<SwapListing> findSwapListingsByUser(int userId);
 }
