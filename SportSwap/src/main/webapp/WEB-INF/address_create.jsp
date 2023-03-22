@@ -52,11 +52,13 @@
 </div>
 </header>
 <main class="container p-4">
+
 <div class="row">
 <div class="col">
 <h2>${listing_type }</h2>
 <h3>Create a new Address</h3>
 <p>Please enter the address information.</p>
+
 <form action="address_create.do" method="POST">
 	<label for="street">Street:</label>
 	<input type="text" id="street" name="street"><br>

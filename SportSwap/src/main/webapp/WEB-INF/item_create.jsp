@@ -52,11 +52,13 @@
 </div>
 </header>
 <main class="container p-4">
+
 <div class="row"></div>
 <div class="col">
 <h2>${listing_type }</h2>
 <h3>Create a new item</h3>
 <p>Please enter the item information.</p>
+
 <form action="item_create.do" method="POST">
 	<label for="name">name:</label>
 	<input type="text" id="name" name="name"><br>

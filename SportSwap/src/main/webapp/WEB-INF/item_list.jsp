@@ -54,6 +54,7 @@
 <main class="container p-4">
 <div class="row"><h2>Items for ${loggedInUser.username}</h2></div>
 <div class="row">
+
 <c:if test="${items not empty}">
 	<c:forEach var="item" items="${items}">
 	  <div class="col-3">

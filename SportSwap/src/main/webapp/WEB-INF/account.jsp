@@ -56,6 +56,7 @@
 <div class="row justify-content-center">
 <div class="col-6">
 <h2>${loggedInUser.username}'s Account Details</h2>
+
 <form action="account.do" method="POST">
 <label for="username">username: </label>
   	<input type="text" id="username" name="username" value="${loggedInUser.username}"><br>
@@ -85,8 +86,7 @@
  	<input type="submit" name="delete" value="delete account">
 </form>
 </div>
-</div>
-<div class="row">
+
 <div class="col">
 <a href= "/messages">Show Messages</a><br>
 <a href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
