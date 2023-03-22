@@ -54,37 +54,42 @@
 <main class="container p-4">
 	
 	
-		<table class="table">
+			<table class="table">
 			<thead> 
 				<tr>
 					<th> Item Name </th>
-					<th> Price </th>
+					<th> Item Price </th>
 					<th> Description </th>
 					<th> Gender </th>
 					<th> Brand </th>
 				</tr>
 				</thead>
 				<tbody>
+				
 				<tr>
-					<td> ${listing.id}</td>
-					<td> ${item.name }</td>	
-					<td> ${item.price }</td>	
-					<td> ${item.description }</td>	
-					<td> ${item.Gender }</td>	
-					<td> ${item.Brand }</td>	
+					<td> ${listing.item.name}</td>	
+					<td>${listing.price }
+					<td> ${listing.item.description }</td>	
+					<td> ${listing.item.gender }</td>	
+					<td> ${listing.item.brand }</td>	
 				</tr>
 				
 				</tbody>
-	
+				
+				<br>
+				<img src="${listing.item.imageUrl}" alt="${listing.item.name}" width="200" height="auto">
+				
+				
+				
 		</table>
 				
-			<c:choose>
+		<c:choose>
 		<c:when test="${loggedInUser !=null}">
 			<form action="makePost.do" method ="POST">
 				
 				<textarea id="comment" name="comment" rows="4"></textarea>
 				<br>
-				
+				<input type="hidden" name="user" value="${loggedInUser}">
 				<input type="hidden" name="listingId" value="${listing.id}">
 				<input type="submit" value="Post for Seller" name="commentType">
 				</form>
@@ -94,12 +99,18 @@
 		
 		</c:otherwise>
 		</c:choose>
+		
+		
 		<c:choose>
-		<c:when test="${post !=null}">
+		<c:when test="${not empty listing.saleListingPosts}">
+			<h3>Posts for this listing</h3>
+			<c:forEach var="post" items="${listing.saleListingPosts}">
 			<p>${post.postingUser.username}		${post.comment}</p>
+			</c:forEach>
 		</c:when>
 		</c:choose>
 
+</main>
 
 <jsp:include page="footer.jsp" />
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

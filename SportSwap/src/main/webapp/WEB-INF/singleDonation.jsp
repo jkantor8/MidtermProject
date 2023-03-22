@@ -76,13 +76,10 @@
 					<td> ${item.gender }</td>	
 					<td> ${item.brand }</td>	
 				</tr>
+				<br>
+				<img src="${item.imageUrl}" alt="${item.name}" width="200" height="auto">
 				</c:forEach>
 				</tbody>
-				<tfoot>
-			
-				
-				
-				</tfoot>
 		</table>
 				
 		<c:choose>
