@@ -52,9 +52,13 @@
 </div>
 </header>
 <main class="container p-4">
+<<<<<<< HEAD
 <div class="row">
 <div class="col">
 <h2>Sale Information</h2>
+=======
+<main>
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <form action="submit_sale.do" method="POST">
 <label for="title">title: </label>
 <input type="text" id="title" name="title" value="[title]"><br>

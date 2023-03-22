@@ -52,10 +52,12 @@
 </div>
 </header>
 
+
 <main class="container p-4">
 <div class="row">
 <div class="col">
 <h2>${listing_type }</h2>
+
 <p>Would you like to create a new item or use one from your inventory?</p>
 <form action="item_option.do" method="POST">
 	<input type="submit" value="use existing item" name="need_item" class="btn btn-outline-red"><br>

@@ -6,6 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <!--  FONTS GOOGLE -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One">
 <!--  CSS (BOOTSTRAP) -->
@@ -46,6 +50,15 @@
     </c:otherwise>
 </c:choose>
 </div>
+<<<<<<< HEAD
+=======
+
+<div class="row">
+<jsp:include page="nav.jsp" />
+</div>
+</header>
+<main class="container p-4">
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 
 <div class="row">
 <jsp:include page="nav.jsp" />
@@ -58,7 +71,8 @@
 			<tr>
 				<th>ID</th>
 
-				<th>Price</th>
+				<th>Created Date</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -69,7 +83,11 @@
 					<td>${listing.created}</td>
 					
 					<td>${listing.swapAddress}</td>
-
+<td><form action="singleListing.do" method="get">
+  <input type="hidden" name="id" value="${listing.id}">
+  <input type="hidden" name="listing_type" value="swap">
+  <button type="submit">View Swap Listing</button>
+</form></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -78,9 +96,18 @@
 </main>
 <jsp:include page="footer.jsp" />
 
+<<<<<<< HEAD
 <!--  BOOTSTRAP JAVASCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <!--  end  -->
+=======
+<jsp:include page="footer.jsp" />
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+
+
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 </body>
 </html>

@@ -58,6 +58,7 @@
 <h2>${listing_type }</h2>
 <h3>Create a new donation event.</h3>
 <p>Please enter the event information.</p>
+
 <form action="submit_donation.do" method="POST">
 	<label for="start">Start date:</label>
 	<input type="date" id="start" name="event-start"

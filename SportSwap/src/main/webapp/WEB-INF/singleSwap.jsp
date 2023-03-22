@@ -52,7 +52,12 @@
 </div>
 </header>
 <main class="container p-4">
+<<<<<<< HEAD
 	<div class="row">
+=======
+	
+	
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 		<table class="table">
 			<thead> 
 				<tr>

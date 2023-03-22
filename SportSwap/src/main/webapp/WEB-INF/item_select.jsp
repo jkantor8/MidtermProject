@@ -52,6 +52,10 @@
 </div>
 </header>
 <main class="container p-4">
+<<<<<<< HEAD
+=======
+<main class="container p-4">
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <!--  show a selectable list of all active items associated with the user -->
 <div class="row">
 <div class="col">

@@ -52,8 +52,13 @@
 </div>
 </header>
 <main class="container p-4">
+<<<<<<< HEAD
 <div class="row">
 	
+=======
+<main class="container p-4">
+
+>>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 		<form method="POST" action="listings.do">
 			<input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red">
 			<input type="submit" value="view donations" name="list_view" class="btn btn-outline-red">
