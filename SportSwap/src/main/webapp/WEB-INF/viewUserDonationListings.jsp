@@ -27,6 +27,11 @@
 
 					<td>${listing.donationAddress}</td>
 
+					<td><form action="singleListing.do" method="get">
+  <input type="hidden" name="id" value="${listing.id}">
+  <input type="hidden" name="listing_type" value="donation">
+  <button type="submit">View Donation Listing</button>
+</form></td>
 				</tr>
 			</c:forEach>
 		</tbody>
