@@ -41,21 +41,21 @@
 				
 				</tfoot>
 		</table>
-				<a class="btn btn-light" href="update.do?donationListingId=${donationListing.id}"
-				role="button">Update</a>
-		<form action="deactivate.do" method="POST">
-				<label for="donationListingId"></label> <input type="hidden" name="donationListingId"
-					value="${donationListing.id}" /> <input type="submit" class="btn btn-dark"
-					value="Delete" />
-					</form>
-					
+				
+				<c:choose>
+		<c:when test="${loggedInUser !=null}">
 			<form action="makePost.do" method ="POST">
 				
 				<textarea id="comment" name="comment" rows="4"></textarea>
+				<br>
 				<input type="submit" value="Post Comment">
 				</form>
-				
 	
+		</c:when>
+		<c:otherwise>
+		
+		</c:otherwise>
+		</c:choose>
 
 
 
