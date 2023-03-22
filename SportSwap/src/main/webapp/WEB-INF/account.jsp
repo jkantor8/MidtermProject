@@ -76,22 +76,22 @@
  	<input type="text" id="postalCode" name="postalCode" value="${loggedInUser.getUserAddress().getPostalCode()}"><br>
  	<label for="country">country: </label>
  	<input type="text" id="country" name="country" value="${loggedInUser.getUserAddress().getCountryCode()}"><br>
- 	<p>favorite sports:</p>
+ 	<h4>favorite sports:</h4>
  	<ul>
  	<c:forEach var="sport" items="${favSports}">
  	<li>${sport.getName()}</li>
  	</c:forEach>
  	</ul>
- 	<input type="submit" name="submit" value="update_account">
- 	<input type="submit" name="delete" value="delete account">
+ 	<input type="submit" name="submit" value="update_account" class="btn btn-outline-red">
+ 	<input type="submit" name="delete" value="delete account" class="btn btn-outline-red">
 </form>
 </div>
 
 <div class="col">
-<a href= "/messages">Show Messages</a><br>
-<a href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
-<a href= "viewUserDonationListings.do">Show My Donation Listings</a><br>
-<a href= "viewUserSwapListings.do">Show My Swap Listings</a>
+<a class="btn btn-outline-red" href= "/messages">Show Messages</a><br>
+<a class="btn btn-outline-red" href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
+<a class="btn btn-outline-red" href= "viewUserDonationListings.do">Show My Donation Listings</a><br>
+<a class="btn btn-outline-red" href= "viewUserSwapListings.do">Show My Swap Listings</a>
 <p>${result }</p>
 </div>
 </div>

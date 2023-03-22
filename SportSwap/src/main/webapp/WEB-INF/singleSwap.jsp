@@ -52,9 +52,15 @@
 </div>
 </header>
 <main class="container p-4">
+
+	<div class="row">
+
 	
-	
-			<table class="table">
+
+			
+
+		<table class="table">
+
 			<thead> 
 				<tr>
 					<th> Item Name </th>
@@ -93,6 +99,7 @@
 		
 		</c:otherwise>
 		</c:choose>
+
 		
 		
 		<c:choose>
@@ -104,6 +111,9 @@
 		</c:when>
 		</c:choose>
 
+
+
+</div>
 </main>
 
 <jsp:include page="footer.jsp" />
