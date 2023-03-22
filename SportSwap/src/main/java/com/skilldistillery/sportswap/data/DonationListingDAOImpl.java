@@ -86,9 +86,12 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 
 	@Override
 	public DonationListing getRandom() {
+		DonationListing listing = null;
 		Random rand = new Random();
 		List<DonationListing> listings = getAllDonationListings();
-		DonationListing listing = listings.get(rand.nextInt(listings.size()));
+		if(listings!=null && listings.size()>0) {
+			listing = listings.get(rand.nextInt(listings.size()));
+		}
 		return listing;
 	}
 
