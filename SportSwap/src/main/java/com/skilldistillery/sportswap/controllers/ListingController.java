@@ -59,17 +59,17 @@ public class ListingController {
 		switch (listView) {
 		case "view donations":
 			List<DonationListing> donList = donationListingDAO.getAllDonationListings();
-			//session.setAttribute("singleListViewType", "donationView");
+			session.setAttribute("singleView", "view donations");
 			mv.addObject("listings", donList);
 			break;
 		case "view sales":
 			List<SaleListing> saleList = saleListingDAO.getAllSaleListings();
-			//session.setAttribute("singleListViewType", "saleView");
+			session.setAttribute("singleView", "view sales");
 			mv.addObject("listings", saleList);
 			break;
 		case "view swaps":
 			List<SwapListing> swapList = swapListingDAO.getAllSwapListings();
-			//session.setAttribute("singleListViewType", "swapView");
+			session.setAttribute("singleView", "view swaps");
 			mv.addObject("listings", swapList);
 			break;
 		default:
@@ -191,19 +191,53 @@ public class ListingController {
 	
 	
 	
-	@RequestMapping(path = "singleListing", method = RequestMethod.GET, params = "listing_type")
-	public String viewSingleListing(HttpSession session, @RequestParam("listing_type") String type) {
-		session.setAttribute("listing_type", type);
-		if (type.equals("donation")) {
-			return "singleDonation";
+	@RequestMapping(path = "singleListing.do", method = RequestMethod.GET)
+	public ModelAndView viewSingleListing(HttpSession session, int listingId) {
+		String singleView = (String) session.getAttribute("singleView");
+		ModelAndView mv = new ModelAndView();
+		
+		
+		switch (singleView) {
+		case "view donations":
+			mv.addObject("listing", donationListingDAO.findById(listingId));
+			mv.setViewName("singleDonation");
+			break;
+		
+		case "view swaps":
+			mv.addObject("listing", swapListingDAO.findById(listingId));
+			mv.setViewName("singleSwap");
+			break;
+		case "view sales":
+			mv.addObject("listing", saleListingDAO.findById(listingId));
+			mv.setViewName("singleSale");
+			break;
+		default:
+			break;
 		}
-		else if(type.equals("Swap")) {
-			return "singleSwap";
-		}else if (type.equals("Sale")) {
-			return "singleSale";
-		}else {
-			return "home";
-		}
+		return mv;
+		
+		
+		
+		
+		
+		
+//		if (singleView.equals("view donations")) {
+//			mv.addObject("listing", donationListingDAO.findById(listingId));
+//			mv.setViewName("singleDonation");
+//			return mv;
+//		}
+//		else if(singleView.equals("view swaps")) {
+//			mv.addObject("listing", swapListingDAO.findById(listingId));
+//			mv.setViewName("singleSwap");
+//			return mv;
+//		}else if (singleView.equals("view sales")) {
+//			mv.addObject("listing", saleListingDAO.findById(listingId));
+//			mv.setViewName("singleSale");
+//			return mv;
+//		}else {
+//			mv.setViewName("home");
+//			return mv;
+//		}
 	}
 	
 	

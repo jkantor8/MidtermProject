@@ -27,6 +27,7 @@
 				</thead>
 				<tbody>
 				<tr>
+					<td> ${listing.id}</td>
 					<td> ${item.name }</td>	
 					<td> ${item.description }</td>	
 					<td> ${item.Gender }</td>	
