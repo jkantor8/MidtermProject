@@ -20,7 +20,7 @@
 			<thead> 
 				<tr>
 					<th> Item Name </th>
-					<th> Price </th>
+					
 					<th> Description </th>
 					<th> Gender </th>
 					<th> Brand </th>
@@ -28,8 +28,9 @@
 				</thead>
 				<tbody>
 				<tr>
+					<td> ${listing.id}</td>
 					<td> ${item.name }</td>	
-					<td> ${item.price }</td>	
+						
 					<td> ${item.description }</td>	
 					<td> ${item.Gender }</td>	
 					<td> ${item.Brand }</td>	
