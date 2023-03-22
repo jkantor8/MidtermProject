@@ -194,21 +194,25 @@ public class ListingController {
 	@RequestMapping(path = "singleListing.do", method = RequestMethod.GET)
 	public ModelAndView viewSingleListing(HttpSession session, int listingId) {
 		String singleView = (String) session.getAttribute("singleView");
+		User user = (User) session.getAttribute("loggedInUser");
 		ModelAndView mv = new ModelAndView();
-		
+		mv.addObject("loggedInUser", user);
 		
 		switch (singleView) {
 		case "view donations":
 			mv.addObject("listing", donationListingDAO.findById(listingId));
+			
 			mv.setViewName("singleDonation");
 			break;
 		
 		case "view swaps":
 			mv.addObject("listing", swapListingDAO.findById(listingId));
+			
 			mv.setViewName("singleSwap");
 			break;
 		case "view sales":
 			mv.addObject("listing", saleListingDAO.findById(listingId));
+			
 			mv.setViewName("singleSale");
 			break;
 		default:
@@ -216,28 +220,7 @@ public class ListingController {
 		}
 		return mv;
 		
-		
-		
-		
-		
-		
-//		if (singleView.equals("view donations")) {
-//			mv.addObject("listing", donationListingDAO.findById(listingId));
-//			mv.setViewName("singleDonation");
-//			return mv;
-//		}
-//		else if(singleView.equals("view swaps")) {
-//			mv.addObject("listing", swapListingDAO.findById(listingId));
-//			mv.setViewName("singleSwap");
-//			return mv;
-//		}else if (singleView.equals("view sales")) {
-//			mv.addObject("listing", saleListingDAO.findById(listingId));
-//			mv.setViewName("singleSale");
-//			return mv;
-//		}else {
-//			mv.setViewName("home");
-//			return mv;
-//		}
+	
 	}
 	
 	
