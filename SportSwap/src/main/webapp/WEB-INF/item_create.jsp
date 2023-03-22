@@ -52,7 +52,7 @@
 </div>
 </header>
 <main class="container p-4">
-<div class="row"></div>
+<div class="row">
 <div class="col">
 <h2>${listing_type }</h2>
 <h3>Create a new item</h3>
@@ -96,7 +96,7 @@
   			<option value="3">Adult</option>
 		</select><br>
 	
-	<input type="submit" value="submit">
+	<input type="submit" value="submit" class="btn btn-outline-red">
 </form>
 </div>
 </div>
