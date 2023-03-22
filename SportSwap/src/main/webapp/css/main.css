@@ -1,0 +1,39 @@
+footer {
+	background-color:#3B3D5E;
+	color:white;
+	height:100%;
+}
+
+header {
+	background-color:#3B3D5E;
+	color:white;
+	
+}
+
+nav {
+	border-top:1px solid red;
+	border-bottom:1px solid red;
+}
+
+main {
+	background-color:#3B3D5E;
+	color:white;
+}
+
+h1 {
+	font-family:'Russo One', sans-serif;
+	font-size:4em;
+	text-decoration:underline;
+}
+
+.card {
+	color:black;
+}
+
+a {
+	text-decoration:none;
+}
+
+
+
+
