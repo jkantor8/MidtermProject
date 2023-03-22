@@ -38,24 +38,29 @@ public class PostController {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		Post createdPost = null;
+		post.setComment(comment);
 		switch (commentType) {
-
+		
 		case "Post to Donation":
+			
 			DonationListing donationListing = donationListingDAO.findById(listingId);
 			createdPost = postDAO.addToDonate(post, user, donationListing);
 			mv.addObject("post", createdPost);
+			mv.addObject("listing",donationListing);
 			mv.setViewName("singleDonation");
 			break;
 		case "Post for Seller":
 			SaleListing saleListing = saleListingDAO.findById(listingId);
 			createdPost = postDAO.addToSale(post, user, saleListing);
 			mv.addObject("post", createdPost);
+			mv.addObject("listing",saleListing);
 			mv.setViewName("singleSale");
 			break;
 
 		case "Post for Swapper":
 			SwapListing swapListing = swapListingDAO.findById(listingId);
 			createdPost = postDAO.addToSwap(post, user, swapListing);
+			mv.addObject("listing",swapListing);
 			mv.addObject("post", createdPost);
 			mv.setViewName("singleSwap");
 			break;

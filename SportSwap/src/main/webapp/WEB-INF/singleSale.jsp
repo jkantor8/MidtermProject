@@ -56,6 +56,11 @@
 		
 		</c:otherwise>
 		</c:choose>
+		<c:choose>
+		<c:when test="${post !=null}">
+			<p>${post.postingUser.username}		${post.comment}</p>
+		</c:when>
+		</c:choose>
 
 
 <jsp:include page="footer.jsp" />

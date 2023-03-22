@@ -12,8 +12,9 @@
 <body>
 
 <jsp:include page="nav.jsp" />
-
-
+<div class ="container">
+<p>Listingid: ${listing.id}</p>
+<p>Listing Created: ${listing.created}</p>
 	
 	
 		<table class="table">
@@ -26,14 +27,14 @@
 				</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="item" items="${listing.items}">
 				<tr>
-					<td> ${listing.id}</td>
-					<td> ${item.name }</td>	
+					<td> ${item.name}</td>	
 					<td> ${item.description }</td>	
-					<td> ${item.Gender }</td>	
-					<td> ${item.Brand }</td>	
+					<td> ${item.gender }</td>	
+					<td> ${item.brand }</td>	
 				</tr>
-				
+				</c:forEach>
 				</tbody>
 				<tfoot>
 			
@@ -49,7 +50,7 @@
 				<textarea id="comment" name="comment" rows="4"></textarea>
 				<br>
 				<input type="hidden" name="user" value="${loggedInUser}">
-				<input type="hidden" name="listing" value="${listing.id}">
+				<input type="hidden" name="listingId" value="${listing.id}">
 				<input type="submit" value="Post to Donation" name="commentType">
 				</form>
 	
@@ -58,8 +59,18 @@
 		
 		</c:otherwise>
 		</c:choose>
+		
+		
+		<c:choose>
+		<c:when test="${not empty listing.donationListingPosts}">
+			<h3>Posts for this listing</h3>
+			<c:forEach var="post" items="${listing.donationListingPosts}">
+			<p>${post.postingUser.username}		${post.comment}</p>
+			</c:forEach>
+		</c:when>
+		</c:choose>
 
-
+</div>
 
 <jsp:include page="footer.jsp" />
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
