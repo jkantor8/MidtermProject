@@ -52,43 +52,61 @@
 </div>
 </header>
 <main class="container p-4">
-<<<<<<< HEAD
+
 <div clss="row">
-=======
+
 	
-	
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
+
+			
+
 		<table class="table">
+
 			<thead> 
 				<tr>
 					<th> Item Name </th>
-					<th> Price </th>
+					<th> Item Price </th>
 					<th> Description </th>
 					<th> Gender </th>
 					<th> Brand </th>
 				</tr>
 				</thead>
 				<tbody>
+				
 				<tr>
-					<td> ${listing.id}</td>
-					<td> ${item.name }</td>	
-					<td> ${item.price }</td>	
-					<td> ${item.description }</td>	
-					<td> ${item.Gender }</td>	
-					<td> ${item.Brand }</td>	
+					<td> ${listing.item.name}</td>	
+					<td>${listing.price }
+					<td> ${listing.item.description }</td>	
+					<td> ${listing.item.gender }</td>	
+					<td> ${listing.item.brand }</td>	
 				</tr>
 				
 				</tbody>
-	
+				
+				<c:choose>
+				<c:when test="${not empty item.imageUrl }">
+				<blockquote>
+					<img src="${item.imageUrl}" alt="${item.name}" width="150"
+						height="150">
+				</blockquote>
+				</c:when>
+				<c:otherwise>
+				<p>no image provided<p>
+				</c:otherwise>
+				</c:choose>
+				
+				
+				
 		</table>
 				
-			<c:choose>
+		<c:choose>
 		<c:when test="${loggedInUser !=null}">
 			<form action="makePost.do" method ="POST">
 				
 				<textarea id="comment" name="comment" rows="4"></textarea>
 				<br>
-				<input type="submit" value="Post Comment">
+				<input type="hidden" name="user" value="${loggedInUser}">
+				<input type="hidden" name="listingId" value="${listing.id}">
+				<input type="submit" value="Post for Seller" name="commentType">
 				</form>
 	
 		</c:when>
@@ -96,8 +114,24 @@
 		
 		</c:otherwise>
 		</c:choose>
+
+		
+		
+		<c:choose>
+		<c:when test="${not empty listing.saleListingPosts}">
+			<h3>Posts for this listing</h3>
+			<c:forEach var="post" items="${listing.saleListingPosts}">
+			<p>${post.postingUser.username}		${post.comment}</p>
+			</c:forEach>
+		</c:when>
+		</c:choose>
+
+
+
+
 </div>
 </main>
+
 <jsp:include page="footer.jsp" />
 
 <!--  BOOTSTRAP JAVASCRIPT -->
