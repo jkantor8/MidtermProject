@@ -18,15 +18,12 @@
 </head>
 <body>
 <header class="container">
-<div class="row">
+<div class="row p-2">
 	<h1>SportSwap</h1>
 </div>
 <div class="row justify-content-end">
 <c:choose>
     <c:when test="${loggedInUser==null}">
-    <div class="col-md-auto">
-   	<p><a href="createAccount.do">create an account</a></p>
-   </div>
    <div class="col-md-auto">
         <form method="POST" action="home.do">
 			<label for="username">username: </label>
@@ -72,7 +69,7 @@
         	<li>${item.name}</li>
         	</c:forEach>
         </ul></p>
-        <a href="#" class="btn btn-primary">(go to listing)</a>
+        <a href="singleListing.do?id=${swapListing.getId()}&listing_type=swap" class="btn">more</a>
       </div>
     </div>
   </div>
@@ -81,7 +78,7 @@
   <c:if test="${not empty donationListing}">
    <div class="col-3">
     <div class="card">
-    <img src="${swapListing.getItems().get(0).getImageUrl()}" class="card-img-top" alt="...">
+    <img src="${donationListing.getItems().get(0).getImageUrl()}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Donation Listing</h5>
         <p class="card-text"><ul>
@@ -89,7 +86,7 @@
         	<li>${item.name}</li>
         	</c:forEach>
         </ul></p>
-        <a href="#" class="btn btn-primary">(go to listing)</a>
+        <a href="singleListing.do?id=${donationListing.getId()}&listing_type=donation" class="btn">more</a>
       </div>
     </div>
   </div>
@@ -102,7 +99,7 @@
       <div class="card-body">
         <h5 class="card-title">Sale Listing</h5>
         <p class="card-text">${saleListing.getItem().name}</p>
-        <a href="#" class="btn btn-primary">(go to listing)</a>
+        <a href="singleListing.do?id=${saleListing.getId()}&listing_type=sale" class="btn">more</a>
       </div>
     </div>
   </div>

@@ -49,10 +49,9 @@ public class ListingController {
 	@RequestMapping(path = "listings.do", method = RequestMethod.POST, params = "list_view")
 	public ModelAndView viewSwaps(HttpSession session, @RequestParam("list_view") String listView) {
 		ModelAndView mv = new ModelAndView();
-		
-		//set a session variable to tell single listing view page what type to look for 
-		//which dao to use
-		
+
+		// set a session variable to tell single listing view page what type to look for
+		// which dao to use
 
 		String noListings = "Sorry, no listings matching those criteria were found.";
 
@@ -92,7 +91,7 @@ public class ListingController {
 		}
 	}
 
-	//DONATION
+	// DONATION
 	@GetMapping(path = "donation_create.do")
 	public ModelAndView routeToCreateDonation(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -100,16 +99,16 @@ public class ListingController {
 		mv.setViewName("donation_create");
 		return mv;
 	}
-	
-	@PostMapping(path="submit_donation.do")
-	public ModelAndView createDonation(HttpSession session,DonationListing listing ) {
+
+	@PostMapping(path = "submit_donation.do")
+	public ModelAndView createDonation(HttpSession session, DonationListing listing) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		List<Item> items = (List<Item>) session.getAttribute("items");
 		Address address = (Address) session.getAttribute("address");
 		User user = (User) session.getAttribute("loggedInUser");
-		
-		DonationListing createDonationListing = donationListingDAO.add(listing, items, address,user);
+
+		DonationListing createDonationListing = donationListingDAO.add(listing, items, address, user);
 		mv.setViewName("listings");
 		return mv;
 	}
@@ -126,17 +125,17 @@ public class ListingController {
 	@PostMapping(path = "submit_swap.do")
 	public ModelAndView createSwap(HttpSession session, SwapListing listing) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		List<Item> items = (List<Item>) session.getAttribute("items");
 		Address address = (Address) session.getAttribute("address");
 		User user = (User) session.getAttribute("loggedInUser");
 
-		SwapListing createdSwapListing = swapListingDAO.add(listing, items, address,user);
+		SwapListing createdSwapListing = swapListingDAO.add(listing, items, address, user);
 		mv.setViewName("listings");
 		return mv;
 	}
-	
-	//SALE
+
+	// SALE
 	@GetMapping(path = "sale_create.do")
 	public ModelAndView routeToCreateSale(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -144,16 +143,16 @@ public class ListingController {
 		mv.setViewName("sale_create");
 		return mv;
 	}
-	
+
 	@PostMapping(path = "submit_sale.do")
 	public ModelAndView createSwap(HttpSession session, SaleListing listing) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		List<Item> items = (List<Item>) session.getAttribute("items");
 		Item itemToSell = items.get(0);
 		User user = (User) session.getAttribute("loggedInUser");
 
-		SaleListing createdSaleListing = saleListingDAO.add(listing, itemToSell,user);
+		SaleListing createdSaleListing = saleListingDAO.add(listing, itemToSell, user);
 		mv.setViewName("listings");
 		return mv;
 	}
@@ -188,48 +187,64 @@ public class ListingController {
 
 		return mv;
 	}
-	
-	
-	
+
 	@RequestMapping(path = "singleListing.do", method = RequestMethod.GET)
 	public ModelAndView viewSingleListing(HttpSession session, int listingId) {
 		String singleView = (String) session.getAttribute("singleView");
 		User user = (User) session.getAttribute("loggedInUser");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("loggedInUser", user);
-		
+
 		switch (singleView) {
 		case "view donations":
 			mv.addObject("listing", donationListingDAO.findById(listingId));
-			
+
 			mv.setViewName("singleDonation");
 			break;
-		
+
 		case "view swaps":
 			mv.addObject("listing", swapListingDAO.findById(listingId));
-			
+
 			mv.setViewName("singleSwap");
 			break;
 		case "view sales":
 			mv.addObject("listing", saleListingDAO.findById(listingId));
-			
+
 			mv.setViewName("singleSale");
 			break;
 		default:
 			break;
 		}
 		return mv;
-		
-	
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// this is for mapping from a listing on the front page
+	@RequestMapping(path = "singleListing.do", method = RequestMethod.GET, params = { "id", "listing_type" })
+	public ModelAndView viewSingleListing(HttpSession session, int id, String listing_type) {
+
+		ModelAndView mv = new ModelAndView();
+
+		switch (listing_type) {
+		case "donation":
+			mv.addObject("listing", donationListingDAO.findById(id));
+			mv.setViewName("singleDonation");
+			break;
+		case "swap":
+			mv.addObject("listing", swapListingDAO.findById(id));
+			mv.setViewName("singleSwap");
+			break;
+		case "sale":
+			mv.addObject("listing", saleListingDAO.findById(id));
+			mv.setViewName("singleSale");
+			break;
+		default:
+			break;
+		}
+
+		return mv;
+	}
+
 //	@PostMapping(path = "deactivate.do"), params
 
 }

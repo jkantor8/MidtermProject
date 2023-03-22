@@ -1,12 +1,9 @@
 # MidtermProject
 
-
 ## Description
-
 SportSwap is a site where users can coordinate buying selling swapping and donating sports equipment. 
 
 ## Technologies Used
-
 * Java
 * Spring Tool Suite
 * Spring Boot
@@ -28,3 +25,4 @@ SportSwap is a site where users can coordinate buying selling swapping and donat
 * buttons are mapped by name for parameter and the value (which is the label) is passed
 * weird errors - GRADLE REFRESH! 
 * [Hibernate: More than one row with the given identifier was found error] - caused by incorrect mapping. When mapping, if you don't need a bidirectional relationship, don't. Also watch out for OneToOne where should be ManyToOne/OneToMany. It is not a problem saving to the database, it is a problem creating objects when trying to map the relationships to entities with incorrect relationships.
+* & for mulitple parameters in URL
