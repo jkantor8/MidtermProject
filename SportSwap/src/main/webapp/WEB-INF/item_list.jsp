@@ -6,27 +6,73 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--  FONTS GOOGLE -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One">
 <!--  CSS (BOOTSTRAP) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
 <meta charset="UTF-8">
-<title>SportSwap - Trade up!</title>
+<title>SportSwap - Trade Up!</title>
 </head>
 <body>
-<h1>Items for ${loggedInUser.username}</h1>
+<header class="container">
+<div class="row p-2">
+	<h1>SportSwap</h1>
+</div>
+<div class="row justify-content-end">
+<c:choose>
+    <c:when test="${loggedInUser==null}">
+   <div class="col-md-auto">
+        <form method="POST" action="home.do">
+			<label for="username">username: </label>
+  			<input type="text" id="username" name="username">
+  			<label for="password">password: </label>
+  			<input type="text" id="password" name="password">
+  			<input type="submit" value="login" name="login">
+		</form>
+	</div>
+    </c:when>    
+    <c:otherwise>
+		<div class="col-md-auto">
+         <p>Welcome to SportSwap, ${loggedInUser.username}!</p>
+         </div>
+         <div class="col-md-auto">
+         <form method="POST" action="home.do">
+         <input type="submit" value="logout" name="logout">
+         </form>
+         </div>
+    </c:otherwise>
+</c:choose>
+</div>
+
+<div class="row">
+<jsp:include page="nav.jsp" />
+</div>
+</header>
+<main class="container p-4">
+<div class="row"><h2>Items for ${loggedInUser.username}</h2></div>
+<div class="row">
 <c:if test="${items not empty}">
 	<c:forEach var="item" items="${items}">
-	<!--  these should become links to the address check page with item id stored in either session or passed as parameter -->
-	<!-- for now just show id to get it working -->
-	<p>${item.id }</p>
+	  <div class="col-3">
+    	<div class="card">
+    		<img src="${item.getImageUrl()}" class="card-img-top" alt="...">
+   		<div class="card-body">
+        <h5 class="card-title">${item.name }</h5>
+        <p class="card-text">${item.description}"></p>
+      </div>
+    </div>
+  </div>
 	</c:forEach>
 </c:if>
 <c:if test="${empty items}">
 	<p>Sorry, you have no active items associated with your account.</p>
 </c:if>
 
-
+</div>
+</main>
 
 <jsp:include page="footer.jsp" />
 
