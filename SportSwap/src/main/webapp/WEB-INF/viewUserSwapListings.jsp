@@ -17,7 +17,8 @@
 			<tr>
 				<th>ID</th>
 
-				<th>Price</th>
+				<th>Created Date</th>
+				<th>View Listing Page</th>
 			</tr>
 		</thead>
 		<tbody>
