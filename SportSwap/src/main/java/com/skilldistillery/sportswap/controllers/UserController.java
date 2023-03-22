@@ -47,24 +47,29 @@ public class UserController {
 	// select what to show based on session (if there is a logged in user
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model, HttpSession session) {
-		DonationListing donationListing=null;
-		SwapListing swapListing=null;
-		SaleListing saleListing=null;
-		
+		DonationListing donationListing = null;
+		SwapListing swapListing = null;
+		SaleListing saleListing = null;
+
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
-			List<Sport> userSports = user.getFavoriteSports();
-			// items = itemDAO.getItemsByOnSports(userSports);
+			Sport favSport1 = user.getFavoriteSports().get(0);
+			Sport favSport2 = user.getFavoriteSports().get(1);
+
+			donationListing = donationListingDAO.getLatestBySport(favSport1, favSport2);
+			swapListing = swapListingDAO.getLatestBySport(favSport1, favSport2);
+			saleListing = saleListingDAO.getLatestBySport(favSport1, favSport2);
+
 		} else {
 			// get three random listings
 			donationListing = donationListingDAO.getRandom();
 			swapListing = swapListingDAO.getRandom();
 			saleListing = saleListingDAO.getRandom();
 		}
-		
-		model.addAttribute("swapListing",swapListing);
-		model.addAttribute("donationListing",donationListing);
-		model.addAttribute("saleListing",saleListing);
+
+		model.addAttribute("swapListing", swapListing);
+		model.addAttribute("donationListing", donationListing);
+		model.addAttribute("saleListing", saleListing);
 
 		return "home";
 	}
@@ -75,6 +80,10 @@ public class UserController {
 			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
+		DonationListing donationListing = null;
+		SwapListing swapListing = null;
+		SaleListing saleListing = null;
+
 		User user = userDao.login(name, pw);
 
 		if (user != null) {
@@ -84,8 +93,22 @@ public class UserController {
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("favSports", user.getFavoriteSports());
 			mv.addObject("user", user);
-		} else {
 
+			Sport favSport1 = user.getFavoriteSports().get(0);
+			Sport favSport2 = user.getFavoriteSports().get(1);
+
+			donationListing = donationListingDAO.getLatestBySport(favSport1, favSport2);
+			swapListing = swapListingDAO.getLatestBySport(favSport1, favSport2);
+			saleListing = saleListingDAO.getLatestBySport(favSport1, favSport2);
+
+			mv.addObject("swapListing", swapListing);
+			mv.addObject("donationListing", donationListing);
+			mv.addObject("saleListing", saleListing);
+		} else {
+			// get three random listings
+			donationListing = donationListingDAO.getRandom();
+			swapListing = swapListingDAO.getRandom();
+			saleListing = saleListingDAO.getRandom();
 		}
 		return mv;
 	}

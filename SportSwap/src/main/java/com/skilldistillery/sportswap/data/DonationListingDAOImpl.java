@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
+import com.skilldistillery.sportswap.entities.Sport;
+import com.skilldistillery.sportswap.entities.SwapListing;
 import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
@@ -81,15 +83,47 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 				.setParameter("user", userId).getResultList();
 		return userDonationListings;
 	}
-	
+
 	@Override
 	public DonationListing getRandom() {
 		Random rand = new Random();
-		List<DonationListing> listings= getAllDonationListings();
+		List<DonationListing> listings = getAllDonationListings();
 		DonationListing listing = listings.get(rand.nextInt(listings.size()));
 		return listing;
 	}
-	
+
+	// looks for a listing matching sport1
+	// if not found uses sport two
+	// otherwise will be null
+	public DonationListing getLatestBySport(Sport sport1, Sport sport2) {
+		DonationListing listing = null;
+		List<DonationListing> listings = getAllDonationListings();
+		for (DonationListing d : listings) {
+			for (Item i : d.getItems()) {
+				if (i.getSportItem().equals(sport1)) {
+					listing = d;
+					break;
+				}
+				if (listing != null) {
+					break;
+				}
+			}
+		}
+		if (listing == null) {
+			for (DonationListing d : listings) {
+				for (Item i : d.getItems()) {
+					if (i.getSportItem().equals(sport1)) {
+						listing = d;
+						break;
+					}
+					if (listing != null) {
+						break;
+					}
+				}
+			}
+		}
+		return listing;
+	}
 
 	@Override
 	public boolean deactivate(int id) {
@@ -103,7 +137,5 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 
 		return deactivated;
 	}
-	
-	
 
 }

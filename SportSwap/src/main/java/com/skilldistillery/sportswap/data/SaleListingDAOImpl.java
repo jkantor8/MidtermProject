@@ -13,6 +13,7 @@ import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
+import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
@@ -76,6 +77,29 @@ public class SaleListingDAOImpl implements SaleListingDAO {
 		Random rand = new Random();
 		List<SaleListing> listings= getAllSaleListings();
 		SaleListing listing = listings.get(rand.nextInt(listings.size()));
+		return listing;
+	}
+	
+	//looks for a listing matching sport1
+	//if not found uses sport two
+	//otherwise will be null
+	public SaleListing getLatestBySport(Sport sport1, Sport sport2) {
+		SaleListing listing = null;
+		List<SaleListing> listings = getAllSaleListings();
+		for(SaleListing s : listings) {
+			if(s.getItem().getSportItem().equals(sport1)) {
+				listing = s;
+				break;
+			}
+		}
+		if(listing==null) {
+			for(SaleListing s : listings) {
+				if(s.getItem().getSportItem().equals(sport2)) {
+					listing = s;
+					break;
+				}
+			}
+		}
 		return listing;
 	}
 	
