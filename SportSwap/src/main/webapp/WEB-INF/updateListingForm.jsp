@@ -61,13 +61,25 @@
     <input type="hidden" name="listing_type" value="${listing_type}">
     <input type="hidden" name="id" value="${listing.id}">
 
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="${listing.title}">
+    <br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description">${listing.description}</textarea>
+    <br>
+
     <label for="active">Active:</label>
-    <input type="checkbox" id="active" name="active" ${listing.active ? 'checked' : ''}>
+    <input type="radio" id="active" name="status" value="active" ${listing.active ? 'checked' : ''}>
+    <br>
+    <label for="inactive">Inactive:</label>
+    <input type="radio" id="inactive" name="status" value="inactive" ${!listing.active ? 'checked' : ''}>
     <br>
 
     <c:choose>
         <c:when test="${listing_type == 'donation'}">
-         
+        	 <label for="donationAddress">Donation Address:</label>
+            <input type="text" id="donationAddress" name="donationAddress" value="${listing.donationAddress}">
+            <br>
             <label for="eventStart">Event Start:</label>
             <input type="datetime-local" id="eventStart" name="eventStart" value="${listing.eventStart}">
             <br>
@@ -82,7 +94,9 @@
             <br>
         </c:when>
         <c:when test="${listing_type == 'swap'}">
-       
+       <label for="swapAddress">Donation Address:</label>
+            <input type="text" id="swapAddress" name="swapAddress" value="${listing.swapAddress}">
+            <br>
         </c:when>
     </c:choose>
 
