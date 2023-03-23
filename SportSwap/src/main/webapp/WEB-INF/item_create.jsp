@@ -60,14 +60,23 @@
 <p>Please enter the item information.</p>
 
 <form action="item_create.do" method="POST">
-	<label for="name">name:</label>
-	<input type="text" id="name" name="name"><br>
+	<div class="form-group">
+		<label for="name">name:</label><br>
+		<input type="text" id="name" name="name">
+	
+	<div class="form-group">
 	<label for="description">description:</label>
-	<input type="text" id="description" name="description"><br>
+	<input type="text" id="description" name="description">
+	</div>
+	<div class="form-group">
 	<label for="imageUrl">image url:</label>
-	<input type="text" id="imageUrl" name="imageUrl"><br>
+	<input type="text" id="imageUrl" name="imageUrl">
+	</div>
+	<div class="form-group">
 	<label for="brand">brand:</label>
-	<input type="text" id="brand" name="brand"><br>
+	<input type="text" id="brand" name="brand">
+	</div>
+	<div class="form-group">
 	<label for="sportId">sport:</label>
 		<select name="sportId" id="sportId">
   			<option value="1">Boxing</option>
@@ -76,27 +85,43 @@
   			<option value="4">Football</option>
   			<option value="5">Soccer</option>
   			<option value="6">Curling</option>
-
-		</select><br>
+  			<option value="7">Baseball</option>
+  			<option value="8">Softball</option>
+  			<option value="9">Basketball</option>
+  			<option value="10">Weightlifting</option>
+  			<option value="11">Track and Field</option>
+  			<option value="12">Wrestling</option>
+  			<option value="13">Bicycling</option>
+  			<option value="14">Swimming</option>
+		</select>
+		</div>
+		<div class="form-group">
 	<label for="conditionId">condition:</label>
 		<select name="conditionId" id="conditionId">
   			<option value="1">New</option>
   			<option value="2">Lightly Used</option>
   			<option value="3">Used</option>
   			<option value="4">Heavily Used</option>
-		</select><br>
+		</select>
+		</div>
+		<div class="form-group">
 	<label for="gender">gender:</label>
 		<select name="gender" id="gender">
+		<option value="N/A">N/A</option>
   			<option value="Unisex">Unisex</option>
   			<option value="Female">Female</option>
   			<option value="Male">Male</option>
-		</select><br>
+		</select>
+		</div>
+		<div class="form-group">
 		<label for="ageGroupId">age group:</label>
 		<select name="ageGroupId" id="ageGroupId">
   			<option value="1">Youth</option>
   			<option value="2">Intermediate</option>
   			<option value="3">Adult</option>
-		</select><br>
+  			<option value="4">N/A</option>
+		</select>
+		</div>
 	
 	<input type="submit" value="submit" class="btn btn-outline-red">
 </form>
