@@ -307,6 +307,31 @@ public class ListingController {
 	}
 
 
-//	@PostMapping(path = "deactivate.do"), params
+	@PostMapping(path = "deactivate.do")
+	public ModelAndView deactivateListing(int listingId, String listing_type) {
+		ModelAndView mv = new ModelAndView();
+		boolean deactivated = false;
+		
+				switch (listing_type) {
+			    case "donation":
+			        deactivated = donationListingDAO.deactivate(listingId);
+			        mv.setViewName("viewUserDonationListings");
+			        break;
+			    case "swap":
+			        deactivated = swapListingDAO.deactivate(listingId);
+			        mv.setViewName("viewUserSwapListings");
+			        break;
+			    case "sale":
+			        deactivated = saleListingDAO.deactivate(listingId);
+			        mv.setViewName("viewUserSaleListings");
+			        break;
+			    default:
+			        break;
+			    }
+
+		
+		
+		return mv;
+	}
 
 }

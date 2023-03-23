@@ -77,9 +77,9 @@
  	<label for="postalCode">postal code: </label>
  	<input type="text" id="postalCode" name="postalCode" required><br>
  	<label for="country">country: abbreviation</label>
- 	<input type="text" id="country" name="country" maxlength="2" requried><br>
+ 	<input type="text" id="country" name="country" maxlength="2" required><br>
  	<label for="sport1">favorite sport:</label>
-		<select name="sport1" id="sport1">
+		<select name="sport1" id="sport1" required>
   			<option value="1">Boxing</option>
   			<option value="2">Hockey</option>
   			<option value="3">Golf</option>
@@ -89,7 +89,7 @@
 
 		</select><br>
 		<label for="sport2">favorite sport:</label>
-		<select name="sport2" id="sport2">
+		<select name="sport2" id="sport2" required>
   			<option value="1">Boxing</option>
   			<option value="2">Hockey</option>
   			<option value="3">Golf</option>
