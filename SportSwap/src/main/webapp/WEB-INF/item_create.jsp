@@ -52,12 +52,8 @@
 </div>
 </header>
 <main class="container p-4">
-<<<<<<< HEAD
 <div class="row">
-=======
 
-<div class="row"></div>
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <div class="col">
 <h2>${listing_type }</h2>
 <h3>Create a new item</h3>

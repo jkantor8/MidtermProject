@@ -50,7 +50,7 @@ public class ItemController {
 		// need user id for item
 		int userId = ((User) session.getAttribute("loggedInUser")).getId();
 
-		Item newItem = itemDAO.add(item, ageGroupId, conditionId, sportId, userId);
+		Item newItem = itemDAO.add(item, ageGroupId, sportId, conditionId, userId);
 
 		// take user to item select page
 		return "redirect:item_select.do";
