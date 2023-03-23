@@ -103,6 +103,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${userSaleListings}" var="listing">
+			 <c:if test="${listing.active}">
 				<tr>
 					<td>${listing.id}</td>
 
@@ -119,6 +120,7 @@
     <button type="submit">Edit Listing</button>
 </form></td>
 				</tr>
+				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>
