@@ -18,35 +18,7 @@
 <title>SportSwap - Trade Up!</title>
 </head>
 <body>
-<header class="container">
-<div class="row p-2">
-	<h1>SportSwap</h1>
-</div>
-<div class="row justify-content-end">
-<c:choose>
-    <c:when test="${loggedInUser==null}">
-   <div class="col-md-auto">
-        <form method="POST" action="home.do">
-			<label for="username">username: </label>
-  			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
-  			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login">
-		</form>
-	</div>
-    </c:when>    
-    <c:otherwise>
-		<div class="col-md-auto">
-         <p>Welcome to SportSwap, ${loggedInUser.username}!</p>
-         </div>
-         <div class="col-md-auto">
-         <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
-         </form>
-         </div>
-    </c:otherwise>
-</c:choose>
-</div>
+
 
 
 <header class="container">
@@ -88,9 +60,9 @@
 
 
 
-	<h1>Your Sale Listings</h1>
+	<h3>Your Sale Listings</h3>
 
-
+<div class="row">
 	<table>
 		<thead>
 			<tr>
