@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.sportswap.data.AddressDAO;
 import com.skilldistillery.sportswap.data.DonationListingDAO;
 import com.skilldistillery.sportswap.data.ItemDAO;
+import com.skilldistillery.sportswap.data.PostDAO;
 import com.skilldistillery.sportswap.data.SaleListingDAO;
 import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.data.UserDAO;
@@ -42,6 +42,8 @@ public class UserController {
 	private SwapListingDAO swapListingDAO;
 	@Autowired
 	private ItemDAO itemDAO;
+	@Autowired
+	private PostDAO postDAO;
 
 	// directs to home page
 	// select what to show based on session (if there is a logged in user
@@ -328,6 +330,9 @@ public class UserController {
 		case "user":
 			userDao.deactivate(id);
 			break;
+		case "post":
+			postDAO.deactivate(id);
+			break;
 		default:
 			break;
 		}
@@ -354,6 +359,9 @@ public class UserController {
 			break;
 		case "user":
 			userDao.reactivate(id);
+			break;
+		case "post":
+			postDAO.reactivate(id);
 			break;
 		default:
 			break;

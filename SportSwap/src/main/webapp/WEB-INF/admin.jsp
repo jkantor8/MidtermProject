@@ -57,7 +57,7 @@
 <div class="row">
 <div class="col">
 <h3>Users</h3>
-<table>
+<table class="mb-4">
 <tr><th>delete</th><th>username</th><th>active</th></tr>
 <c:forEach var="user" items="${users}">
 <tr>
@@ -73,10 +73,10 @@
 <td>${user.username}</td>
 <td>
 <c:if test="${user.active==true}">
-active
+
 </c:if>
 <c:if test="${user.active==false }">
-inactive
+DEACTIVATED
 </c:if>
 </td>
 </tr>
@@ -89,7 +89,7 @@ inactive
 <div class="row">
 <div class="col">
 <h3>donation listings</h3>
-<table>
+<table class="mb-4">
 <tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
 <c:forEach var="donation" items="${donations}">
 <tr>
@@ -105,13 +105,35 @@ inactive
 	<td>${donation.user.username}</td>
 	<td>
 	<c:if test="${donation.active==true}">
-	active
+	
 	</c:if>
 	<c:if test="${donation.active==false}">
-	inactive
+	DEACTIVATED
 	</c:if>
 	</td>
 	</tr>
+	<!-- nested for posts -->
+	<c:if test="${donation.donationListingPosts.size()>0}">
+	<tr>
+	<td colspan="4">
+	<h4>posts for: ${donation.title}</h4>
+	<ul>
+	<c:forEach var="post" items="${donation.donationListingPosts }">
+	<li> --
+		<c:if test="${post.active==true}">
+		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">deactivate </a>${post.comment} - ${post.postingUser.username}
+		
+		</c:if>
+		<c:if test="${post.active==false }">
+		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">reactivate </a>${post.comment} - ${post.postingUser.username}
+		</c:if>
+	</li>
+	</c:forEach>
+	</ul>
+	
+	</td>
+	</tr>	
+	</c:if>
 </c:forEach>
 </table>
 </div>
@@ -121,7 +143,7 @@ inactive
 <div class="row">
 <div class="col">
 <h3>sale listings</h3>
-<table>
+<table class="mb-4">
 <tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
 <c:forEach var="sale" items="${sales}">
 <tr>
@@ -137,13 +159,35 @@ inactive
 	<td>${sale.sellingUser.username}</td>
 	<td>
 	<c:if test="${sale.active==true}">
-	active
+	
 	</c:if>
 	<c:if test="${sale.active==false}">
-	inactive
+	DEACTIVATED
 	</c:if>
 	</td>
 	</tr>
+	<!-- nested for posts -->
+	<c:if test="${sale.saleListingPosts.size()>0}">
+	<tr>
+	<td colspan="4">
+	<h4>posts for: ${sale.title}</h4>
+	<ul>
+	<c:forEach var="post" items="${sale.saleListingPosts }">
+	<li> --
+		<c:if test="${post.active==true}">
+		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">deactivate </a>${post.comment} - ${post.postingUser.username}
+		
+		</c:if>
+		<c:if test="${post.active==false }">
+		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">reactivate </a>${post.comment} - ${post.postingUser.username}
+		</c:if>
+	</li>
+	</c:forEach>
+	</ul>
+	
+	</td>
+	</tr>	
+	</c:if>
 </c:forEach>
 </table>
 </div>
@@ -153,7 +197,7 @@ inactive
 <div class="row">
 <div class="col">
 <h3>swap listings</h3>
-<table>
+<table class="mb-4">
 <tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
 <c:forEach var="swap" items="${swaps}">
 <tr>
@@ -169,13 +213,35 @@ inactive
 	<td>${swap.swappingUser.username}</td>
 	<td>
 	<c:if test="${swap.active==true}">
-	active
+	
 	</c:if>
 	<c:if test="${swap.active==false}">
-	inactive
+	DEACTIVATED
 	</c:if>
 	</td>
 	</tr>
+	<!-- nested for posts -->
+	<c:if test="${swap.swapListingPosts.size()>0}">
+	<tr>
+	<td colspan="4">
+	<h4>posts for: ${swap.title}</h4>
+	<ul>
+	<c:forEach var="post" items="${swap.swapListingPosts }">
+	<li> --
+		<c:if test="${post.active==true}">
+		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">deactivate </a>${post.comment} - ${post.postingUser.username}
+		
+		</c:if>
+		<c:if test="${post.active==false }">
+		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">reactivate </a>${post.comment} - ${post.postingUser.username}
+		</c:if>
+	</li>
+	</c:forEach>
+	</ul>
+	
+	</td>
+	</tr>	
+	</c:if>
 </c:forEach>
 </table>
 </div>
