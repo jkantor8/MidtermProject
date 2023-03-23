@@ -92,5 +92,18 @@ public class PostDAOImpl implements PostDAO {
 		
 		return deactivated;
 	}
+	
+	@Override
+	public boolean reactivate(int id) {
+		boolean reactivated = false;
+		
+		Post post = em.find(Post.class, id);
+		if (em.contains(post)) {
+			post.setActive(true);
+			reactivated = true;
+		}
+		
+		return reactivated;
+	}
 
 }
