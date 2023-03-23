@@ -66,7 +66,9 @@
     </c:if>
       <div class="card-body">
         <h5 class="card-title">Swap Listing</h5>
-        <p class="card-text"><ul>
+        <p class="card-text">${swapListing.title}</p>
+        <p class="card-text">${swapListing.description}</p>
+        <p class="card-text">items:<br><ul>
         <c:forEach var="item" items="${swapListing.getItems()}">
         	<li>${item.name}</li>
         	</c:forEach>
@@ -85,6 +87,9 @@
     </c:if>
       <div class="card-body">
         <h5 class="card-title">Donation Listing</h5>
+         <p class="card-text">${donationListing.title}</p>
+        <p class="card-text">${donationListing.description}</p>
+        <p class="card-text">items:<br>
         <p class="card-text"><ul>
         <c:forEach var="item" items="${donationListing.getItems()}">
         	<li>${item.name}</li>
@@ -104,7 +109,8 @@
     </c:if>
       <div class="card-body">
         <h5 class="card-title">Sale Listing</h5>
-        <p class="card-text">${saleListing.getItem().name}</p>
+         <p class="card-text">${saleListing.title}</p>
+        <p class="card-text">${saleListing.description}</p>
         <a href="singleListing.do?id=${saleListing.getId()}&listing_type=sale" class="btn btn-outline-red">more</a>
       </div>
     </div>
