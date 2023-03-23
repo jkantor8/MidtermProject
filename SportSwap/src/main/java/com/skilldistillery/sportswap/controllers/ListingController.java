@@ -1,5 +1,6 @@
 package com.skilldistillery.sportswap.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -243,7 +244,68 @@ public class ListingController {
 		}
 
 		return mv;
+	
 	}
+	
+	
+	@RequestMapping(path = "updateListing.do", method = RequestMethod.GET, params = { "id", "listing_type" })
+	public ModelAndView updateListingForm(int id, String listing_type) {
+	    ModelAndView mv = new ModelAndView();
+	    mv.addObject("listing_type", listing_type);
+
+	    switch (listing_type) {
+	    case "donation":
+	        mv.addObject("listing", donationListingDAO.findById(id));
+	        break;
+	    case "swap":
+	        mv.addObject("listing", swapListingDAO.findById(id));
+	        break;
+	    case "sale":
+	        mv.addObject("listing", saleListingDAO.findById(id));
+	        break;
+	    default:
+	        break;
+	    }
+
+	    mv.setViewName("updateListingForm");
+	    return mv;
+	}
+
+	@RequestMapping(path = "performUpdate.do", method = RequestMethod.POST, params = { "id", "listing_type" })
+	public String performUpdate(
+	        int id,
+	        String listing_type,
+	        @RequestParam("active") boolean active,
+	        @RequestParam(value = "eventStart", required = false) LocalDateTime eventStart,
+	        @RequestParam(value = "eventEnd", required = false) LocalDateTime eventEnd,
+	        @RequestParam(value = "price", required = false) Double price) {
+
+	    switch (listing_type) {
+	    case "donation":
+	        DonationListing donationListing = donationListingDAO.findById(id);
+	        donationListing.setActive(active);
+	        donationListing.setEventStart(eventStart);
+	        donationListing.setEventEnd(eventEnd);
+	        donationListingDAO.update(donationListing, id);
+	        break;
+	    case "swap":
+	        SwapListing swapListing = swapListingDAO.findById(id);
+	        swapListing.setActive(active);
+	        swapListingDAO.update(swapListing, id);
+	        break;
+	    case "sale":
+	        SaleListing saleListing = saleListingDAO.findById(id);
+	        saleListing.setActive(active);
+	        saleListing.setPrice(price);
+	        saleListingDAO.update(saleListing, id);
+	        break;
+	    default:
+	        break;
+	    }
+
+	    return "redirect:singleListing.do?id=" + id + "&listing_type=" + listing_type;
+	}
+
 
 //	@PostMapping(path = "deactivate.do"), params
 
