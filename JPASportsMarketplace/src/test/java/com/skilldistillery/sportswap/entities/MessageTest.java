@@ -43,8 +43,8 @@ class MessageTest {
 	@Test
 	void test_Message_entity_mapping() {
 		assertNotNull(message);
-		assertEquals("Punching Bag", message.getSubject());
-		assertEquals("Hi! What color is the punching bag?",message.getContent());
+		assertEquals("Question", message.getSubject());
+		assertEquals("Hi, how do I add a post to my swap?",message.getContent());
 	}
 
 	@Test
@@ -52,8 +52,7 @@ class MessageTest {
 		assertNotNull(message);
 		assertNotNull(message.getSender());
 		assertNotNull(message.getReceiver());
-		assertEquals(2, message.getSender().getId());
-		assertEquals(3, message.getReceiver().getId());
-		assertEquals("Hi! What color is the punching bag?", message.getContent());
+		assertEquals(3, message.getSender().getId());
+		assertEquals(1, message.getReceiver().getId());
 	}
 }

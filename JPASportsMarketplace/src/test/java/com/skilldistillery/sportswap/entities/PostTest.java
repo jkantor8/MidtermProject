@@ -47,13 +47,13 @@ class PostTest {
 	void test_entity_mapping() {
 		assertNotNull(post);
 		assertTrue(post.isActive());
-		assertEquals("Hi this is really fun!", post.getComment());
+		assertEquals("Hi, where can I pick up this nice golf ball?", post.getComment());
 
 	}
 
 	@Test
 	void test_Post_SwapListing_ManyToOne() {
-		post = em.find(Post.class, 2);
+		post = em.find(Post.class, 3);
 		assertNotNull(post);
 		assertNotNull(post.getSwapListing());
 		assertTrue(post.getSwapListing().isActive());
@@ -76,7 +76,7 @@ class PostTest {
 		assertNotNull(post);
 		assertNotNull(post.getSaleListing().getSaleListingPosts());
 		assertNull(post.getSaleListing().getCreated());
-		assertEquals(189.00, post.getSaleListing().getPrice());
+		assertEquals(56.00, post.getSaleListing().getPrice());
 
 	}
 	
@@ -85,7 +85,7 @@ class PostTest {
 	
 		assertNotNull(post);
 		assertNotNull(post.getPostingUser());
-		assertEquals(2, post.getPostingUser().getId());
+		assertEquals(4, post.getPostingUser().getId());
 
 		
 	}
