@@ -17,4 +17,6 @@ public interface PostDAO {
 	Post update (int id, Post post);
 	
 	boolean deactivate(int id);
+	
+	boolean reactivate(int id);
 }
