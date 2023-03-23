@@ -1,5 +1,7 @@
 package com.skilldistillery.sportswap.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -87,6 +89,13 @@ public class UserDAOImpl implements UserDAO {
         }
         return user;
     }
+	
+	@Override
+	public List<User> getAllUsers(){
+		String jpql = "SELECT u FROM User u";
+		List<User> users = em.createQuery(jpql,User.class).getResultList();
+		return users;
+	}
 
 	
 	

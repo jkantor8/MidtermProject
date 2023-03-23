@@ -1,6 +1,5 @@
 package com.skilldistillery.sportswap.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +21,6 @@ import com.skilldistillery.sportswap.data.SwapListingDAO;
 import com.skilldistillery.sportswap.data.UserDAO;
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.DonationListing;
-import com.skilldistillery.sportswap.entities.Item;
 import com.skilldistillery.sportswap.entities.SaleListing;
 import com.skilldistillery.sportswap.entities.Sport;
 import com.skilldistillery.sportswap.entities.SwapListing;
@@ -52,7 +51,7 @@ public class UserController {
 		SaleListing saleListing = null;
 
 		User user = (User) session.getAttribute("loggedInUser");
-		if (user != null) {
+		if (user != null && !user.getRole().equalsIgnoreCase("ADMIN")) {
 			Sport favSport1 = user.getFavoriteSports().get(0);
 			Sport favSport2 = user.getFavoriteSports().get(1);
 
@@ -94,12 +93,17 @@ public class UserController {
 			session.setAttribute("favSports", user.getFavoriteSports());
 			mv.addObject("user", user);
 
-			Sport favSport1=null;
+			Sport favSport1 = null;
 			Sport favSport2 = null;
-			// check for favorite sports
-			if (user.getFavoriteSports().size() > 0) {
-				favSport1 = user.getFavoriteSports().get(0);
-				favSport2 = user.getFavoriteSports().get(1);
+
+			if (!user.getRole().equalsIgnoreCase("ADMIN")) {
+				// check for favorite sports
+				if (user.getFavoriteSports().size() > 0) {
+					favSport1 = user.getFavoriteSports().get(0);
+					if (user.getFavoriteSports().size() > 1) {
+						favSport2 = user.getFavoriteSports().get(1);
+					}
+				}
 			}
 
 			if (favSport1 != null && favSport2 != null) {
@@ -285,6 +289,17 @@ public class UserController {
 		List<SwapListing> userSwapListings = swapListingDAO.findSwapListingsByUser(userId);
 		model.addAttribute("userSwapListings", userSwapListings);
 		return "viewUserSwapListings";
+	}
+
+	// admin routing
+	@GetMapping(path = "admin.do")
+	public ModelAndView admin(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		List<User> users = userDao.getAllUsers();
+		mv.addObject("users", users);
+		mv.setViewName("admin");
+		return mv;
 	}
 
 }
