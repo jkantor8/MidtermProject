@@ -96,6 +96,8 @@
 			<tr>
 				<th>ID</th>
 
+				<th>Title</th>
+				<th>Description</th>
 				<th>Price</th>
 				
 				<th>Actions</th>
@@ -103,10 +105,13 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${userSaleListings}" var="listing">
-			 <c:if test="${listing.active}">
+			
 				<tr>
 					<td>${listing.id}</td>
-
+					<td>${listing.title}</td>
+					<td>${listing.description}</td>
+										<td>${listing.saleAddress}</td>
+					
 					<td>${listing.price}</td>
 <td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
@@ -120,7 +125,7 @@
     <button type="submit">Edit Listing</button>
 </form></td>
 				</tr>
-				</c:if>
+				
 			</c:forEach>
 		</tbody>
 	</table>

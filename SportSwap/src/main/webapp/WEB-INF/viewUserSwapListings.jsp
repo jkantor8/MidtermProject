@@ -59,17 +59,21 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-
+				<th>Title</th>
+				<th>Description</th>
 				<th>Created Date</th>
+				<th>Address</th>
 				<th>Actions</th>
+				
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${userSwapListings}" var="listing">
-			 <c:if test="${listing.active}">
+			 
 				<tr>
 					<td>${listing.id}</td>
-
+					<td>${listing.title}</td>
+					<td>${listing.description}</td>
 					<td>${listing.created}</td>
 					
 					<td>${listing.swapAddress}</td>
@@ -85,7 +89,7 @@
     <button type="submit">Edit Listing</button>
 </form></td>
 				</tr>
-				</c:if>
+	
 			</c:forEach>
 		</tbody>
 	</table>

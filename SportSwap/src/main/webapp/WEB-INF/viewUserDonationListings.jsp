@@ -55,13 +55,19 @@
 </div>
 </header>
 <main class="container p-4">
-<div class="row">
+
+
+	<h1>Your Donation Listings</h1>
+
 	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
-
+				<th>Title</th>
+				<th>Description</th>
 				<th>Address</th>
+				<th>Start Date</th>
+				<th>End Date</th>
 				
 				<th>Actions</th>
 				
@@ -69,11 +75,15 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${userDonationListings}" var="listing">
-			 <c:if test="${listing.active}">
+	
 				<tr>
 					<td>${listing.id}</td>
+					<td>${listing.title}</td>
+					<td>${listing.description}</td>
 
 					<td>${listing.donationAddress}</td>
+					<td>${listing.eventStart}</td>
+					<td>${listing.eventEnd}</td>
 
 					<td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
@@ -86,7 +96,7 @@
     <button type="submit">Edit Listing</button>
 </form></td>
 				</tr>
-				</c:if>
+				
 			</c:forEach>
 		</tbody>
 	</table>
