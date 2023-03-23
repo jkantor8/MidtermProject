@@ -60,6 +60,12 @@
 <p>Please enter the event information.</p>
 
 <form action="submit_donation.do" method="POST">
+	<label for="title">Title: </label>
+	<input type="text" value="title" name="title">
+	<br>
+	<label for="description">Description: </label>
+	<input type="text" value="description" name="description">
+	<br>
 	<label for="start">Start date:</label>
 	<input type="date" id="start" name="event-start"
        value="2023-01-01"
