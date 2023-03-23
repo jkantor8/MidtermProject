@@ -46,11 +46,11 @@ class ItemTest {
 	@Test
 	void test_item_entity_mapping() {
 		assertNotNull(item);
-		assertEquals("Punching Bag", item.getName());
-		assertEquals("A punching bag that hangs from the ceiling. Attachment not included.", item.getDescription());
-		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg", item.getImageUrl());
-		assertEquals("TKO", item.getBrand());
-		assertNull(item.getGender());
+		assertEquals("Golf Clubs", item.getName());
+		assertEquals("These clubs are practically new. Adult sized set with nice bag. Golf cart not included.", item.getDescription());
+		assertEquals("https://xanimal37.github.io/img/golfclubs.jpg", item.getImageUrl());
+		assertEquals("Titleist", item.getBrand());
+		assertNotNull(item.getGender());
 		assertTrue(item.isActive());
 		assertNull(item.getCreated());
 		assertNull(item.getUpdated());
@@ -62,7 +62,7 @@ class ItemTest {
 	void test_Item_to_SaleListing_OneToOne() {
 		assertNotNull(item);
 		assertNotNull(item.getSaleListing());
-		assertEquals(20.00, item.getSaleListing().getPrice());
+		assertEquals(189.00, item.getSaleListing().getPrice());
 		assertTrue(item.getSaleListing().isActive());
 	}
 	
@@ -70,8 +70,8 @@ class ItemTest {
 	void test_Item_to_User_ManyToOne() {
 		assertNotNull(item);
 		assertNotNull(item.getUserItem());
-		assertEquals("Florence" ,item.getUserItem().getUsername());
-		assertEquals("fwftw@fldsjaf.org", item.getUserItem().getEmail());
+		assertEquals("Bobafet1" ,item.getUserItem().getUsername());
+		assertEquals("bobafet1@gmail.com", item.getUserItem().getEmail());
 	}
 	
 	@Test
@@ -85,7 +85,7 @@ class ItemTest {
 	void test_Item_to_Sport_ManyToOne() {
 		assertNotNull(item);
 		assertNotNull(item.getSportItem());
-		assertEquals("Boxing", item.getSportItem().getName());
+		assertEquals("Golf", item.getSportItem().getName());
 	}
 	
 	@Test

@@ -73,11 +73,11 @@
  	<label for="city">city: </label>
  	<input type="text" id="city" name="city"><br>
  	<label for="state_province">state/province: </label>
- 	<input type="text" id="state_province" name="state_province"><br>
+ 	<input type="text" id="state_province" name="state_province" maxlength="2"><br>
  	<label for="postalCode">postal code: </label>
  	<input type="text" id="postalCode" name="postalCode"><br>
  	<label for="country">country: </label>
- 	<input type="text" id="country" name="country"><br>
+ 	<input type="text" id="country" name="country" maxlength="2"><br>
  	<label for="sport1">favorite sport:</label>
 		<select name="sport1" id="sport1">
   			<option value="1">Boxing</option>

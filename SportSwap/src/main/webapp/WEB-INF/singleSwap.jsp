@@ -64,7 +64,7 @@
 
 
 			<c:forEach var="item" items="${listing.items}">
-				<table class="table">
+				<table class="table table-bordered table-light">
 
 					<thead>
 						<tr>
@@ -120,7 +120,7 @@
 				<c:when test="${not empty listing.swapListingPosts}">
 					<h3>Posts for this listing</h3>
 					<c:forEach var="post" items="${listing.swapListingPosts}">
-						<p>${post.postingUser.username}${post.comment}</p>
+						<p>${post.postingUser.username}: 		${post.comment}</p>
 					</c:forEach>
 				</c:when>
 			</c:choose>

@@ -30,6 +30,10 @@ public class DonationListing {
 	
 	private boolean active;
 	
+	private String title;
+	
+	private String description;
+	
 	@CreationTimestamp
 	private LocalDateTime created;
 	
@@ -218,6 +222,25 @@ public class DonationListing {
 			items.remove(item);
 			item.removeDonationListingItem(this);
 		}
+	}
+	
+	
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

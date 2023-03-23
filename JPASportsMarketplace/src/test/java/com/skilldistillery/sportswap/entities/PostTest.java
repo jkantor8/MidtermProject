@@ -53,7 +53,7 @@ class PostTest {
 
 	@Test
 	void test_Post_SwapListing_ManyToOne() {
-		post = em.find(Post.class, 3);
+		post = em.find(Post.class, 2);
 		assertNotNull(post);
 		assertNotNull(post.getSwapListing());
 		assertTrue(post.getSwapListing().isActive());
@@ -76,7 +76,7 @@ class PostTest {
 		assertNotNull(post);
 		assertNotNull(post.getSaleListing().getSaleListingPosts());
 		assertNull(post.getSaleListing().getCreated());
-		assertEquals(20.0, post.getSaleListing().getPrice());
+		assertEquals(189.00, post.getSaleListing().getPrice());
 
 	}
 	

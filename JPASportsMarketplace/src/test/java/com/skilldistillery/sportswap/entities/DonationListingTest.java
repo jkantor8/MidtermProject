@@ -57,17 +57,17 @@ class DonationListingTest {
 	void test_DonationListing_Address_OneToOne_mapping() {
 		assertNotNull(donationListing);
 		assertNotNull(donationListing.getDonationAddress());
-		assertEquals(1, donationListing.getDonationAddress().getId());
-		assertEquals("2929 Beach St", donationListing.getDonationAddress().getStreet());
-		assertEquals("Mendota Heights", donationListing.getDonationAddress().getCity());
-		assertEquals("55555", donationListing.getDonationAddress().getPostalCode());
+		assertEquals(10, donationListing.getDonationAddress().getId());
+		assertEquals("111 Pool", donationListing.getDonationAddress().getStreet());
+		assertEquals("Richfield", donationListing.getDonationAddress().getCity());
+		assertEquals("23123", donationListing.getDonationAddress().getPostalCode());
 	}
 
 	@Test
 	void test_DonationListing_User_ManyToOne_mapping() {
 		assertNotNull(donationListing);
 		assertNotNull(donationListing.getUser());
-		assertEquals("admin", donationListing.getUser().getUsername());
+		assertEquals("monstermash", donationListing.getUser().getUsername());
 
 	}
 

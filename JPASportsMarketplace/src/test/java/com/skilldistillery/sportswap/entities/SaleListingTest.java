@@ -47,7 +47,7 @@ class SaleListingTest {
 	@Test
 	void test_entity_mapping() {
 		assertNotNull(saleListing);
-		assertEquals(20.00,saleListing.getPrice());
+		assertEquals(189.00,saleListing.getPrice());
 	}
 	
 	@Test
@@ -61,9 +61,9 @@ class SaleListingTest {
 	void test_SaleListing_to_Item_OneToOne() {
 		assertNotNull(saleListing);
 		assertNotNull(saleListing.getItem());
-		assertEquals("Punching Bag",saleListing.getItem().getName());
-		assertEquals("TKO",saleListing.getItem().getBrand());
-		assertEquals("https://xanimal37.github.io/toc/img/ICDC_toc_02.jpg",saleListing.getItem().getImageUrl());
+		assertEquals("Golf Clubs",saleListing.getItem().getName());
+		assertEquals("Titleist",saleListing.getItem().getBrand());
+		assertEquals("https://xanimal37.github.io/img/golfclubs.jpg",saleListing.getItem().getImageUrl());
 	}
 	
 	@Test

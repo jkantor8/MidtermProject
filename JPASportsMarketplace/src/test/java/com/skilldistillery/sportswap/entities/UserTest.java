@@ -46,9 +46,9 @@ class UserTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
-		assertEquals("Bob",user.getUsername());
-		assertEquals("Johnson", user.getPassword());
-		assertEquals("bobjohnson@hhh.com", user.getEmail());
+		assertEquals("Bobafet1",user.getUsername());
+		assertEquals("starwars", user.getPassword());
+		assertEquals("bobafet1@gmail.com", user.getEmail());
 	}
 
 	@Test
@@ -77,7 +77,7 @@ class UserTest {
 	
 	@Test
 	void test_User_DonationListing_OneToMany_mapping() {
-		user = em.find(User.class, 1);
+		user = em.find(User.class, 6);
 		assertNotNull(user);
 		assertNotNull(user.getDonationListings());
 		assertTrue(user.getDonationListings().size() > 0);
