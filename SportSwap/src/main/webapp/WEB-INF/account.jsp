@@ -82,8 +82,8 @@
  	<li>${sport.getName()}</li>
  	</c:forEach>
  	</ul>
- 	<input type="submit" name="submit" value="update_account" class="btn btn-outline-red">
- 	<input type="submit" name="delete" value="delete account" class="btn btn-outline-red">
+ 	<input type="submit" name="submit" value="Update Account" class="btn btn-outline-red">
+ 	<input type="submit" name="logout" value="Delete Account" class="btn btn-outline-red">
 </form>
 </div>
 

@@ -209,10 +209,23 @@ public class UserController {
 			@RequestParam("password") String pw, @RequestParam("email") String email,
 			@RequestParam("address") String address, @RequestParam("address2") String address2,
 			@RequestParam("city") String city, @RequestParam("state_province") String state_province,
-			@RequestParam("postalCode") String postalCode, @RequestParam("country") String country) {
+			@RequestParam("postalCode") String postalCode, @RequestParam("country") String country, 
+			@RequestParam(value = "active", required = false, defaultValue = "true") boolean active, @RequestParam(value = "logout", required = false) String logout) {
 		// model
 		ModelAndView mv = new ModelAndView();
 
+		
+		if (logout != null) {
+	        int id = ((User) session.getAttribute("loggedInUser")).getId();
+	        User updatedUser = userDao.findUserById(id);
+	        updatedUser.setActive(false);
+	        userDao.updateUser(id, updatedUser);
+	       mv = logout(session);
+	        mv.setViewName("home");
+	         return mv;
+	        
+	        
+	    }
 		// get the user from the db
 		// use the value of id of the session user
 		int id = ((User) session.getAttribute("loggedInUser")).getId();
@@ -224,7 +237,7 @@ public class UserController {
 		updatedUser.setEmail(email);
 		updatedUser.setUsername(name);
 		updatedUser.setPassword(pw);
-
+		updatedUser.setActive(active);
 		Address updatedAddress = updatedUser.getUserAddress();
 
 		updatedAddress.setStreet(address);
@@ -233,7 +246,7 @@ public class UserController {
 		updatedAddress.setPostalCode(postalCode);
 		updatedAddress.setCity(country);
 		updatedAddress.setCountryCode(country);
-
+		
 		// see if updating user will update address
 
 		updatedUser.setUserAddress(updatedAddress);
