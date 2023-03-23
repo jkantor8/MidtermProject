@@ -61,17 +61,17 @@
 
 <form action="address_create.do" method="POST">
 	<label for="street">Street:</label>
-	<input type="text" id="street" name="street"><br>
+	<input type="text" id="street" name="street" required><br>
 	<label for="street2">Apt #, unit information, etc.:</label>
-	<input type="text" id="street2" name="street2"><br>
+	<input type="text" id="street2" name="street2" required><br>
 	<label for="city">City:</label>
-	<input type="text" id="city" name="city"><br>
-	<label for="stateProvince">State/Province:</label>
-	<input type="text" id="stateProvince" name="stateProvince"><br>
+	<input type="text" id="city" name="city" required><br>
+	<label for="stateProvince">State/Province Abbreviation:</label>
+	<input type="text" id="stateProvince" name="stateProvince" maxLength="2" required><br>
 	<label for="postalCode">Postal Code:</label>
-	<input type="text" id="postalCode" name="postalCode"><br>
-	<label for="countryCode">Country Code:</label>
-	<input type="text" id="countryCode" name="countryCode"><br>
+	<input type="text" id="postalCode" name="postalCode" required><br>
+	<label for="countryCode">Country Abbreviation:</label>
+	<input type="text" id="countryCode" name="countryCode" maxLength="2" required><br>
 	<input type="submit" value="submit" class="btn btn-outline-red">
 </form>
 </div>
