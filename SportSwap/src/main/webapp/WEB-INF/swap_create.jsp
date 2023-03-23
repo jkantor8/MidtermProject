@@ -29,7 +29,7 @@
 			<label for="username">username: </label>
   			<input type="text" id="username" name="username">
   			<label for="password">password: </label>
-  			<input type="text" id="password" name="password">
+  			<input type="password" id="password" name="password">
   			<input type="submit" value="login" name="login">
 		</form>
 	</div>
@@ -56,9 +56,8 @@
 <div class="row">
 <div class="col">
 <h2>${listing_type }</h2>
-=======
-${listing_type }
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
+
+
 <form action="submit_swap.do" method="POST">
 <label for="title">title: </label>
 <input type="text" id="title" name="title" value="[title]"><br>
