@@ -69,10 +69,10 @@
     <br>
 
     <label for="active">Active:</label>
-    <input type="radio" id="active" name="status" value="active" ${listing.active ? 'checked' : ''}>
+    <input type="radio" id="active" name="active" value="true" ${listing.active ? 'checked' : ''}>
     <br>
     <label for="inactive">Inactive:</label>
-    <input type="radio" id="inactive" name="status" value="inactive" ${!listing.active ? 'checked' : ''}>
+    <input type="radio" id="active" name="active" value="false" ${!listing.active ? 'checked' : ''}>
     <br>
 
     <c:choose>
