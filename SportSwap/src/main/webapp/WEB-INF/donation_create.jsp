@@ -68,12 +68,12 @@
 	<br>
 	<label for="start">Start date:</label>
 	<input type="date" id="start" name="event-start"
-       value="2023-01-01"
-       min="2023-01-01" max="2040-12-31"><br>
+       value="<?php echo date('Y-m-d');?>"
+       min="<?php echo date('Y-m-d');?>" max="2040-12-31"><br>
 	<label for="end">Start date:</label>
 	<input type="date" id="end" name="event-end"
-       value="2023-01-01"
-       min="2023-01-01" max="2040-12-31"><br>
+       value="<?php echo date('Y-m-d');?>"
+       min="<?php echo date('Y-m-d');?>" max="2040-12-31"><br>
 	<input type="submit" value="create donation">
 </form>
 </div>
