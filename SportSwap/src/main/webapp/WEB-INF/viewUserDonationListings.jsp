@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!-- JSP -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!--  end -->
 <!DOCTYPE html>
 <html>
@@ -57,8 +58,8 @@
 <main class="container p-4">
 
 
-	<h1>Your Donation Listings</h1>
-
+	<h3>Your Donation Listings</h3>
+<div class="row">
 	<table>
 		<thead>
 			<tr>
@@ -82,8 +83,13 @@
 					<td>${listing.description}</td>
 
 					<td>${listing.donationAddress}</td>
-					<td>${listing.eventStart}</td>
-					<td>${listing.eventEnd}</td>
+					<td><fmt:parseDate value="${listing.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></td>
+					<td><fmt:parseDate value="${listing.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></td>
+					
+					
+					
 					<td>${listing.active ? 'Yes' : 'No'}</td>
 					<td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
@@ -101,10 +107,10 @@
 		</tbody>
 	</table>
 
-</main>
-
 </div>
 </main>
+
+
 <jsp:include page="footer.jsp" />
 
 

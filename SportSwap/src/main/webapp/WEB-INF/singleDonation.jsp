@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- JSP -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!--  end -->
 <!DOCTYPE html>
 <html>
@@ -61,6 +62,10 @@
 	<h2>${listing.title}</h2><br>
 	<h4>${listing.description}</h4>
 	<h6>${listing.donationAddress}</h6>
+	<h6>Donation Drive Start:<fmt:parseDate value="${listing.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></h6>
+	<h6>Donation Drive End:<fmt:parseDate value="${listing.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></h6>
 
 
 
@@ -78,6 +83,7 @@
 							<th>Description</th>
 							<th>Gender</th>
 							<th>Brand</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -86,6 +92,7 @@
 							<td>${item.description }</td>
 							<td>${item.gender }</td>
 							<td>${item.brand }</td>
+							
 						</tr>
 					</tbody>
 				</table>
