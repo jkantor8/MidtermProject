@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.sportswap.entities.Address;
 import com.skilldistillery.sportswap.entities.Sport;
+import com.skilldistillery.sportswap.entities.SwapListing;
 import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
@@ -95,6 +96,32 @@ public class UserDAOImpl implements UserDAO {
 		String jpql = "SELECT u FROM User u";
 		List<User> users = em.createQuery(jpql,User.class).getResultList();
 		return users;
+	}
+	
+	@Override
+	public boolean deactivate(int id) {
+		boolean deactivated = false;
+
+		User user = em.find(User.class, id);
+		if (em.contains(user)) {
+			user.setActive(false);
+			deactivated = true;
+		}
+
+		return deactivated;
+	}
+	
+	@Override
+	public boolean reactivate(int id) {
+		boolean reactivated = false;
+
+		User user = em.find(User.class, id);
+		if (em.contains(user)) {
+			user.setActive(true);
+			reactivated = true;
+		}
+
+		return reactivated;
 	}
 
 	

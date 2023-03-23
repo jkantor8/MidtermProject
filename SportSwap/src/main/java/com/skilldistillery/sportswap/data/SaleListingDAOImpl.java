@@ -118,5 +118,18 @@ public class SaleListingDAOImpl implements SaleListingDAO {
 
 		return deactivated;
 	}
+	
+	@Override
+	public boolean reactivate(int id) {
+		boolean reactivated = false;
+
+		SaleListing sale = em.find(SaleListing.class, id);
+		if (em.contains(sale)) {
+			sale.setActive(true);
+			reactivated = true;
+		}
+
+		return reactivated;
+	}
 
 }

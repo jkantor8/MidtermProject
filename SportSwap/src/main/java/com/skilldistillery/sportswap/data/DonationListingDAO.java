@@ -25,5 +25,7 @@ public interface DonationListingDAO {
 	DonationListing getLatestBySport(Sport sport1, Sport sport2);
 	
 	boolean deactivate(int id);
+	
+	boolean reactivate(int id);
 
 }

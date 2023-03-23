@@ -140,5 +140,18 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 
 		return deactivated;
 	}
+	
+	@Override
+	public boolean reactivate(int id) {
+		boolean reactivated = false;
+
+		DonationListing donation = em.find(DonationListing.class, id);
+		if (em.contains(donation)) {
+			donation.setActive(true);
+			reactivated = true;
+		}
+
+		return reactivated;
+	}
 
 }

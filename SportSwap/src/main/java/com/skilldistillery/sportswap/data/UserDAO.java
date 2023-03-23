@@ -18,6 +18,10 @@ public interface UserDAO {
 	User findByUsername(String receiverUsername);
 	
 	List<User> getAllUsers();
+	
+	boolean deactivate(int id);
+	
+	boolean reactivate(int id);
 
 	
 }

@@ -20,6 +20,8 @@ public interface SwapListingDAO {
 	
 	boolean deactivate(int id);
 	
+	boolean reactivate(int id);
+	
 	SwapListing getRandom();
 	
 	SwapListing getLatestBySport(Sport sport1, Sport sport2);
