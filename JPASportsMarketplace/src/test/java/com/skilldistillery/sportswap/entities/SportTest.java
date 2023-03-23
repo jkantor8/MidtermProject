@@ -33,7 +33,7 @@ class SportTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		sport = em.find(Sport.class, 1);
+		sport = em.find(Sport.class, 2);
 	}
 
 	@AfterEach
@@ -45,7 +45,7 @@ class SportTest {
 	@Test
 	void test_sport_entity_mapping() {
 		assertNotNull(sport);
-		assertEquals("Boxing", sport.getName());
+		assertEquals("Hockey", sport.getName());
 	
 	}
 	
