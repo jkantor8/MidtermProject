@@ -56,7 +56,11 @@
 
 		</div>
 	</header>
+	
 	<main class="container p-4">
+	<h2>${listing.title}</h2><br>
+	<h4>${listing.description}</h4>
+	<h6>${listing.donationAddress}</h6>
 
 
 

@@ -59,19 +59,26 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-
+				<th>Title</th>
+				<th>Description</th>
 				<th>Created Date</th>
+				<th>Address</th>
+				<th>Active?</th>
+				
 				<th>Actions</th>
+				
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${userSwapListings}" var="listing">
+			 
 				<tr>
 					<td>${listing.id}</td>
-
+					<td>${listing.title}</td>
+					<td>${listing.description}</td>
 					<td>${listing.created}</td>
-					
 					<td>${listing.swapAddress}</td>
+					<td>${listing.active ? 'Yes' : 'No'}</td>					
 <td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
   <input type="hidden" name="listing_type" value="swap">
@@ -84,6 +91,7 @@
     <button type="submit">Edit Listing</button>
 </form></td>
 				</tr>
+	
 			</c:forEach>
 		</tbody>
 	</table>
