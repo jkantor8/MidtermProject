@@ -53,10 +53,10 @@
 </header>
 <main class="container p-4">
 
+
 <div class="row">
 	
 
-<main class="container p-4">
 
 
 		<form method="POST" action="listings.do">
