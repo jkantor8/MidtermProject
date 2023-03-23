@@ -37,6 +37,11 @@
           <a class="nav-link" href="account.do">Account</a>
         </li>
          </c:if>
+         <c:if test="${not empty loggedInUser and loggedInUser.role=='ADMIN'}">
+         <li class="nav-item">
+          <a class="nav-link" href="admin.do">Admin</a>
+        </li>
+        </c:if>
        
       </ul>
 
