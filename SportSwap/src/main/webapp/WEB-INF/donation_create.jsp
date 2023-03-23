@@ -67,13 +67,11 @@
 	<input type="text" value="description" name="description">
 	<br>
 	<label for="start">Start date:</label>
-	<input type="date" id="start" name="event-start"
-       value="<?php echo date('Y-m-d');?>"
-       min="<?php echo date('Y-m-d');?>" max="2040-12-31"><br>
+	<input type="datetime-local" id="start" name="eventStart"
+       value="<?php echo date('Y-m-d');?"><br>
 	<label for="end">Start date:</label>
-	<input type="date" id="end" name="event-end"
-       value="<?php echo date('Y-m-d');?>"
-       min="<?php echo date('Y-m-d');?>" max="2040-12-31"><br>
+	<input type="datetime-local" id="end" name="eventEnd"
+       value="<?php echo date('Y-m-d');?>"><br>
 	<input type="submit" value="create donation">
 </form>
 </div>
