@@ -36,7 +36,7 @@ class DonationListingTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		donationListing = em.find(DonationListing.class, 1);
+		donationListing = em.find(DonationListing.class, 2);
 	}
 
 	@AfterEach
@@ -57,17 +57,17 @@ class DonationListingTest {
 	void test_DonationListing_Address_OneToOne_mapping() {
 		assertNotNull(donationListing);
 		assertNotNull(donationListing.getDonationAddress());
-		assertEquals(10, donationListing.getDonationAddress().getId());
-		assertEquals("111 Pool", donationListing.getDonationAddress().getStreet());
-		assertEquals("Richfield", donationListing.getDonationAddress().getCity());
-		assertEquals("23123", donationListing.getDonationAddress().getPostalCode());
+		assertEquals(9, donationListing.getDonationAddress().getId());
+		assertEquals("345 WackaWacka Ave.", donationListing.getDonationAddress().getStreet());
+		assertEquals("Miami", donationListing.getDonationAddress().getCity());
+		assertEquals("78678", donationListing.getDonationAddress().getPostalCode());
 	}
 
 	@Test
 	void test_DonationListing_User_ManyToOne_mapping() {
 		assertNotNull(donationListing);
 		assertNotNull(donationListing.getUser());
-		assertEquals("monstermash", donationListing.getUser().getUsername());
+		assertEquals("bobjohnson", donationListing.getUser().getUsername());
 
 	}
 

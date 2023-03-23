@@ -73,7 +73,7 @@
  	<label for="city">city: </label>
  	<input type="text" id="city" name="city" required><br>
  	<label for="state_province">state/province abbreviation: </label>
- 	<input type="text" id="state_province" name="state_province" maxlength="2"> required<br>
+ 	<input type="text" id="state_province" name="state_province" maxlength="2" required><br>
  	<label for="postalCode">postal code: </label>
  	<input type="text" id="postalCode" name="postalCode" required><br>
  	<label for="country">country: abbreviation</label>

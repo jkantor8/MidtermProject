@@ -68,6 +68,7 @@ class SaleListingTest {
 	
 	@Test
 	void test_SaleListing_Post_OneToMany_mapping() {
+		saleListing = em.find(SaleListing.class, 2);
 		assertNotNull(saleListing);
 		assertNotNull(saleListing.getSaleListingPosts());
 		assertTrue(saleListing.getSaleListingPosts().size() > 0);

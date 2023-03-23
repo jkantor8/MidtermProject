@@ -53,12 +53,14 @@ class UserTest {
 
 	@Test
 	void test_User_sentMessage_OneToMany_mapping() {
+		user = em.find(User.class, 5);
 		assertNotNull(user);
 		assertNotNull(user.getSentMessages());
 		assertTrue(user.getSentMessages().size() > 0);
 	}
 	@Test
 	void test_User_receieMessage_OneToMany_mapping() {
+		user = em.find(User.class, 3);
 		assertNotNull(user);
 		assertNotNull(user.getReceivedMessages());
 		assertTrue(user.getReceivedMessages().size() > 0);
