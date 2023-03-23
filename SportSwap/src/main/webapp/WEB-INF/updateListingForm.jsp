@@ -67,16 +67,16 @@
 
     <c:choose>
         <c:when test="${listing_type == 'donation'}">
-            <!-- Add fields specific to Donation Listing -->
+         
             <label for="eventStart">Event Start:</label>
-            <input type="text" id="eventStart" name="eventStart" value="${listing.eventStart}">
+            <input type="datetime-local" id="eventStart" name="eventStart" value="${listing.eventStart}">
             <br>
             <label for="eventEnd">Event End:</label>
-            <input type="text" id="eventEnd" name="eventEnd" value="${listing.eventEnd}">
+            <input type="datetime-local" id="eventEnd" name="eventEnd" value="${listing.eventEnd}">
             <br>
         </c:when>
         <c:when test="${listing_type == 'sale'}">
-            <!-- Add fields specific to Sale Listing -->
+
             <label for="price">Price:</label>
             <input type="text" id="price" name="price" value="${listing.price}">
             <br>

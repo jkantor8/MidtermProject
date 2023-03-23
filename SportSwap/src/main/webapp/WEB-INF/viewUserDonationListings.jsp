@@ -6,10 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <!--  FONTS GOOGLE -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One">
 <!--  CSS (BOOTSTRAP) -->
@@ -17,10 +14,7 @@
 <link rel="stylesheet" href="css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <meta charset="UTF-8">
 <title>SportSwap - Trade Up!</title>
 </head>
@@ -54,16 +48,7 @@
     </c:otherwise>
 </c:choose>
 </div>
-<<<<<<< HEAD
-=======
 
-
-<div class="row">
-<jsp:include page="nav.jsp" />
-</div>
-</header>
-<main class="container p-4">
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 
 <div class="row">
 <jsp:include page="nav.jsp" />
@@ -96,7 +81,7 @@
 </form></td>
 					<td><form action="updateListing.do" method="get">
     <input type="hidden" name="id" value="${listing.id}">
-    <input type="hidden" name="listing_type" value="${listing_type}">
+    <input type="hidden" name="listing_type" value="donation">
     <button type="submit">Edit Listing</button>
 </form></td>
 				</tr>
