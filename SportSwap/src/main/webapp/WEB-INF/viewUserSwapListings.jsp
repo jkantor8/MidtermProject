@@ -63,6 +63,8 @@
 				<th>Description</th>
 				<th>Created Date</th>
 				<th>Address</th>
+				<th>Active?</th>
+				
 				<th>Actions</th>
 				
 			</tr>
@@ -75,8 +77,8 @@
 					<td>${listing.title}</td>
 					<td>${listing.description}</td>
 					<td>${listing.created}</td>
-					
 					<td>${listing.swapAddress}</td>
+					<td>${listing.active ? 'Yes' : 'No'}</td>					
 <td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
   <input type="hidden" name="listing_type" value="swap">

@@ -98,8 +98,10 @@
 
 				<th>Title</th>
 				<th>Description</th>
-				<th>Price</th>
+				<th>Address</th>
 				
+				<th>Active?</th>
+				<th>Price</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -110,8 +112,9 @@
 					<td>${listing.id}</td>
 					<td>${listing.title}</td>
 					<td>${listing.description}</td>
-										<td>${listing.saleAddress}</td>
+					<td>${listing.sellingUser.userAddress}</td>
 					
+					<td>${listing.active ? 'Yes' : 'No'}</td>
 					<td>${listing.price}</td>
 <td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">

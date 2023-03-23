@@ -68,7 +68,7 @@
 				<th>Address</th>
 				<th>Start Date</th>
 				<th>End Date</th>
-				
+				<th>Active?</th>
 				<th>Actions</th>
 				
 			</tr>
@@ -84,7 +84,7 @@
 					<td>${listing.donationAddress}</td>
 					<td>${listing.eventStart}</td>
 					<td>${listing.eventEnd}</td>
-
+					<td>${listing.active ? 'Yes' : 'No'}</td>
 					<td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
   <input type="hidden" name="listing_type" value="donation">
