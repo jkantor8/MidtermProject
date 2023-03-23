@@ -6,10 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <!--  FONTS GOOGLE -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One">
 <!--  CSS (BOOTSTRAP) -->
@@ -17,10 +13,6 @@
 <link rel="stylesheet" href="css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <meta charset="UTF-8">
 <title>SportSwap - Trade Up!</title>
 </head>
@@ -54,67 +46,57 @@
     </c:otherwise>
 </c:choose>
 </div>
-<<<<<<< HEAD
-=======
-
 
 <div class="row">
 <jsp:include page="nav.jsp" />
 </div>
 </header>
 <main class="container p-4">
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 
-<div class="row">
-<jsp:include page="nav.jsp" />
-</div>
-</header>
-<main class="container p-4">
-<div class="row">
-	<table>
-		<thead>
-			<tr>
-				<th>ID</th>
+<div class="row"></div>
+<div class="col">
+<h1>Update Listing</h1>
 
-				<th>Address</th>
-				
-				<th>Actions</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${userDonationListings}" var="listing">
-				<tr>
-					<td>${listing.id}</td>
-
-					<td>${listing.donationAddress}</td>
-
-					<td><form action="singleListing.do" method="get">
-  <input type="hidden" name="id" value="${listing.id}">
-  <input type="hidden" name="listing_type" value="donation">
-  <button type="submit">View Donation Listing</button>
-</form></td>
-					<td><form action="updateListing.do" method="get">
-    <input type="hidden" name="id" value="${listing.id}">
+<form action="performUpdate.do" method="post">
     <input type="hidden" name="listing_type" value="${listing_type}">
-    <button type="submit">Edit Listing</button>
-</form></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+    <input type="hidden" name="id" value="${listing.id}">
 
-</main>
+    <label for="active">Active:</label>
+    <input type="checkbox" id="active" name="active" ${listing.active ? 'checked' : ''}>
+    <br>
 
+    <c:choose>
+        <c:when test="${listing_type == 'donation'}">
+            <!-- Add fields specific to Donation Listing -->
+            <label for="eventStart">Event Start:</label>
+            <input type="text" id="eventStart" name="eventStart" value="${listing.eventStart}">
+            <br>
+            <label for="eventEnd">Event End:</label>
+            <input type="text" id="eventEnd" name="eventEnd" value="${listing.eventEnd}">
+            <br>
+        </c:when>
+        <c:when test="${listing_type == 'sale'}">
+            <!-- Add fields specific to Sale Listing -->
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" value="${listing.price}">
+            <br>
+        </c:when>
+        <c:when test="${listing_type == 'swap'}">
+       
+        </c:when>
+    </c:choose>
+
+    <button type="submit">Update</button>
+</form>
 </div>
-</main>
-<jsp:include page="footer.jsp" />
 
+</main>
+
+<jsp:include page="footer.jsp" />
 
 <!--  BOOTSTRAP JAVASCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <!--  end  -->
-
 </body>
 </html>
