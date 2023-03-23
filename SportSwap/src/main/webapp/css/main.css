@@ -5,9 +5,9 @@ footer {
 }
 
 header {
+	padding-top:2em;
 	background-color:#3B3D5E;
 	color:white;
-	
 }
 
 nav {
@@ -36,6 +36,7 @@ a {
 }
 
 .btn-outline-red {
+	margin:.4em;
 	background-color:white;
 	border:1px solid red;
 	color:#3B3D5E;
@@ -46,8 +47,26 @@ a {
 	background-color:red;
 }
 
-.selectable_item {
-	background-color:white;
+.selectable_item_image {
+	max-height:80px;
+}
+
+
+table {
+	width:100%;
+}
+
+tr {
+	border:1px solid white;
+}
+
+th {
+	font-weight:bold;
+	padding:.6em;
+}
+
+td {
+	padding:.6em;
 }
 
 

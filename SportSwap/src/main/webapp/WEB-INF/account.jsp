@@ -30,7 +30,7 @@
   			<input type="text" id="username" name="username">
   			<label for="password">password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login">
+  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
+         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -88,6 +88,7 @@
 </div>
 
 <div class="col">
+<h2>Messages and Listings</h2>
 <a class="btn btn-outline-red" href= "/messages">Show Messages</a><br>
 <a class="btn btn-outline-red" href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
 <a class="btn btn-outline-red" href= "viewUserDonationListings.do">Show My Donation Listings</a><br>

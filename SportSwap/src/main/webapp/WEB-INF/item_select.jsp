@@ -51,30 +51,31 @@
 <jsp:include page="nav.jsp" />
 </div>
 </header>
+
 <main class="container p-4">
-<<<<<<< HEAD
-=======
-<main class="container p-4">
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <!--  show a selectable list of all active items associated with the user -->
 <div class="row">
 <div class="col">
-${listing_type }
-<form action="finish_listing.do" method="POST">
-<c:forEach var="item" items="${items}">
-<div class="selectable_item p-2">
-<div>
-<input type="checkbox" id="${item.id}" name="selectable_item" value="${item.id}">
-</div>
-<div>
-<p>${item.name }</p>
-</div>
-</div>
-</c:forEach>
-<input type="submit" value="submit">
-</form>
+<h2>${listing_type} listing - item select</h2>
 <p>${message}</p>
-</div>
+<form action="finish_listing.do" method="POST">
+<table>
+<tr>
+<th>select</th><th>image</th><th>name</th><th>description</th></tr>
+<c:forEach var="item" items="${items}">
+<c:if test="${item.active}">
+<tr>
+<td><input type="checkbox" id="${item.id}" name="selectable_item" value="${item.id}"></td>
+<td><img src="${item.imageUrl}" class="selectable_item_image"></td>
+<td>${item.name}</td>
+<td>${item.description}</td>
+</tr>
+</c:if>
+</c:forEach>
+</table>
+<input type="submit" value="submit" class="btn btn-outline-red">
+</form>
+
 </div>
 </main>
 
