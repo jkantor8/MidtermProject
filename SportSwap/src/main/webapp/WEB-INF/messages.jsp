@@ -58,16 +58,14 @@
 </header>
 <main class="container p-4">
 
+<h5><a href="/new-message">Create a New Message</a></h5>
+
 <div class="row"><h2>Your Messages</h2></div>
 <div class="row">
 <div class="col">
     <h2>Received Messages</h2>
 
 
-<div class="row"> <h2>Your Messages</h2></div>
-<div class="row">
-<div class="col">
-    <h3>Received Message1s</h3>
 
 
     <table>
@@ -87,7 +85,7 @@
     </div>
     <div class="col">
 
-    <h2> Sent Messages</h2>
+   
 
     <h3> Sent Messages</h3>
 
@@ -105,7 +103,7 @@
             </tr>
         </c:forEach>
     </table>
-    <a href="/new-message">New Message</a>
+    
 
     </div>
     </div>

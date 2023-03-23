@@ -6,10 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <!--  FONTS GOOGLE -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One">
 <!--  CSS (BOOTSTRAP) -->
@@ -17,18 +14,12 @@
 <link rel="stylesheet" href="css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- end -->
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <meta charset="UTF-8">
 <title>SportSwap - Trade Up!</title>
 </head>
 <body>
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
 <header class="container">
 <div class="row p-2">
 	<h1>SportSwap</h1>
@@ -64,14 +55,14 @@
 </div>
 </header>
 <main class="container p-4">
-<<<<<<< HEAD
+
 <div class="row">
 <div class="col">
-    <h2>Create a new message</h2>
-=======
+  
+
 
     <h1>Create a new message</h1>
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
+
     <c:out value="${receiver.id}" />
     
     <form action="/new-message" method="post">
@@ -84,7 +75,7 @@
             
         <button type="submit" value="Send">Send</button>
     </form>
-<<<<<<< HEAD
+
     </div>
     </div>
 </main>
@@ -95,15 +86,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <!--  end  -->
 </body>
-=======
-    
-    
-    <jsp:include page="footer.jsp" />
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-    
-    
-    
-    </body>
->>>>>>> 1ac5df558a8a4f0a13d02533aacb5d44e6f94baa
+
+
 </html>
