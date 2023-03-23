@@ -29,6 +29,10 @@ public class SwapListing {
 	
 	private boolean active;
 	
+	private String title;
+	
+	private String description;
+	
 	@CreationTimestamp
 	private LocalDateTime created;
 	
@@ -195,6 +199,24 @@ public class SwapListing {
 			items.remove(item);
 			item.removeSwapListing(this);
 		}
+	}
+	
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

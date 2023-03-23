@@ -53,7 +53,12 @@
 </header>
 <main class="container p-4">
 
+
 <div class="row">
+	
+
+
+
 		<form method="POST" action="listings.do">
 			<input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red">
 			<input type="submit" value="view donations" name="list_view" class="btn btn-outline-red">
@@ -69,7 +74,7 @@
 				<table class="table">
 					<c:forEach var="listing" items="${listings}">
 							<tr>
-							<td><a href="singleListing.do?listingId=${listing.id}"> ${listing.id} ${listing.created} </a></td>
+							<td><a href="singleListing.do?listingId=${listing.id}"> ${listing.id} ${listing.title} ${listing.description}</a></td>
 							</tr>
 
 

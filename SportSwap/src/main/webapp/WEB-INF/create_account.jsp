@@ -61,23 +61,23 @@
 
 <form action="createAccount.do" method="POST">
 <label for="username">username: </label>
-  	<input type="text" id="username" name="username"><br>
+  	<input type="text" id="username" name="username" required><br>
   	<label for="password">password: </label>
-  	<input type="text" id="password" name="password"><br>
+  	<input type="text" id="password" name="password" required><br>
   	<label for="email">email:</label>
- 	<input type="email" id="email" name="email"><br>
+ 	<input type="email" id="email" name="email" required><br>
  	<label for="address">address:</label>
- 	<input type="text" id="address" name="address"><br>
+ 	<input type="text" id="address" name="address" required><br>
 	<label for="address2">address (Apt, Unit, etc.):</label>
  	<input type="text" id="address2" name="address2"><br>
  	<label for="city">city: </label>
- 	<input type="text" id="city" name="city"><br>
- 	<label for="state_province">state/province: </label>
- 	<input type="text" id="state_province" name="state_province"><br>
+ 	<input type="text" id="city" name="city" required><br>
+ 	<label for="state_province">state/province abbreviation: </label>
+ 	<input type="text" id="state_province" name="state_province" maxlength="2"> required<br>
  	<label for="postalCode">postal code: </label>
- 	<input type="text" id="postalCode" name="postalCode"><br>
- 	<label for="country">country: </label>
- 	<input type="text" id="country" name="country"><br>
+ 	<input type="text" id="postalCode" name="postalCode" required><br>
+ 	<label for="country">country: abbreviation</label>
+ 	<input type="text" id="country" name="country" maxlength="2" requried><br>
  	<label for="sport1">favorite sport:</label>
 		<select name="sport1" id="sport1">
   			<option value="1">Boxing</option>

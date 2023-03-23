@@ -55,19 +55,19 @@ class SwapListingTest {
 	  void test_SwapListing_Address_OneToOne_mapping() {
 	     assertNotNull(swapListing);
 	     assertNotNull(swapListing.getSwapAddress());
-	     assertEquals(3, swapListing.getSwapAddress().getId());
-	     assertEquals("5050 9th St", swapListing.getSwapAddress().getStreet());
-	     assertEquals("Des Moines", swapListing.getSwapAddress().getCity());
-	     assertEquals("23425", swapListing.getSwapAddress().getPostalCode());
+	     assertEquals(6, swapListing.getSwapAddress().getId());
+	     assertEquals("1200 W. 78th St.", swapListing.getSwapAddress().getStreet());
+	     assertEquals("Denver", swapListing.getSwapAddress().getCity());
+	     assertEquals("78787", swapListing.getSwapAddress().getPostalCode());
 	  }
 	
 	@Test
 	void test_SwapListing_User_ManyToOne() {
 		assertNotNull(swapListing);
 		assertNotNull(swapListing.getSwappingUser());
-		assertEquals("Florence",swapListing.getSwappingUser().getUsername());
-		assertEquals("Welch",swapListing.getSwappingUser().getPassword());
-		assertEquals("fwftw@fldsjaf.org",swapListing.getSwappingUser().getEmail());
+		assertEquals("Bobafet1",swapListing.getSwappingUser().getUsername());
+		assertEquals("starwars",swapListing.getSwappingUser().getPassword());
+		assertEquals("bobafet1@gmail.com",swapListing.getSwappingUser().getEmail());
 		
 	}
 	
