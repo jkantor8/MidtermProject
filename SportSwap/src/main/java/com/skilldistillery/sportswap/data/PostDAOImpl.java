@@ -6,7 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.sportswap.entities.DonationListing;
 import com.skilldistillery.sportswap.entities.Post;
+import com.skilldistillery.sportswap.entities.SaleListing;
+import com.skilldistillery.sportswap.entities.SwapListing;
+import com.skilldistillery.sportswap.entities.User;
 
 @Transactional
 @Service
@@ -22,11 +26,44 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public Post add(Post post) {
+	public Post addToDonate(Post post, User user, DonationListing donationListing) {
+		User managedUser =em.find(User.class, user.getId());
+		DonationListing mangagedListing = em.find(DonationListing.class, donationListing.getId());
 		
+		
+		post.setPostingUser(managedUser);
+		post.setDonationListing(mangagedListing);
 		post.setActive(true);
 		em.persist(post);
 		
+		return post;
+	}
+	
+	
+	
+	@Override
+	public Post addToSale(Post post, User user, SaleListing saleListing) {
+		User managedUser =em.find(User.class, user.getId());
+		SaleListing mangagedListing = em.find(SaleListing.class, saleListing.getId());
+
+		post.setPostingUser(managedUser);
+		post.setSaleListing(mangagedListing);
+		post.setActive(true);
+		em.persist(post);
+		
+		return post;
+	}
+	
+	
+	@Override
+	public Post addToSwap(Post post, User user, SwapListing swapListing) {
+		User managedUser =em.find(User.class, user.getId());
+		SwapListing mangagedListing = em.find(SwapListing.class, swapListing.getId());
+
+		post.setPostingUser(managedUser);
+		post.setSwapListing(mangagedListing);
+		post.setActive(true);
+		em.persist(post);
 		return post;
 	}
 
