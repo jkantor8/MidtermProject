@@ -25,4 +25,6 @@ public interface SaleListingDAO {
 	
 	boolean deactivate(int id);
 	
+	boolean reactivate(int id);
+	
 }

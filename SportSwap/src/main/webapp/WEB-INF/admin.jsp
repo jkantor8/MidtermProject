@@ -46,16 +46,13 @@
     </c:otherwise>
 </c:choose>
 </div>
-
 <div class="row">
 <jsp:include page="nav.jsp" />
 </div>
 </header>
 <main class="container p-4">
 
-<!--  this container holds 3 recommended items  -->
-<!--  random if not logged in user -->
-<!--  focused on users favorite sport(S) if there are related posts -->
+<!--  users -->
 <div class="row"><h2>admin menu</h2></div>
 <div class="row">
 <div class="col">
@@ -66,8 +63,11 @@
 <tr>
 <td>
 <!--  do not include admin in possible deletes! -->
-	<c:if test="${user.id!=1 or user.active==true}">
-	<a href="delete.do?entity=user&id=${user.id}" class="btn btn-outline-red">deactivate</a>
+	<c:if test="${user.id!=1 and user.active==true}">
+	<a href="deactivate.do?entity=user&id=${user.id}" class="btn btn-outline-red">deactivate</a>
+	</c:if>
+	<c:if test="${user.id!=1 and user.active==false }">
+	<a href="reactivate.do?entity=user&id=${user.id}" class="btn btn-outline-red">reactivate</a>
 	</c:if>
 	</td>
 <td>${user.username}</td>
@@ -75,13 +75,116 @@
 <c:if test="${user.active==true}">
 active
 </c:if>
-
+<c:if test="${user.active==false }">
+inactive
+</c:if>
 </td>
 </tr>
 </c:forEach>
 </table>
 </div>
 </div>
+
+<!-- donation listings -->
+<div class="row">
+<div class="col">
+<h3>donation listings</h3>
+<table>
+<tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
+<c:forEach var="donation" items="${donations}">
+<tr>
+<td>
+	<c:if test="${donation.active==true}">
+	<a href="deactivate.do?entity=donation&id=${sale.id}" class="btn btn-outline-red">deactivate</a>
+	</c:if>
+	<c:if test="${donation.active==false }">
+	<a href="reactivate.do?entity=donation&id=${sale.id}" class="btn btn-outline-red">reactivate</a>
+	</c:if>
+	</td>
+	<td>${donation.title}</td>
+	<td>${donation.user.username}</td>
+	<td>
+	<c:if test="${donation.active==true}">
+	active
+	</c:if>
+	<c:if test="${donation.active==false}">
+	inactive
+	</c:if>
+	</td>
+	</tr>
+</c:forEach>
+</table>
+</div>
+</div>
+
+<!-- sale listings -->
+<div class="row">
+<div class="col">
+<h3>sale listings</h3>
+<table>
+<tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
+<c:forEach var="sale" items="${sales}">
+<tr>
+<td>
+	<c:if test="${sale.active==true}">
+	<a href="deactivate.do?entity=sale&id=${sale.id}" class="btn btn-outline-red">deactivate</a>
+	</c:if>
+	<c:if test="${sale.active==false }">
+	<a href="reactivate.do?entity=sale&id=${sale.id}" class="btn btn-outline-red">reactivate</a>
+	</c:if>
+	</td>
+	<td>${sale.title}</td>
+	<td>${sale.sellingUser.username}</td>
+	<td>
+	<c:if test="${sale.active==true}">
+	active
+	</c:if>
+	<c:if test="${sale.active==false}">
+	inactive
+	</c:if>
+	</td>
+	</tr>
+</c:forEach>
+</table>
+</div>
+</div>
+
+<!-- sale listings -->
+<div class="row">
+<div class="col">
+<h3>swap listings</h3>
+<table>
+<tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
+<c:forEach var="swap" items="${swaps}">
+<tr>
+<td>
+	<c:if test="${swap.active==true}">
+	<a href="deactivate.do?entity=swap&id=${swap.id}" class="btn btn-outline-red">deactivate</a>
+	</c:if>
+	<c:if test="${swap.active==false }">
+	<a href="reactivate.do?entity=swap&id=${swap.id}" class="btn btn-outline-red">reactivate</a>
+	</c:if>
+	</td>
+	<td>${swap.title}</td>
+	<td>${swap.swappingUser.username}</td>
+	<td>
+	<c:if test="${swap.active==true}">
+	active
+	</c:if>
+	<c:if test="${swap.active==false}">
+	inactive
+	</c:if>
+	</td>
+	</tr>
+</c:forEach>
+</table>
+</div>
+</div>
+
+
+
+
+
 </main>
 
 <jsp:include page="footer.jsp" />

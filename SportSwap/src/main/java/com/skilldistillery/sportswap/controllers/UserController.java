@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -106,6 +107,7 @@ public class UserController {
 				}
 			}
 
+			//if user doesn't have two favorite sports, show random listings
 			if (favSport1 != null && favSport2 != null) {
 				donationListing = donationListingDAO.getLatestBySport(favSport1, favSport2);
 				swapListing = swapListingDAO.getLatestBySport(favSport1, favSport2);
@@ -291,15 +293,77 @@ public class UserController {
 		return "viewUserSwapListings";
 	}
 
+	// ******************************
 	// admin routing
+	// *****************************
 	@GetMapping(path = "admin.do")
 	public ModelAndView admin(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
 		List<User> users = userDao.getAllUsers();
+		List<SaleListing> sales = saleListingDAO.getAllSaleListings();
+		List<SwapListing> swaps = swapListingDAO.getAllSwapListings();
+		List<DonationListing> donations = donationListingDAO.getAllDonationListings();
 		mv.addObject("users", users);
+		mv.addObject("sales", sales);
+		mv.addObject("swaps", swaps);
+		mv.addObject("donations", donations);
 		mv.setViewName("admin");
 		return mv;
+	}
+
+	@GetMapping(path = "deactivate.do")
+	public ModelAndView adminDeactivate(@RequestParam("entity") String entityType, @RequestParam("id") int id) {
+		// options
+		switch (entityType) {
+		case "sale":
+			saleListingDAO.deactivate(id);
+			break;
+		case "swap":
+			swapListingDAO.deactivate(id);
+			break;
+		case "donation":
+			donationListingDAO.deactivate(id);
+			break;
+		case "user":
+			userDao.deactivate(id);
+			break;
+		default:
+			break;
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:admin.do");
+
+		return mv;
+
+	}
+	
+	@GetMapping(path = "reactivate.do")
+	public ModelAndView adminReactivate(@RequestParam("entity") String entityType, @RequestParam("id") int id) {
+		// options
+		switch (entityType) {
+		case "sale":
+			saleListingDAO.reactivate(id);
+			break;
+		case "swap":
+			swapListingDAO.reactivate(id);
+			break;
+		case "donation":
+			donationListingDAO.reactivate(id);
+			break;
+		case "user":
+			userDao.reactivate(id);
+			break;
+		default:
+			break;
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:admin.do");
+
+		return mv;
+
 	}
 
 }
