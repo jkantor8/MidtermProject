@@ -587,8 +587,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sportswapdb`;
-INSERT INTO `post` (`id`, `comment`, `created`, `updated`, `deactivated`, `donation_listing_id`, `sale_listing_id`, `swap_listing_id`, `in_reply_to_id`, `active`, `user_id`) VALUES (1, 'Hi this is really fun!', NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, 2);
-INSERT INTO `post` (`id`, `comment`, `created`, `updated`, `deactivated`, `donation_listing_id`, `sale_listing_id`, `swap_listing_id`, `in_reply_to_id`, `active`, `user_id`) VALUES (2, 'Where am I', NULL, NULL, NULL, NULL, 1, NULL, NULL, 1, 3);
+INSERT INTO `post` (`id`, `comment`, `created`, `updated`, `deactivated`, `donation_listing_id`, `sale_listing_id`, `swap_listing_id`, `in_reply_to_id`, `active`, `user_id`) VALUES (1, 'Hi, where can I pick up this nice golf ball?', NULL, NULL, NULL, 2, NULL, NULL, NULL, 1, 4);
+INSERT INTO `post` (`id`, `comment`, `created`, `updated`, `deactivated`, `donation_listing_id`, `sale_listing_id`, `swap_listing_id`, `in_reply_to_id`, `active`, `user_id`) VALUES (2, 'Hi, would you take $40?', NULL, NULL, NULL, NULL, 2, NULL, NULL, 1, 6);
+INSERT INTO `post` (`id`, `comment`, `created`, `updated`, `deactivated`, `donation_listing_id`, `sale_listing_id`, `swap_listing_id`, `in_reply_to_id`, `active`, `user_id`) VALUES (3, 'Hey i have some swim trunks. Do you like yellow?', NULL, NULL, NULL, NULL, NULL, 2, NULL, 1, 5);
 
 COMMIT;
 
@@ -648,6 +649,17 @@ INSERT INTO `user_has_favorite_sport` (`user_id`, `sport_id`) VALUES (3, 2);
 INSERT INTO `user_has_favorite_sport` (`user_id`, `sport_id`) VALUES (4, 4);
 INSERT INTO `user_has_favorite_sport` (`user_id`, `sport_id`) VALUES (5, 2);
 INSERT INTO `user_has_favorite_sport` (`user_id`, `sport_id`) VALUES (6, 12);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sportswapdb`;
+INSERT INTO `message` (`id`, `subject`, `content`, `created`, `deactivated`, `sender_id`, `receiver_id`) VALUES (1, 'Question', 'Hi, how do I add a post to my swap?', NULL, NULL, 3, 1);
+INSERT INTO `message` (`id`, `subject`, `content`, `created`, `deactivated`, `sender_id`, `receiver_id`) VALUES (2, 'What do you think?', 'Do you think Bauer breezers are any good? Or do you prefer Warrior or CCM?', NULL, NULL, 5, 4);
 
 COMMIT;
 
