@@ -33,7 +33,7 @@
 						<form method="POST" action="home.do">
 							<label for="username">username: </label> <input type="text"
 								id="username" name="username"> <label for="password">password:
-							</label> <input type="text" id="password" name="password"> <input
+							</label> <input type="password" id="password" name="password"> <input
 								type="submit" value="login" name="login">
 						</form>
 					</div>
