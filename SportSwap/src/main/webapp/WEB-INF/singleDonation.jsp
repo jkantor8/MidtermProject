@@ -122,7 +122,7 @@
 						<textarea id="comment" name="comment" rows="4"></textarea>
 						<br> <input type="hidden" name="user" value="${loggedInUser}">
 						<input type="hidden" name="listingId" value="${listing.id}">
-						<input type="submit" value="Post to Donation" name="commentType" class="btn btn-outline-red">
+						<input type="submit" value="Respond to Donation" name="commentType" class="btn btn-outline-red">
 					</form>
 
 				</c:when>
@@ -135,7 +135,7 @@
 
 			<c:choose>
 				<c:when test="${not empty listing.donationListingPosts}">
-					<h3>Posts for this listing</h3>
+					<h3>Replies to Listing</h3>
 					<c:forEach var="post" items="${listing.donationListingPosts}">
 						<p>${post.postingUser.username}:		${post.comment}</p>
 					</c:forEach>

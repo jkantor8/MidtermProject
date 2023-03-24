@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="password" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -56,18 +56,18 @@
 <div class="row">
 <div class="col">
 <h2>Create a Swap Listing</h2>
-
+<br>
 
 <form action="submit_swap.do" method="POST">
 <div class="form-group">
-<label for="title">title: </label>
-<input type="text" id="title" name="title" value="[title]">
-</div>
+<label for="title">Title: </label>
+<input type="text" id="title" name="title" value="Catchy Title Here">
+</div><br>
 <div class="form-group">
-<label for="description">title: </label>
-<input type="text" id="description" name="description" value="[description]">
-</div>
-<h3>items for listing</h3>
+<label for="description">Description: </label>
+<input type="text" id="description" name="description" value="Good Descripton Here">
+</div><br>
+<h3>Items for Listing</h3>
 <ul>
 <c:forEach var="item" items="${itemsToAdd}">
 
@@ -77,7 +77,7 @@
 </ul>
 
 
-<input type="submit" value="submit" class="btn btn-outline-red">
+<input type="submit" value="Submit" class="btn btn-outline-red">
 </form>
 </div>
 </div>

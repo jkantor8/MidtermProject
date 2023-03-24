@@ -31,10 +31,10 @@
 				<c:when test="${loggedInUser==null}">
 					<div class="col-md-auto">
 						<form method="POST" action="home.do">
-							<label for="username">username: </label> <input type="text"
-								id="username" name="username"> <label for="password">password:
+							<label for="username">Username: </label> <input type="text"
+								id="username" name="username"> <label for="password">Password:
 							</label> <input type="password" id="password" name="password"> <input
-								type="submit" value="login" name="login" class="btn btn-outline-red">
+								type="submit" value="Login" name="login" class="btn btn-outline-red">
 						</form>
 					</div>
 				</c:when>
@@ -44,7 +44,7 @@
 					</div>
 					<div class="col-md-auto">
 						<form method="POST" action="home.do">
-							<input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+							<input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
 						</form>
 					</div>
 				</c:otherwise>
@@ -99,7 +99,7 @@
 				</blockquote>
 				</c:when>
 				<c:otherwise>
-				<p>no image provided<p>
+				<p>No Image Provided<p>
 				</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -111,7 +111,7 @@
 						<textarea id="comment" name="comment" rows="4"></textarea>
 						<br> <input type="hidden" name="user" value="${loggedInUser}">
 						<input type="hidden" name="listingId" value="${listing.id}">
-						<input type="submit" value="Post for Swapper" name="commentType" class="btn btn-outline-red">
+						<input type="submit" value="Reply to Swapper" name="commentType" class="btn btn-outline-red">
 					</form>
 
 				</c:when>
@@ -124,7 +124,7 @@
 
 			<c:choose>
 				<c:when test="${not empty listing.swapListingPosts}">
-					<h3>Posts for this listing</h3>
+					<h3>Replies to Listing</h3>
 					<c:forEach var="post" items="${listing.swapListingPosts}">
 						<p>${post.postingUser.username}: 		${post.comment}</p>
 					</c:forEach>
