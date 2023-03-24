@@ -31,13 +31,12 @@ h1 {
 	color:black;
 }
 
-a {
+a {color:#91DDF0;
 	text-decoration:none;
-	color: white;
 }
 
 a:hover {
-	color: red;
+	color: #F79D9D;
 }
 
 .btn-outline-red {
@@ -52,13 +51,21 @@ a:hover {
 	background-color:red;
 }
 
+.top_btn {
+	width:100%;
+}
+
 .selectable_item_image {
 	max-height:80px;
 }
 
-
 table {
+	
 	width:100%;
+}
+
+.listing_table {
+	color:white;
 }
 
 tr {
@@ -74,6 +81,9 @@ td {
 	padding:.6em;
 }
 
-
+.centered {
+	width:100%;
+	text-align:center;
+}
 
 

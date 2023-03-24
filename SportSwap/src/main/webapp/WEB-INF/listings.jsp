@@ -30,7 +30,7 @@
   			<input type="text" id="username" name="username">
   			<label for="password">password: </label>
   			<input type="password" id="password" name="password">
-  			<input type="submit" value="login" name="login">
+  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
+         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -53,37 +53,28 @@
 </header>
 <main class="container p-4">
 
-
-<div class="row">
-	
-
-
-
 		<form method="POST" action="listings.do">
-			<input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red">
-			<input type="submit" value="view donations" name="list_view" class="btn btn-outline-red">
-			<input type="submit" value="view sales" name="list_view" class="btn btn-outline-red">
+		<div class="row">
+			<div class="col-4"><input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red top_btn"></div>
+			<div class="col-4"><input type="submit" value="view donations" name="list_view" class="btn btn-outline-red top_btn"></div>
+			<div class="col-4"><input type="submit" value="view sales" name="list_view" class="btn btn-outline-red top_btn"></div>
+				</div>
 		</form>
-		</div>
-
+	
 <div class="row">
-		<c:choose>
-			<c:when test="${empty listings}">No Listings Found.</c:when>
-			<c:otherwise>
+<c:if test="${empty listings}"><p class="centered">select a category to view listings</p></c:if>
+		<c:if test="${not empty listings }">
 				<h2>Current Listings</h2>
-				<table class="table">
+				<table class="listing_table">
+				<tr><th>title</th><th>description</th></tr>
 					<c:forEach var="listing" items="${listings}">
 							<tr>
-							<td><a href="singleListing.do?listingId=${listing.id}"> ${listing.id} ${listing.title} ${listing.description}</a></td>
+							<td><a href="singleListing.do?listingId=${listing.id}">${listing.title}</a></td><td>${listing.description}</td>
 							</tr>
-
-
 
 						</c:forEach>
 				</table>
-			</c:otherwise>
-		</c:choose>
-
+			</c:if>
 
 </div>
 	</main>
