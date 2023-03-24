@@ -193,7 +193,6 @@ public class UserController {
 		add.setCity(city);
 		add.setState(state_province);
 		add.setPostalCode(postalCode);
-		add.setCity(country);
 		add.setCountryCode(country);
 
 		Address newAddress = addressDAO.add(add);
@@ -256,7 +255,7 @@ public class UserController {
 		updatedAddress.setStreet2(address2);
 		updatedAddress.setCity(city);
 		updatedAddress.setPostalCode(postalCode);
-		updatedAddress.setCity(country);
+		updatedAddress.setState(state_province);
 		updatedAddress.setCountryCode(country);
 		
 		// see if updating user will update address

@@ -90,7 +90,7 @@
 
 <div class="col">
 <h2>Messages and Listings</h2>
-<a class="btn btn-outline-red" href= "/messages">Show Messages</a><br>
+<a class="btn btn-outline-red" href= "messages">Show Messages</a><br>
 <a class="btn btn-outline-red" href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
 <a class="btn btn-outline-red" href= "viewUserDonationListings.do">Show My Donation Listings</a><br>
 <a class="btn btn-outline-red" href= "viewUserSwapListings.do">Show My Swap Listings</a>
