@@ -86,8 +86,7 @@
 				<c:choose>
 				<c:when test="${not empty listing.item.imageUrl }">
 				<blockquote>
-					<img src="${listing.item.imageUrl}" alt="${listing.item.name}" width="150"
-						height="150">
+					<img src="${listing.item.imageUrl}" alt="${listing.item.name}" width="150">
 				</blockquote>
 				</c:when>
 				<c:otherwise>

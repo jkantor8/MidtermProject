@@ -67,7 +67,9 @@ public class SwapListingDAOImpl implements SwapListingDAO {
 	@Override
 	public SwapListing update(SwapListing listing, int id) {
 		SwapListing updatedListing = em.find(SwapListing.class, id);
-
+		
+		updatedListing.setTitle(listing.getTitle());
+		updatedListing.setDescription(listing.getDescription());
 		updatedListing.setActive(listing.isActive());
 		updatedListing.setCreated(listing.getCreated());
 		updatedListing.setUpdated(listing.getUpdated());

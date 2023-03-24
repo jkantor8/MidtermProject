@@ -55,6 +55,8 @@ public class SaleListingDAOImpl implements SaleListingDAO {
 	public SaleListing update(SaleListing listing, int id) {
 		SaleListing updatedListing = em.find(SaleListing.class, id);
 
+		updatedListing.setDescription(listing.getDescription());
+		updatedListing.setTitle(listing.getTitle());
 		updatedListing.setPrice(listing.getPrice());
 		updatedListing.setActive(listing.isActive());
 		updatedListing.setCreated(listing.getCreated());
