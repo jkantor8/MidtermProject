@@ -1,4 +1,8 @@
-# MidtermProject
+# SportSwap
+
+* Lisa Zeeb - DataBase Administrator 
+* Jay Kantor - GitHub Repository Owner
+* Thomas McGlone - Scrum Master
 
 ## Description
 Our team's full-stack application SportSwap is a site where users can coordinate the buying, selling, swapping, or donating of sports equipment. This project intends to set up a marketplace where users local to each other could exchange equipment in a multitude of different ways because of how expensive purchasing new and even after-market sports equipment can be. This vision is accomplished through the use of an aggregation of many technologies we have learned throughout the boot camp to this point. A few of these include Spring boot, JPA, MySQL workbench, AWS cloud deployment, GitHub, and bootstrap alongside HTML and CSS.  
