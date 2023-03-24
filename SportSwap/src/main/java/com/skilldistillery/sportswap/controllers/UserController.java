@@ -52,12 +52,20 @@ public class UserController {
 		DonationListing donationListing = null;
 		SwapListing swapListing = null;
 		SaleListing saleListing = null;
+		
+		Sport favSport1 = null;
+		Sport favSport2 = null;
 
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null && !user.getRole().equalsIgnoreCase("ADMIN")) {
-			Sport favSport1 = user.getFavoriteSports().get(0);
-			Sport favSport2 = user.getFavoriteSports().get(1);
-
+			if (user.getFavoriteSports().size() > 0) {
+				favSport1 = user.getFavoriteSports().get(0);
+				if (user.getFavoriteSports().size() > 1) {
+					favSport2 = user.getFavoriteSports().get(1);
+				}
+			}
+		
+			if (favSport1 != null && favSport2 != null) {
 			donationListing = donationListingDAO.getLatestBySport(favSport1, favSport2);
 			swapListing = swapListingDAO.getLatestBySport(favSport1, favSport2);
 			saleListing = saleListingDAO.getLatestBySport(favSport1, favSport2);
@@ -67,8 +75,12 @@ public class UserController {
 			donationListing = donationListingDAO.getRandom();
 			swapListing = swapListingDAO.getRandom();
 			saleListing = saleListingDAO.getRandom();
+		} }else {
+			// get three random listings
+			donationListing = donationListingDAO.getRandom();
+			swapListing = swapListingDAO.getRandom();
+			saleListing = saleListingDAO.getRandom();
 		}
-
 		model.addAttribute("swapListing", swapListing);
 		model.addAttribute("donationListing", donationListing);
 		model.addAttribute("saleListing", saleListing);
