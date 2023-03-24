@@ -62,24 +62,32 @@
 		</form>
 	
 <div class="row">
-<c:if test="${empty listings}"><p class="centered">Select a Category to View Listings</p></c:if>
-		<c:if test="${not empty listings }">
-		<c:if test="${listing.active == true }">
-				<h2>Current Listings</h2>
-				<table class="listing_table">
-				<tr><th>Title</th><th>Description</th></tr>
-					<c:forEach var="listing" items="${listings}">
-							<tr>
-							<td><a href="singleListing.do?listingId=${listing.id}">${listing.title}</a></td><td>${listing.description}</td>
-							</tr>
-
-						</c:forEach>
-				</table>
-			</c:if>
-			</c:if>
+    <c:if test="${empty listings}">
+        <p class="centered">Select a Category to View Listings</p>
+    </c:if>
+    <c:if test="${not empty listings}">
+        <h2>Current Listings</h2>
+        <table class="listing_table">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+            <c:forEach var="listing" items="${listings}">
+            
+                     <c:if test="${listing.active == true}">
+                    <tr>
+                        <td><a href="singleListing.do?listingId=${listing.id}">${listing.title}</a></td>
+                        <td>${listing.description}</td>
+                    </tr>
+                    </c:if>
+             
+            </c:forEach>
+        </table>
+    </c:if>
 
 </div>
-	</main>
+</main>
+
 <jsp:include page="footer.jsp" />
 
 <!--  BOOTSTRAP JAVASCRIPT -->
@@ -88,4 +96,3 @@
 <!--  end  -->
 </body>
 </html>
-
