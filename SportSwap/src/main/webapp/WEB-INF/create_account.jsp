@@ -86,6 +86,14 @@
   			<option value="4">Football</option>
   			<option value="5">Soccer</option>
   			<option value="6">Curling</option>
+  			<option value="7">Baseball</option>
+  			<option value="8">Softball</option>
+  			<option value="9">Basketball</option>
+  			<option value="10">Weightlifting</option>
+  			<option value="11">Track and Field</option>
+  			<option value="12">Wrestling</option>
+  			<option value="13">Bicycling</option>
+  			<option value="14">Swimming</option>
 
 		</select><br>
 		<label for="sport2">favorite sport:</label>
@@ -96,6 +104,14 @@
   			<option value="4">Football</option>
   			<option value="5">Soccer</option>
   			<option value="6">Curling</option>
+  			<option value="7">Baseball</option>
+  			<option value="8">Softball</option>
+  			<option value="9">Basketball</option>
+  			<option value="10">Weightlifting</option>
+  			<option value="11">Track and Field</option>
+  			<option value="12">Wrestling</option>
+  			<option value="13">Bicycling</option>
+  			<option value="14">Swimming</option>
 
 		</select><br>
  	
