@@ -334,10 +334,10 @@ public class ListingController {
 		ModelAndView mv = new ModelAndView();
 
 		switch (donationType) {
-		case "requesting items":
+		case "Requesting Items":
 			mv.setViewName("donation_create");
 			break;
-		case "offering items":
+		case "Offering Items":
 			mv.setViewName("item_check");
 			break;
 		default:

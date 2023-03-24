@@ -36,7 +36,7 @@ public class ItemController {
 
 		ModelAndView mv = new ModelAndView();
 
-		if (option.equals("create a new item")) {
+		if (option.equals("Create a New Item")) {
 			mv.setViewName("item_create");
 		} else {
 

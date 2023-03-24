@@ -51,10 +51,10 @@ public class AddressController {
 		ModelAndView mv = new ModelAndView();
 		Address address = null;
 		String context = session.getAttribute("listing_type").toString();
-		if (option.equals("Create a Location")) {
+		if (option.equals("Create a New Location")) {
 			// go to address creation page
 			mv.setViewName("redirect:address_create.do");
-		} else if (!option.equals("Create a Location") && (context.equals("swap") || context.equals("donation"))) {
+		} else if (!option.equals("Create a New Location") && (context.equals("swap") || context.equals("donation"))) {
 			// check if the user wants to create an item
 			address = ((User) session.getAttribute("loggedInUser")).getUserAddress();
 			session.setAttribute("address", address);
