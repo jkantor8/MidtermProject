@@ -60,25 +60,25 @@
 <h2>Create an Account</h2>
 
 <form action="createAccount.do" method="POST">
-<label for="username">username: </label>
+<label for="username">Username: </label>
   	<input type="text" id="username" name="username" required><br>
-  	<label for="password">password: </label>
+  	<label for="password">Password: </label>
   	<input type="text" id="password" name="password" required><br>
-  	<label for="email">email:</label>
+  	<label for="email">Email:</label>
  	<input type="email" id="email" name="email" required><br>
- 	<label for="address">address:</label>
+ 	<label for="address">Address:</label>
  	<input type="text" id="address" name="address" required><br>
-	<label for="address2">address (Apt, Unit, etc.):</label>
+	<label for="address2">Address (Apt, Unit, etc.):</label>
  	<input type="text" id="address2" name="address2"><br>
- 	<label for="city">city: </label>
+ 	<label for="city">City: </label>
  	<input type="text" id="city" name="city" required><br>
- 	<label for="state_province">state/province abbreviation: </label>
+ 	<label for="state_province">State/Province Abbreviation: </label>
  	<input type="text" id="state_province" name="state_province" maxlength="2" required><br>
- 	<label for="postalCode">postal code: </label>
+ 	<label for="postalCode">Postal Code: </label>
  	<input type="text" id="postalCode" name="postalCode" required><br>
- 	<label for="country">country: abbreviation</label>
+ 	<label for="country">Country Abbreviation:</label>
  	<input type="text" id="country" name="country" maxlength="2" required><br>
- 	<label for="sport1">favorite sport:</label>
+ 	<label for="sport1">Favorite Sport:</label>
 		<select name="sport1" id="sport1" required>
   			<option value="1">Boxing</option>
   			<option value="2">Hockey</option>
@@ -86,6 +86,14 @@
   			<option value="4">Football</option>
   			<option value="5">Soccer</option>
   			<option value="6">Curling</option>
+  			<option value="7">Baseball</option>
+  			<option value="8">Softball</option>
+  			<option value="9">Basketball</option>
+  			<option value="10">Weightlifting</option>
+  			<option value="11">Track and Field</option>
+  			<option value="12">Wrestling</option>
+  			<option value="13">Bicycling</option>
+  			<option value="14">Swimming</option>
 
 		</select><br>
 		<label for="sport2">favorite sport:</label>
@@ -96,6 +104,14 @@
   			<option value="4">Football</option>
   			<option value="5">Soccer</option>
   			<option value="6">Curling</option>
+  			<option value="7">Baseball</option>
+  			<option value="8">Softball</option>
+  			<option value="9">Basketball</option>
+  			<option value="10">Weightlifting</option>
+  			<option value="11">Track and Field</option>
+  			<option value="12">Wrestling</option>
+  			<option value="13">Bicycling</option>
+  			<option value="14">Swimming</option>
 
 		</select><br>
  	
