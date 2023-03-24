@@ -85,6 +85,7 @@
  	<input type="submit" name="submit" value="Update Account" class="btn btn-outline-red">
  	<input type="submit" name="logout" value="Delete Account" class="btn btn-outline-red">
 </form>
+<p>${result }</p>
 </div>
 
 <div class="col">
@@ -93,7 +94,7 @@
 <a class="btn btn-outline-red" href= "viewUserSaleListings.do">Show My Sales Listings</a><br>
 <a class="btn btn-outline-red" href= "viewUserDonationListings.do">Show My Donation Listings</a><br>
 <a class="btn btn-outline-red" href= "viewUserSwapListings.do">Show My Swap Listings</a>
-<p>${result }</p>
+
 </div>
 </div>
 </main>

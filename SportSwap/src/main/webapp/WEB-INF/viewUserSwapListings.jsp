@@ -31,7 +31,7 @@
   			<input type="text" id="username" name="username">
   			<label for="password">password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login">
+  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -41,7 +41,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
+         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -83,13 +83,13 @@
 <td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
   <input type="hidden" name="listing_type" value="swap">
-  <button type="submit">View Swap Listing</button>
+  <input type="submit" value="View Swap Listing" class="btn btn-outline-red">
 </form></td>
 
 <td><form action="updateListing.do" method="get">
     <input type="hidden" name="id" value="${listing.id}">
     <input type="hidden" name="listing_type" value="swap">
-    <button type="submit">Edit Listing</button>
+    <input type="submit" value="Edit Listing" class="btn btn-outline-red">
 </form></td>
 				</tr>
 	

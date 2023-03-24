@@ -58,15 +58,12 @@
 </header>
 <main class="container p-4">
 
-<h5><a href="/new-message">Create a New Message</a></h5>
+<a href="/new-message" class="btn btn-outline-red">Create a New Message</a>
 
 <div class="row"><h2>Your Messages</h2></div>
 <div class="row">
 <div class="col">
-    <h2>Received Messages</h2>
-
-
-
+    <h3>Received Messages</h3>
 
     <table>
         <tr>

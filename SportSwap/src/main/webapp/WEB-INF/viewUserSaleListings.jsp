@@ -91,13 +91,13 @@
 <td><form action="singleListing.do" method="get">
   <input type="hidden" name="id" value="${listing.id}">
   <input type="hidden" name="listing_type" value="sale">
-  <button type="submit">View Sale Listing</button>
+  <input type="submit" value="View Sale Listing" class="btn btn-outline-red">
 </form></td>
 
 <td><form action="updateListing.do" method="get">
     <input type="hidden" name="id" value="${listing.id}">
     <input type="hidden" name="listing_type" value="sale">
-    <button type="submit">Edit Listing</button>
+    <input type="submit" value="Edit Listing" class="btn btn-outline-red">
 </form></td>
 				</tr>
 				

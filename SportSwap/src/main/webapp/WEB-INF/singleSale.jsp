@@ -52,9 +52,12 @@
 </div>
 </header>
 <main class="container p-4">
+<div class="row">
+<div class="col">
 	<h2>${listing.title}</h2><br>
 	<h4>${listing.description}</h4>
-	<h6>${listing.sellingUser.userAddress}</h6>
+	<p>${listing.sellingUser.userAddress}</p>
+	</div></div>
 <div class="row">
 
 		<table class="table table-bordered table-light">
@@ -81,9 +84,9 @@
 				</tbody>
 				
 				<c:choose>
-				<c:when test="${not empty item.imageUrl }">
+				<c:when test="${not empty listing.item.imageUrl }">
 				<blockquote>
-					<img src="${item.imageUrl}" alt="${item.name}" width="150"
+					<img src="${listing.item.imageUrl}" alt="${listing.item.name}" width="150"
 						height="150">
 				</blockquote>
 				</c:when>
@@ -104,7 +107,7 @@
 				<br>
 				<input type="hidden" name="user" value="${loggedInUser}">
 				<input type="hidden" name="listingId" value="${listing.id}">
-				<input type="submit" value="Post for Seller" name="commentType">
+				<input type="submit" value="Post for Seller" name="commentType" class="btn btn-outline-red">
 				</form>
 	
 		</c:when>

@@ -37,9 +37,9 @@ public class AddressController {
 		// change routing depending on context
 		String context = session.getAttribute("listing_type").toString();
 		if (context.equals("donation")) {
-			mv.setViewName("donation_create");
+			mv.setViewName("donation_select");
 		} else if (context.equals("swap")) {
-			mv.setViewName("swap_create");
+			mv.setViewName("item_select");
 		} else {
 			mv.setViewName("home");
 		}

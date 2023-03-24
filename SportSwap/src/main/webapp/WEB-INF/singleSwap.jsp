@@ -56,9 +56,13 @@
 		</div>
 	</header>
 	<main class="container p-4">
+	<div class="row">
+	<div class="col">
 	<h2>${listing.title}</h2><br>
 	<h4>${listing.description}</h4>
-	<h6>${listing.swapAddress}</h6>
+	<p>${listing.swapAddress}</p>
+	</div>
+	</div>
 		<div class="row">
 
 
@@ -107,7 +111,7 @@
 						<textarea id="comment" name="comment" rows="4"></textarea>
 						<br> <input type="hidden" name="user" value="${loggedInUser}">
 						<input type="hidden" name="listingId" value="${listing.id}">
-						<input type="submit" value="Post for Swapper" name="commentType">
+						<input type="submit" value="Post for Swapper" name="commentType" class="btn btn-outline-red">
 					</form>
 
 				</c:when>

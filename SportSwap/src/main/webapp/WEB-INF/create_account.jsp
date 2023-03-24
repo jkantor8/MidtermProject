@@ -60,24 +60,43 @@
 <h2>Create an Account</h2>
 
 <form action="createAccount.do" method="POST">
-<label for="username">Username: </label>
-  	<input type="text" id="username" name="username" required><br>
+<div class="form-group">
+	<label for="username">Username: </label>
+  	<input type="text" id="username" name="username" required>
+  	</div>
+  	<div class="form-group">
   	<label for="password">Password: </label>
-  	<input type="text" id="password" name="password" required><br>
+  	<input type="text" id="password" name="password" required>
+  	</div>
+  	<div class="form-group">
   	<label for="email">Email:</label>
- 	<input type="email" id="email" name="email" required><br>
+ 	<input type="email" id="email" name="email" required>
+ 	</div>
+ 	<div class="form-group">
  	<label for="address">Address:</label>
- 	<input type="text" id="address" name="address" required><br>
+ 	<input type="text" id="address" name="address" required>
+ 	</div>
+ 	<div class="form-group">
 	<label for="address2">Address (Apt, Unit, etc.):</label>
- 	<input type="text" id="address2" name="address2"><br>
+ 	<input type="text" id="address2" name="address2">
+ 	</div>
+ 	<div class="form-group">
  	<label for="city">City: </label>
- 	<input type="text" id="city" name="city" required><br>
+ 	<input type="text" id="city" name="city" required>
+ 	</div>
+	<div class="form-group">
  	<label for="state_province">State/Province Abbreviation: </label>
- 	<input type="text" id="state_province" name="state_province" maxlength="2" required><br>
+ 	<input type="text" id="state_province" name="state_province" maxlength="2" required>
+ 	</div>
+	<div class="form-group">
  	<label for="postalCode">Postal Code: </label>
- 	<input type="text" id="postalCode" name="postalCode" required><br>
+ 	<input type="text" id="postalCode" name="postalCode" required>
+ 	</div>
+ 	<div class="form-group">
  	<label for="country">Country Abbreviation:</label>
- 	<input type="text" id="country" name="country" maxlength="2" required><br>
+ 	<input type="text" id="country" name="country" maxlength="2" required>
+ 	</div>
+ 	<div class="form-group">
  	<label for="sport1">Favorite Sport:</label>
 		<select name="sport1" id="sport1" required>
   			<option value="1">Boxing</option>
@@ -94,8 +113,9 @@
   			<option value="12">Wrestling</option>
   			<option value="13">Bicycling</option>
   			<option value="14">Swimming</option>
-
-		</select><br>
+		</select>
+		</div>
+		<div class="form-group">
 		<label for="sport2">favorite sport:</label>
 		<select name="sport2" id="sport2" required>
   			<option value="1">Boxing</option>
@@ -113,7 +133,8 @@
   			<option value="13">Bicycling</option>
   			<option value="14">Swimming</option>
 
-		</select><br>
+		</select>
+		</div>
  	
  	<input type="submit" name="submit" value="create account" class="btn btn-outline-red">
 </form>

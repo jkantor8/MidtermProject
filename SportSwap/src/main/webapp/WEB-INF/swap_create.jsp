@@ -59,10 +59,14 @@
 
 
 <form action="submit_swap.do" method="POST">
+<div class="form-group">
 <label for="title">title: </label>
-<input type="text" id="title" name="title" value="[title]"><br>
+<input type="text" id="title" name="title" value="[title]">
+</div>
+<div class="form-group">
 <label for="description">title: </label>
-<input type="text" id="description" name="description" value="[description]"><br>
+<input type="text" id="description" name="description" value="[description]">
+</div>
 <h3>items for listing</h3>
 <ul>
 <c:forEach var="item" items="${itemsToAdd}">
@@ -73,7 +77,7 @@
 </ul>
 
 
-<input type="submit" value="submit" class="">
+<input type="submit" value="submit" class="btn btn-outline-red">
 </form>
 </div>
 </div>

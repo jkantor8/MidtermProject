@@ -58,9 +58,9 @@
 
 <form action="submit_sale.do" method="POST">
 <label for="title">title: </label>
-<input type="text" id="title" name="title" value="[title]"><br>
+<input type="text" id="title" name="title"><br>
 <label for="description">title: </label>
-<input type="text" id="description" name="description" value="[description]"><br>
+<input type="text" id="description" name="description"><br>
 <label for="price">price: $</label>
 <input type="text" id="price" name="price"><br>
 

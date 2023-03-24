@@ -44,15 +44,16 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 		User managedUser = em.find(User.class, user.getId());
 		Address managedAddress = em.find(Address.class, address.getId());
 
-		for (Item item : items) {
+		if (items != null) {
+			for (Item item : items) {
 
-			Item itemToAdd = em.find(Item.class, item.getId());
-			if (itemToAdd != null) {
-				listing.addItem(itemToAdd);
-				itemToAdd.addDonationListingItem(listing);
+				Item itemToAdd = em.find(Item.class, item.getId());
+				if (itemToAdd != null) {
+					listing.addItem(itemToAdd);
+					itemToAdd.addDonationListingItem(listing);
+				}
 			}
 		}
-
 		listing.setDonationAddress(managedAddress);
 		listing.setUser(managedUser);
 		listing.setActive(true);
@@ -89,7 +90,7 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 		DonationListing listing = null;
 		Random rand = new Random();
 		List<DonationListing> listings = getAllDonationListings();
-		if(listings!=null && listings.size()>0) {
+		if (listings != null && listings.size() > 0) {
 			listing = listings.get(rand.nextInt(listings.size()));
 		}
 		return listing;
@@ -140,7 +141,7 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 
 		return deactivated;
 	}
-	
+
 	@Override
 	public boolean reactivate(int id) {
 		boolean reactivated = false;
