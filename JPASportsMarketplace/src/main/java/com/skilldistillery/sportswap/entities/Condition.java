@@ -92,7 +92,7 @@ public class Condition {
 
 	@Override
 	public String toString() {
-		return "Condition [id=" + id + ", condition=" + name + "]";
+		return  name;
 	}
 
 }

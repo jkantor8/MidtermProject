@@ -93,7 +93,7 @@ public class AgeGroup {
 
 	@Override
 	public String toString() {
-		return "AgeGroup [id=" + id + ", age=" + age + "]";
+		return age;
 	}
 	
 }

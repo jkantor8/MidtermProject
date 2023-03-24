@@ -86,6 +86,8 @@
 							<th>Item Name</th>
 							<th>Description</th>
 							<th>Gender</th>
+							<th>Age Group</th>
+							<th>Condition</th>
 							<th>Brand</th>
 							
 						</tr>
@@ -95,6 +97,8 @@
 							<td>${item.name}</td>
 							<td>${item.description }</td>
 							<td>${item.gender }</td>
+							<td>${item.ageGroup }</td>
+							<td>${item.itemCondition }</td>
 							<td>${item.brand }</td>
 							
 						</tr>

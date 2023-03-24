@@ -67,8 +67,10 @@
 					<th> Item Name </th>
 					<th> Item Price </th>
 					<th> Description </th>
-					<th> Gender </th>
-					<th> Brand </th>
+					<th>Gender</th>
+					<th>Age Group</th>
+					<th>Condition</th>
+					<th>Brand</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -78,7 +80,9 @@
 					<td>${listing.price }
 					<td> ${listing.item.description }</td>	
 					<td> ${listing.item.gender }</td>	
-					<td> ${listing.item.brand }</td>	
+					<td>${listing.item.ageGroup }</td>
+					<td>${listing.item.itemCondition }</td>
+					<td>${listing.item.brand }</td>	
 				</tr>
 				
 				</tbody>
