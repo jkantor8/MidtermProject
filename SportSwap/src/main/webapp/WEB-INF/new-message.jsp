@@ -65,7 +65,7 @@
 <br>
     <c:out value="${receiver.id}" />
     
-    <form action="/new-message" method="post">
+    <form action="new-message" method="post">
         <label for="receiverUsername">Recipient:</label>
         <input type="text" id="receiverUsername" name="receiverUsername" required>
         <br>
@@ -75,7 +75,7 @@
         <br>
             
         <input type="submit" value="Send" class="btn btn-outline-red">
-        <button onclick="location.href='messages'" class="btn btn-outline-red">Return to Messages</button>
+        <a href= "messages" class="btn btn-outline-red">Return to Messages</a>
     </form> 
 
     </div>
