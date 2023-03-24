@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -58,25 +58,25 @@
 <h2>${loggedInUser.username}'s Account Details</h2>
 
 <form action="account.do" method="POST">
-<label for="username">username: </label>
+<label for="username">Username: </label>
   	<input type="text" id="username" name="username" value="${loggedInUser.username}"><br>
-  	<label for="password">password: </label>
+  	<label for="password">Password: </label>
   	<input type="text" id="password" name="password" value="${loggedInUser.password}"><br>
-  	<label for="email">email:</label>
+  	<label for="email">Email:</label>
  	<input type="email" id="email" name="email" value="${loggedInUser.email}"><br>
- 	<label for="address">address:</label>
+ 	<label for="address">Street Address:</label>
  	<input type="text" id="address" name="address" value="${loggedInUser.getUserAddress().getStreet() }"><br>
-	<label for="address2">address (Apt, Unit, etc.):</label>
+	<label for="address2">Apt, Unit, etc.:</label>
  	<input type="text" id="address2" name="address2" value="${loggedInUser.getUserAddress().getStreet2()}"><br>
- 	<label for="city">city: </label>
+ 	<label for="city">City: </label>
  	<input type="text" id="city" name="city" value="${loggedInUser.getUserAddress().getCity()}"><br>
- 	<label for="state_province">state/province: </label>
+ 	<label for="state_province">State/Province Abbreviation: </label>
  	<input type="text" id="state_province" name="state_province" value="${loggedInUser.getUserAddress().getState()}"><br>
- 	<label for="postalCode">postal code: </label>
+ 	<label for="postalCode">Postal Code: </label>
  	<input type="text" id="postalCode" name="postalCode" value="${loggedInUser.getUserAddress().getPostalCode()}"><br>
- 	<label for="country">country: </label>
+ 	<label for="country">Country Abbreviation: </label>
  	<input type="text" id="country" name="country" value="${loggedInUser.getUserAddress().getCountryCode()}"><br>
- 	<h4>favorite sports:</h4>
+ 	<h4>Favorite Sports:</h4>
  	<ul>
  	<c:forEach var="sport" items="${favSports}">
  	<li>${sport.getName()}</li>

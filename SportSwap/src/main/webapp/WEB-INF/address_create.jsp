@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -55,9 +55,8 @@
 
 <div class="row">
 <div class="col">
-<h2>${listing_type }</h2>
-<h3>Create a new Address</h3>
-<p>Please enter the address information.</p>
+<h2>Create a New Address</h2>
+<h4>Please enter address information below</h4>
 
 <form action="address_create.do" method="POST">
 	<div class="form-group">
@@ -65,7 +64,7 @@
 	<input type="text" id="street" name="street" required>
 	</div>
 	<div class="form-group">
-	<label for="street2">Apt #, unit information, etc.:</label>
+	<label for="street2">Apt #, Unit, etc.:</label>
 	<input type="text" id="street2" name="street2" required>
 	</div>
 	<div class="form-group">

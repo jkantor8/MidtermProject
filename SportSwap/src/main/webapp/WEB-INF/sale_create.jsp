@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -55,19 +55,19 @@
 <div class="row">
 <div class="col">
 <h2>Sale Information</h2>
-
+<br>
 <form action="submit_sale.do" method="POST">
-<label for="title">title: </label>
-<input type="text" id="title" name="title"><br>
-<label for="description">title: </label>
-<input type="text" id="description" name="description"><br>
-<label for="price">price: $</label>
+<label for="title">Title: </label>
+<input type="text" id="title" name="title"><br><br>
+<label for="description">Description: </label>
+<input type="text" id="description" name="description"><br><br>
+<label for="price">Price: $</label>
 <input type="text" id="price" name="price"><br>
 
-<h3>Item</h3>
-${item}
+<%-- <h3>Item</h3>
+<p>${item.name}</p> --%>
 
-<input type="submit" value="submit" class="btn btn-outline-red">
+<input type="submit" value="Submit" class="btn btn-outline-red">
 
 </form>
 </div>

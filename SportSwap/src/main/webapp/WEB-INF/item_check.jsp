@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -56,12 +56,12 @@
 <main class="container p-4">
 <div class="row">
 <div class="col">
-<h2>${listing_type }</h2>
 
-<p>Would you like to create a new item or use one from your inventory?</p>
+
+<h3>Would you like to create a new item or use one from your inventory?</h3>
 <form action="item_option.do" method="POST">
-	<input type="submit" value="use existing item" name="need_item" class="btn btn-outline-red"><br>
-	<input type="submit" value="create a new item" name="need_item" class="btn btn-outline-red"><br>
+	<input type="submit" value="Use Existing Item(s)" name="need_item" class="btn btn-outline-red"><br>
+	<input type="submit" value="Create a New Item" name="need_item" class="btn btn-outline-red"><br>
 </form>
 </div>
 </div>

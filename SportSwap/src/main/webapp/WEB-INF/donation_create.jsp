@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -55,30 +55,30 @@
 <main class="container p-4">
 <div class="row">
 <div class="col">
-<h2>${listing_type }</h2>
-<h3>Create a new donation event.</h3>
-<p>Please enter the event information.</p>
+
+<h2>Create a New Donation Event.</h2>
+<h4>Please enter event information below</h4>
 
 <form action="submit_donation.do" method="POST">
 <div class="form-group">
 	<label for="title">Title: </label>
-	<input type="text" value="title" name="title">
+	<input type="text" value="Catchy Title Here" name="title">
 	</div>
 	<div class="form-group">
 	<label for="description">Description: </label>
-	<input type="text" value="description" name="description">
+	<input type="text" value="Good Descripton Here" name="description">
 	</div>
 	<div class="form-group">
-	<label for="start">Start date:</label>
+	<label for="start">Start Date:</label>
 	<input type="datetime-local" id="start" name="eventStart"
        value="<?php echo date('Y-m-d');?">
        </div>
        <div class="form-group">
-	<label for="end">Start date:</label>
+	<label for="end">End Date:</label>
 	<input type="datetime-local" id="end" name="eventEnd"
        value="<?php echo date('Y-m-d');?>">
        </div>
-	<input type="submit" value="create donation">
+	<input type="submit" value="Create Donation Event">
 </form>
 </div>
 </div>

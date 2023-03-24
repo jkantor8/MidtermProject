@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <!-- JSP -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!--  end -->
 <!DOCTYPE html>
 <html>
@@ -31,11 +33,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -45,7 +47,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -75,7 +77,10 @@
             <tr>
                 <td>${message.sender.username}</td>
                 <td>${message.content}</td>
-                <td>${message.created}</td>
+                <td><fmt:parseDate value="${message.created}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></td>
+                
+         
             </tr>
         </c:forEach>
     </table>
@@ -96,7 +101,9 @@
             <tr>
                 <td>${message.receiver.username}</td>
                 <td>${message.content}</td>
-                <td>${message.created}</td>
+            <td><fmt:parseDate value="${message.created}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></td>
+                
             </tr>
         </c:forEach>
     </table>

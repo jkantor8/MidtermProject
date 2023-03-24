@@ -29,11 +29,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -43,7 +43,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -61,19 +61,21 @@
   
 
 
-    <h2>Create a new message</h2>
-
+    <h2>Create a New Message</h2>
+<br>
     <c:out value="${receiver.id}" />
     
     <form action="/new-message" method="post">
         <label for="receiverUsername">Recipient:</label>
         <input type="text" id="receiverUsername" name="receiverUsername" required>
         <br>
+        <br>
         <label for="content">Message:</label>
         <textarea id="content" name="content" required></textarea>
         <br>
             
         <input type="submit" value="Send" class="btn btn-outline-red">
+        <button onclick="location.href='messages'" class="btn btn-outline-red">Return to Messages</button>
     </form> 
 
     </div>

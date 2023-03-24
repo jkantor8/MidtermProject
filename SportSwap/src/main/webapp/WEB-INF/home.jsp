@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="password" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -68,12 +68,12 @@
         <h5 class="card-title">Swap Listing</h5>
         <p class="card-text">${swapListing.title}</p>
         <p class="card-text">${swapListing.description}</p>
-        <p class="card-text">items:<br><ul>
+        <p class="card-text">Items:<br><ul>
         <c:forEach var="item" items="${swapListing.getItems()}">
         	<li>${item.name}</li>
         	</c:forEach>
         </ul></p>
-        <a href="singleListing.do?id=${swapListing.getId()}&listing_type=swap" class="btn btn-outline-red">more</a>
+        <a href="singleListing.do?id=${swapListing.getId()}&listing_type=swap" class="btn btn-outline-red">See Listing</a>
       </div>
     </div>
   </div>
@@ -89,13 +89,13 @@
         <h5 class="card-title">Donation Listing</h5>
          <p class="card-text">${donationListing.title}</p>
         <p class="card-text">${donationListing.description}</p>
-        <p class="card-text">items:<br>
+        <p class="card-text">Items:<br>
         <p class="card-text"><ul>
         <c:forEach var="item" items="${donationListing.getItems()}">
         	<li>${item.name}</li>
         	</c:forEach>
         </ul></p>
-        <a href="singleListing.do?id=${donationListing.getId()}&listing_type=donation" class="btn btn-outline-red">more</a>
+        <a href="singleListing.do?id=${donationListing.getId()}&listing_type=donation" class="btn btn-outline-red">See Listing</a>
       </div>
     </div>
   </div>
@@ -111,7 +111,7 @@
         <h5 class="card-title">Sale Listing</h5>
          <p class="card-text">${saleListing.title}</p>
         <p class="card-text">${saleListing.description}</p>
-        <a href="singleListing.do?id=${saleListing.getId()}&listing_type=sale" class="btn btn-outline-red">more</a>
+        <a href="singleListing.do?id=${saleListing.getId()}&listing_type=sale" class="btn btn-outline-red">See Listing</a>
       </div>
     </div>
   </div>

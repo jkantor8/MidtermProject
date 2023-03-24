@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -53,21 +53,21 @@
 <main class="container p-4">
 
 <!--  users -->
-<div class="row"><h2>admin menu</h2></div>
+<div class="row"><h2>Admin Menu</h2></div>
 <div class="row">
 <div class="col">
 <h3>Users</h3>
 <table class="mb-4">
-<tr><th>delete</th><th>username</th><th>active</th></tr>
+<tr><th>Activate/Deactivate</th><th>Username</th><th>Active Status</th></tr>
 <c:forEach var="user" items="${users}">
 <tr>
 <td>
 <!--  do not include admin in possible deletes! -->
 	<c:if test="${user.id!=1 and user.active==true}">
-	<a href="deactivate.do?entity=user&id=${user.id}" class="btn btn-outline-red">deactivate</a>
+	<a href="deactivate.do?entity=user&id=${user.id}" class="btn btn-outline-red">Deactivate</a>
 	</c:if>
 	<c:if test="${user.id!=1 and user.active==false }">
-	<a href="reactivate.do?entity=user&id=${user.id}" class="btn btn-outline-red">reactivate</a>
+	<a href="reactivate.do?entity=user&id=${user.id}" class="btn btn-outline-red">Reactivate</a>
 	</c:if>
 	</td>
 <td>${user.username}</td>
@@ -88,17 +88,17 @@ DEACTIVATED
 <!-- donation listings -->
 <div class="row">
 <div class="col">
-<h3>donation listings</h3>
+<h3>Donation Listings</h3>
 <table class="mb-4">
-<tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
+<tr><th>Activate/Deactivate</th><th>Title</th><th>User</th><th>Active Status</th></tr>
 <c:forEach var="donation" items="${donations}">
 <tr>
 <td>
 	<c:if test="${donation.active==true}">
-	<a href="deactivate.do?entity=donation&id=${donation.id}" class="btn btn-outline-red">deactivate</a>
+	<a href="deactivate.do?entity=donation&id=${donation.id}" class="btn btn-outline-red">Deactivate</a>
 	</c:if>
 	<c:if test="${donation.active==false }">
-	<a href="reactivate.do?entity=donation&id=${donation.id}" class="btn btn-outline-red">reactivate</a>
+	<a href="reactivate.do?entity=donation&id=${donation.id}" class="btn btn-outline-red">Reactivate</a>
 	</c:if>
 	</td>
 	<td>${donation.title}</td>
@@ -116,16 +116,16 @@ DEACTIVATED
 	<c:if test="${donation.donationListingPosts.size()>0}">
 	<tr>
 	<td colspan="4">
-	<h4>posts for: ${donation.title}</h4>
+	<h5>Posts For: ${donation.title}</h5>
 	<ul>
 	<c:forEach var="post" items="${donation.donationListingPosts }">
 	<li> --
 		<c:if test="${post.active==true}">
-		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">deactivate </a>${post.comment} - ${post.postingUser.username}
+		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">Deactivate </a>${post.comment} - ${post.postingUser.username}
 		
 		</c:if>
 		<c:if test="${post.active==false }">
-		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">reactivate </a>${post.comment} - ${post.postingUser.username}
+		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">Reactivate </a>${post.comment} - ${post.postingUser.username}
 		</c:if>
 	</li>
 	</c:forEach>
@@ -142,17 +142,17 @@ DEACTIVATED
 <!-- sale listings -->
 <div class="row">
 <div class="col">
-<h3>sale listings</h3>
+<h3>Sale Listings</h3>
 <table class="mb-4">
-<tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
+<tr><th>Activate/Deactivate</th><th>Title</th><th>User</th><th>Active Status</th></tr>
 <c:forEach var="sale" items="${sales}">
 <tr>
 <td>
 	<c:if test="${sale.active==true}">
-	<a href="deactivate.do?entity=sale&id=${sale.id}" class="btn btn-outline-red">deactivate</a>
+	<a href="deactivate.do?entity=sale&id=${sale.id}" class="btn btn-outline-red">Deactivate</a>
 	</c:if>
 	<c:if test="${sale.active==false }">
-	<a href="reactivate.do?entity=sale&id=${sale.id}" class="btn btn-outline-red">reactivate</a>
+	<a href="reactivate.do?entity=sale&id=${sale.id}" class="btn btn-outline-red">Reactivate</a>
 	</c:if>
 	</td>
 	<td>${sale.title}</td>
@@ -170,16 +170,16 @@ DEACTIVATED
 	<c:if test="${sale.saleListingPosts.size()>0}">
 	<tr>
 	<td colspan="4">
-	<h4>posts for: ${sale.title}</h4>
+	<h5>Posts For: ${sale.title}</h5>
 	<ul>
 	<c:forEach var="post" items="${sale.saleListingPosts }">
 	<li> --
 		<c:if test="${post.active==true}">
-		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">deactivate </a>${post.comment} - ${post.postingUser.username}
+		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">Deactivate </a>${post.comment} - ${post.postingUser.username}
 		
 		</c:if>
 		<c:if test="${post.active==false }">
-		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">reactivate </a>${post.comment} - ${post.postingUser.username}
+		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">Reactivate </a>${post.comment} - ${post.postingUser.username}
 		</c:if>
 	</li>
 	</c:forEach>
@@ -196,17 +196,17 @@ DEACTIVATED
 <!-- sale listings -->
 <div class="row">
 <div class="col">
-<h3>swap listings</h3>
+<h3>Swap Listings</h3>
 <table class="mb-4">
-<tr><th>delete</th><th>title</th><th>user</th><th>active</th></tr>
+<tr><th>Activate/Deactivate</th><th>Title</th><th>User</th><th>Active Status</th></tr>
 <c:forEach var="swap" items="${swaps}">
 <tr>
 <td>
 	<c:if test="${swap.active==true}">
-	<a href="deactivate.do?entity=swap&id=${swap.id}" class="btn btn-outline-red">deactivate</a>
+	<a href="deactivate.do?entity=swap&id=${swap.id}" class="btn btn-outline-red">Deactivate</a>
 	</c:if>
 	<c:if test="${swap.active==false }">
-	<a href="reactivate.do?entity=swap&id=${swap.id}" class="btn btn-outline-red">reactivate</a>
+	<a href="reactivate.do?entity=swap&id=${swap.id}" class="btn btn-outline-red">Reactivate</a>
 	</c:if>
 	</td>
 	<td>${swap.title}</td>
@@ -224,16 +224,16 @@ DEACTIVATED
 	<c:if test="${swap.swapListingPosts.size()>0}">
 	<tr>
 	<td colspan="4">
-	<h4>posts for: ${swap.title}</h4>
+	<h5>Posts For: ${swap.title}</h5>
 	<ul>
 	<c:forEach var="post" items="${swap.swapListingPosts }">
 	<li> --
 		<c:if test="${post.active==true}">
-		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">deactivate </a>${post.comment} - ${post.postingUser.username}
+		<a href="deactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">Deactivate </a>${post.comment} - ${post.postingUser.username}
 		
 		</c:if>
 		<c:if test="${post.active==false }">
-		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">reactivate </a>${post.comment} - ${post.postingUser.username}
+		<a href="reactivate.do?entity=post&id=${post.id}" class="btn btn-outline-red">Reactivate </a>${post.comment} - ${post.postingUser.username}
 		</c:if>
 	</li>
 	</c:forEach>

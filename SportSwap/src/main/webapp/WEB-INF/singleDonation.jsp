@@ -32,10 +32,10 @@
 				<c:when test="${loggedInUser==null}">
 					<div class="col-md-auto">
 						<form method="POST" action="home.do">
-							<label for="username">username: </label> <input type="text"
-								id="username" name="username"> <label for="password">password:
+							<label for="username">Username: </label> <input type="text"
+								id="username" name="username"> <label for="password">Password:
 							</label> <input type="password" id="password" name="password"> <input
-								type="submit" value="login" name="login" class="btn btn-outline-red">
+								type="submit" value="Login" name="login" class="btn btn-outline-red">
 						</form>
 					</div>
 				</c:when>
@@ -45,7 +45,7 @@
 					</div>
 					<div class="col-md-auto">
 						<form method="POST" action="home.do">
-							<input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+							<input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
 						</form>
 					</div>
 				</c:otherwise>
@@ -109,7 +109,7 @@
 				</blockquote>
 				</c:when>
 				<c:otherwise>
-				<p>no image provided<p>
+				<p>No Image Provided<p>
 				</c:otherwise>
 				</c:choose>
 			</c:forEach>
