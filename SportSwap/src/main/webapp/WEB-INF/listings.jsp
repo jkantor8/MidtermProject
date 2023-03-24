@@ -54,11 +54,9 @@
 <main class="container p-4">
 
 		<form method="POST" action="listings.do">
-		<div class="row">
-			<div class="col-4"><input type="submit" value="View Swaps" name="list_view" class="btn btn-outline-red top_btn"></div>
-			<div class="col-4"><input type="submit" value="View Donations" name="list_view" class="btn btn-outline-red top_btn"></div>
-			<div class="col-4"><input type="submit" value="View Sales" name="list_view" class="btn btn-outline-red top_btn"></div>
-				</div>
+			<input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red top_btn">
+			<input type="submit" value="view donations" name="list_view" class="btn btn-outline-red top_btn">
+			<input type="submit" value="view sales" name="list_view" class="btn btn-outline-red top_btn">
 		</form>
 	
 <div class="row">
@@ -73,18 +71,16 @@
                 <th>Description</th>
             </tr>
             <c:forEach var="listing" items="${listings}">
-            
-                     <c:if test="${listing.active == true}">
+            <c:if test="${listing.active==true }">
                     <tr>
                         <td><a href="singleListing.do?listingId=${listing.id}">${listing.title}</a></td>
                         <td>${listing.description}</td>
                     </tr>
-                    </c:if>
+                 </c:if>
              
             </c:forEach>
         </table>
-    </c:if>
-
+</c:if>
 </div>
 </main>
 
