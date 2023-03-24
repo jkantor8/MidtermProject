@@ -55,18 +55,19 @@
 
 		<form method="POST" action="listings.do">
 		<div class="row">
-			<div class="col-4"><input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red top_btn"></div>
-			<div class="col-4"><input type="submit" value="view donations" name="list_view" class="btn btn-outline-red top_btn"></div>
-			<div class="col-4"><input type="submit" value="view sales" name="list_view" class="btn btn-outline-red top_btn"></div>
+			<div class="col-4"><input type="submit" value="View Swaps" name="list_view" class="btn btn-outline-red top_btn"></div>
+			<div class="col-4"><input type="submit" value="View Donations" name="list_view" class="btn btn-outline-red top_btn"></div>
+			<div class="col-4"><input type="submit" value="View Sales" name="list_view" class="btn btn-outline-red top_btn"></div>
 				</div>
 		</form>
 	
 <div class="row">
-<c:if test="${empty listings}"><p class="centered">select a category to view listings</p></c:if>
+<c:if test="${empty listings}"><p class="centered">Select a Category to View Listings</p></c:if>
 		<c:if test="${not empty listings }">
+		<c:if test="${listing.active == true }">
 				<h2>Current Listings</h2>
 				<table class="listing_table">
-				<tr><th>title</th><th>description</th></tr>
+				<tr><th>Title</th><th>Description</th></tr>
 					<c:forEach var="listing" items="${listings}">
 							<tr>
 							<td><a href="singleListing.do?listingId=${listing.id}">${listing.title}</a></td><td>${listing.description}</td>
@@ -74,6 +75,7 @@
 
 						</c:forEach>
 				</table>
+			</c:if>
 			</c:if>
 
 </div>
