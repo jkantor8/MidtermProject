@@ -95,10 +95,10 @@ DEACTIVATED
 <tr>
 <td>
 	<c:if test="${donation.active==true}">
-	<a href="deactivate.do?entity=donation&id=${sale.id}" class="btn btn-outline-red">deactivate</a>
+	<a href="deactivate.do?entity=donation&id=${donation.id}" class="btn btn-outline-red">deactivate</a>
 	</c:if>
 	<c:if test="${donation.active==false }">
-	<a href="reactivate.do?entity=donation&id=${sale.id}" class="btn btn-outline-red">reactivate</a>
+	<a href="reactivate.do?entity=donation&id=${donation.id}" class="btn btn-outline-red">reactivate</a>
 	</c:if>
 	</td>
 	<td>${donation.title}</td>
