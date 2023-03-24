@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <!-- JSP -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!--  end -->
 <!DOCTYPE html>
 <html>
@@ -56,12 +58,13 @@
 <!--  show a selectable list of all active items associated with the user -->
 <div class="row">
 <div class="col">
-<h2>${listing_type} listing - item select</h2>
+<h2>${fn:toUpperCase(fn:substring(listing_type, 0, 1))}${fn:substring(listing_type, 1, fn:length(listing_type))} Listing - Item Selection</h2>
+
 <p>${message}</p>
 <form action="finish_listing.do" method="POST">
 <table>
 <tr>
-<th>select</th><th>image</th><th>name</th><th>description</th></tr>
+<th>Select</th><th>Image</th><th>Name</th><th>Description</th></tr>
 <c:forEach var="item" items="${items}">
 <c:if test="${item.active}">
 <tr>
@@ -73,8 +76,8 @@
 </c:if>
 </c:forEach>
 </table>
-<input type="submit" value="submit" class="btn btn-outline-red">
-<a href="item_create.do" class="btn btn-outline-red">create another item</a>
+<input type="submit" value="Submit" class="btn btn-outline-red">
+<a href="item_create.do" class="btn btn-outline-red">Create Another Item</a>
 </form>
 
 </div>

@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -55,29 +55,29 @@
 <div class="row">
 
 <div class="col">
-<h2>${listing_type }</h2>
-<h3>Create a new item</h3>
-<p>Please enter the item information.</p>
+
+<h2>Create a New Item</h2>
+<h4>Please enter item information below</h4>
 
 <form action="item_create.do" method="POST">
 	<div class="form-group">
-		<label for="name">name:</label><br>
+		<label for="name">Name:</label><br>
 		<input type="text" id="name" name="name">
 	</div>
 	<div class="form-group">
-	<label for="description">description:</label>
+	<label for="description">Description:</label>
 	<input type="text" id="description" name="description">
 	</div>
 	<div class="form-group">
-	<label for="imageUrl">image url:</label>
+	<label for="imageUrl">Image URL:</label>
 	<input type="text" id="imageUrl" name="imageUrl">
 	</div>
 	<div class="form-group">
-	<label for="brand">brand:</label>
+	<label for="brand">Brand:</label>
 	<input type="text" id="brand" name="brand">
 	</div>
 	<div class="form-group">
-	<label for="sportId">sport:</label>
+	<label for="sportId">Sport:</label>
 		<select name="sportId" id="sportId">
   			<option value="1">Boxing</option>
   			<option value="2">Hockey</option>
@@ -96,7 +96,7 @@
 		</select>
 		</div>
 		<div class="form-group">
-	<label for="conditionId">condition:</label>
+	<label for="conditionId">Condition:</label>
 		<select name="conditionId" id="conditionId">
   			<option value="1">New</option>
   			<option value="2">Lightly Used</option>
@@ -105,7 +105,7 @@
 		</select>
 		</div>
 		<div class="form-group">
-	<label for="gender">gender:</label>
+	<label for="gender">Gender:</label>
 		<select name="gender" id="gender">
 		<option value="N/A">N/A</option>
   			<option value="Unisex">Unisex</option>
@@ -114,7 +114,7 @@
 		</select>
 		</div>
 		<div class="form-group">
-		<label for="ageGroupId">age group:</label>
+		<label for="ageGroupId">Age Group:</label>
 		<select name="ageGroupId" id="ageGroupId">
   			<option value="1">Youth</option>
   			<option value="2">Intermediate</option>
@@ -123,7 +123,7 @@
 		</select>
 		</div>
 	
-	<input type="submit" value="submit" class="btn btn-outline-red">
+	<input type="submit" value="Submit" class="btn btn-outline-red">
 </form>
 </div>
 </div>

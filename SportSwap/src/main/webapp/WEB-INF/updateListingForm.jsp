@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -56,7 +56,7 @@
 <div class="row"></div>
 <div class="col">
 <h2>Update Listing</h2>
-
+<br>
 <form action="performUpdate.do" method="post">
     <input type="hidden" name="listing_type" value="${listing_type}">
     <input type="hidden" name="id" value="${listing.id}">
@@ -70,7 +70,7 @@
 
     <label for="active">Active:</label>
     <input type="radio" id="active" name="active" value="true" ${listing.active ? 'checked' : ''}>
-    <br>
+    
     <label for="inactive">Inactive:</label>
     <input type="radio" id="active" name="active" value="false" ${!listing.active ? 'checked' : ''}>
     <br>
@@ -100,7 +100,7 @@
         </c:when>
     </c:choose>
 
-    <input type="submit" value="Update">
+    <input type="submit" value="Update" class="btn btn-outline-red">
 </form>
 </div>
 

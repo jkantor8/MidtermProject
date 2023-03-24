@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -55,11 +55,11 @@
 <main class="container p-4">
 <div class="row">
 <div class="col">
-<h2>${listing_type }</h2>
+
 <h3>Are you requesting items (i.e. holding a donation drive)? Or offering items for donation?</h3>
 <form action="donation_select.do" method="GET">
-<input type="submit" value="requesting items" name="donation_type" class="btn btn-outline-red">
-<input type="submit" value="offering items" name="donation_type" class="btn btn-outline-red">
+<input type="submit" value="Requesting Items" name="donation_type" class="btn btn-outline-red">
+<input type="submit" value="Offering Items" name="donation_type" class="btn btn-outline-red">
 </form>
 </div>
 </div>

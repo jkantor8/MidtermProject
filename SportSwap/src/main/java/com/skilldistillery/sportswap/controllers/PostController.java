@@ -41,7 +41,7 @@ public class PostController {
 		post.setComment(comment);
 		switch (commentType) {
 		
-		case "Post to Donation":
+		case "Respond to Donation":
 			
 			DonationListing donationListing = donationListingDAO.findById(listingId);
 			createdPost = postDAO.addToDonate(post, user, donationListing);
@@ -49,7 +49,7 @@ public class PostController {
 			mv.addObject("listing",donationListing);
 			mv.setViewName("singleDonation");
 			break;
-		case "Post for Seller":
+		case "Reply to Seller":
 			SaleListing saleListing = saleListingDAO.findById(listingId);
 			createdPost = postDAO.addToSale(post, user, saleListing);
 			mv.addObject("post", createdPost);
@@ -57,7 +57,7 @@ public class PostController {
 			mv.setViewName("singleSale");
 			break;
 
-		case "Post for Swapper":
+		case "Reply to Swapper":
 			SwapListing swapListing = swapListingDAO.findById(listingId);
 			createdPost = postDAO.addToSwap(post, user, swapListing);
 			mv.addObject("listing",swapListing);

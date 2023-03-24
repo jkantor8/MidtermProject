@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="password" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -55,12 +55,12 @@
 
 		<form method="POST" action="listings.do">
 		<div class="row">
-			<div class="col"><input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red top_btn"></div>
-				<div class="col"><input type="submit" value="view donations" name="list_view" class="btn btn-outline-red top_btn"></div>
-				<div class="col"><input type="submit" value="view sales" name="list_view" class="btn btn-outline-red top_btn"></div>
+			<div class="col"><input type="submit" value="View Swaps" name="list_view" class="btn btn-outline-red top_btn"></div>
+				<div class="col"><input type="submit" value="View Donations" name="list_view" class="btn btn-outline-red top_btn"></div>
+				<div class="col"><input type="submit" value="View Sales" name="list_view" class="btn btn-outline-red top_btn"></div>
 			</div>
 		</form>
-	
+	<br>
 <div class="row">
     <c:if test="${empty listings}">
         <p class="centered">Select a Category to View Listings</p>

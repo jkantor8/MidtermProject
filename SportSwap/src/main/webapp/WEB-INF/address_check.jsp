@@ -26,11 +26,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
+  			<input type="submit" value="Login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
+         <input type="submit" value="Logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -55,11 +55,11 @@
 
 <div class="row">
 <div class="col">
-<h3>Would you like to use your address or create a new location for your ${listing_type} listing?</h3>
+<h3>Would you like to use your address or create a new location for your new ${listing_type} listing?</h3>
 
 
 <form action="address_check.do" method="POST">
-	<input type="submit" value="Create a Location" name="which_address" class="btn btn-outline-red">
+	<input type="submit" value="Create a New Location" name="which_address" class="btn btn-outline-red">
 	<input type="submit" value="Use My Address" name="which_address" class="btn btn-outline-red">
 </form>
 </div>

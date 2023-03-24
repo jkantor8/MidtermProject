@@ -57,19 +57,19 @@ public class ListingController {
 		String noListings = "Sorry, no listings matching those criteria were found.";
 
 		switch (listView) {
-		case "view donations":
+		case "View Donations":
 			List<DonationListing> donList = donationListingDAO.getAllDonationListings();
-			session.setAttribute("singleView", "view donations");
+			session.setAttribute("singleView", "View Donations");
 			mv.addObject("listings", donList);
 			break;
-		case "view sales":
+		case "View Sales":
 			List<SaleListing> saleList = saleListingDAO.getAllSaleListings();
-			session.setAttribute("singleView", "view sales");
+			session.setAttribute("singleView", "View Sales");
 			mv.addObject("listings", saleList);
 			break;
-		case "view swaps":
+		case "View Swaps":
 			List<SwapListing> swapList = swapListingDAO.getAllSwapListings();
-			session.setAttribute("singleView", "view swaps");
+			session.setAttribute("singleView", "View Swaps");
 			mv.addObject("listings", swapList);
 			break;
 		default:
@@ -198,18 +198,18 @@ public class ListingController {
 		mv.addObject("loggedInUser", user);
 
 		switch (singleView) {
-		case "view donations":
+		case "View Donations":
 			mv.addObject("listing", donationListingDAO.findById(listingId));
 
 			mv.setViewName("singleDonation");
 			break;
 
-		case "view swaps":
+		case "View Swaps":
 			mv.addObject("listing", swapListingDAO.findById(listingId));
 
 			mv.setViewName("singleSwap");
 			break;
-		case "view sales":
+		case "View Sales":
 			mv.addObject("listing", saleListingDAO.findById(listingId));
 
 			mv.setViewName("singleSale");

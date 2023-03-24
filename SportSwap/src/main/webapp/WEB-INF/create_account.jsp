@@ -28,11 +28,11 @@
     <c:when test="${loggedInUser==null}">
    <div class="col-md-auto">
         <form method="POST" action="home.do">
-			<label for="username">username: </label>
+			<label for="username">Username: </label>
   			<input type="text" id="username" name="username">
-  			<label for="password">password: </label>
+  			<label for="password">Password: </label>
   			<input type="password" id="password" name="password">
-  			<input type="submit" value="login" name="login">
+  			<input type="submit" value="Login" name="login">
 		</form>
 	</div>
     </c:when>    
@@ -42,7 +42,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
+         <input type="submit" value="Logout" name="logout">
          </form>
          </div>
     </c:otherwise>
@@ -73,11 +73,11 @@
  	<input type="email" id="email" name="email" required>
  	</div>
  	<div class="form-group">
- 	<label for="address">Address:</label>
+ 	<label for="address">Street Address:</label>
  	<input type="text" id="address" name="address" required>
  	</div>
  	<div class="form-group">
-	<label for="address2">Address (Apt, Unit, etc.):</label>
+	<label for="address2">Apt, Unit, etc.:</label>
  	<input type="text" id="address2" name="address2">
  	</div>
  	<div class="form-group">
@@ -116,7 +116,7 @@
 		</select>
 		</div>
 		<div class="form-group">
-		<label for="sport2">favorite sport:</label>
+		<label for="sport2">Favorite Sport:</label>
 		<select name="sport2" id="sport2" required>
   			<option value="1">Boxing</option>
   			<option value="2">Hockey</option>
@@ -136,7 +136,7 @@
 		</select>
 		</div>
  	
- 	<input type="submit" name="submit" value="create account" class="btn btn-outline-red">
+ 	<input type="submit" name="submit" value="Create Account" class="btn btn-outline-red">
 </form>
 </div>
 </div>
