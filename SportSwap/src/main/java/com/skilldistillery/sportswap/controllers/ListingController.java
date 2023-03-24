@@ -275,11 +275,15 @@ public class ListingController {
 	public String performUpdate(int id, String listing_type, @RequestParam("active") boolean active,
 			@RequestParam(value = "eventStart", required = false) LocalDateTime eventStart,
 			@RequestParam(value = "eventEnd", required = false) LocalDateTime eventEnd,
-			@RequestParam(value = "price", required = false) Double price) {
+			@RequestParam(value = "price", required = false) Double price,
+			@RequestParam("title")String title,
+			@RequestParam("description") String description) {
 
 		switch (listing_type) {
 		case "donation":
 			DonationListing donationListing = donationListingDAO.findById(id);
+			donationListing.setTitle(title);
+			donationListing.setDescription(description);
 			donationListing.setActive(active);
 			donationListing.setEventStart(eventStart);
 			donationListing.setEventEnd(eventEnd);
@@ -287,12 +291,16 @@ public class ListingController {
 			break;
 		case "swap":
 			SwapListing swapListing = swapListingDAO.findById(id);
+			swapListing.setTitle(title);
+			swapListing.setDescription(description);
 			swapListing.setActive(active);
 			swapListingDAO.update(swapListing, id);
 			break;
 		case "sale":
 			SaleListing saleListing = saleListingDAO.findById(id);
 			saleListing.setActive(active);
+			saleListing.setTitle(title);
+			saleListing.setDescription(description);
 			saleListing.setPrice(price);
 			saleListingDAO.update(saleListing, id);
 			break;

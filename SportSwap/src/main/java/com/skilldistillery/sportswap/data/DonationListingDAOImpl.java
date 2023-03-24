@@ -66,7 +66,9 @@ public class DonationListingDAOImpl implements DonationListingDAO {
 	@Override
 	public DonationListing update(DonationListing listing, int id) {
 		DonationListing updatedListing = em.find(DonationListing.class, id);
-
+		
+		updatedListing.setTitle(listing.getTitle());
+		updatedListing.setDescription(listing.getDescription());
 		updatedListing.setActive(listing.isActive());
 		updatedListing.setCreated(listing.getCreated());
 		updatedListing.setUpdated(listing.getUpdated());
