@@ -25,7 +25,7 @@ public class MessageController {
 	@Autowired
 	private UserDAO userDAO;
 
-	@RequestMapping(path = "/messages", method = RequestMethod.GET)
+	@RequestMapping(path = "messages", method = RequestMethod.GET)
 	public String getMessagesForUser(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
@@ -39,13 +39,13 @@ public class MessageController {
 		return "messages";
 	}
 
-	@RequestMapping(path = "/new-message", method = RequestMethod.GET)
+	@RequestMapping(path = "new-message", method = RequestMethod.GET)
 	public String newMessageForm(Model model) {
 	    model.addAttribute("message", new Message());
 	    return "new-message";
 	}
 
-	@RequestMapping(path = "/new-message", method = RequestMethod.POST)
+	@RequestMapping(path = "new-message", method = RequestMethod.POST)
 	public String createMessage(@ModelAttribute("message") Message message,
             @RequestParam("receiverUsername") String receiverUsername,
             HttpSession session) {
@@ -58,7 +58,7 @@ public class MessageController {
 				message.setReceiver(receiver);
 				message.setCreated(LocalDateTime.now());
 				messageDAO.save(message);
-				return "redirect:/messages";
+				return "redirect:messages";
 			} else {
 				// Handle the case when the username is not found in the session
 				return "error";

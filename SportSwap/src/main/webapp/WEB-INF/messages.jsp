@@ -60,7 +60,7 @@
 </header>
 <main class="container p-4">
 
-<a href="/new-message" class="btn btn-outline-red">Create a New Message</a>
+<a href="new-message" class="btn btn-outline-red">Create a New Message</a>
 
 <div class="row"><h2>Your Messages</h2></div>
 <div class="row">
