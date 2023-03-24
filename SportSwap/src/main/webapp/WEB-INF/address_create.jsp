@@ -30,7 +30,7 @@
   			<input type="text" id="username" name="username">
   			<label for="password">password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login">
+  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
+         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -60,18 +60,30 @@
 <p>Please enter the address information.</p>
 
 <form action="address_create.do" method="POST">
+	<div class="form-group">
 	<label for="street">Street:</label>
-	<input type="text" id="street" name="street" required><br>
+	<input type="text" id="street" name="street" required>
+	</div>
+	<div class="form-group">
 	<label for="street2">Apt #, unit information, etc.:</label>
-	<input type="text" id="street2" name="street2" required><br>
+	<input type="text" id="street2" name="street2" required>
+	</div>
+	<div class="form-group">
 	<label for="city">City:</label>
-	<input type="text" id="city" name="city" required><br>
+	<input type="text" id="city" name="city" required>
+	</div>
+	<div class="form-group">
 	<label for="stateProvince">State/Province Abbreviation:</label>
-	<input type="text" id="stateProvince" name="stateProvince" maxLength="2" required><br>
+	<input type="text" id="stateProvince" name="stateProvince" maxLength="2" required>
+	</div>
+	<div class="form-group">
 	<label for="postalCode">Postal Code:</label>
-	<input type="text" id="postalCode" name="postalCode" required><br>
+	<input type="text" id="postalCode" name="postalCode" required>
+	</div>
+	<div class="form-group">
 	<label for="countryCode">Country Abbreviation:</label>
-	<input type="text" id="countryCode" name="countryCode" maxLength="2" required><br>
+	<input type="text" id="countryCode" name="countryCode" maxLength="2" required>
+	</div>
 	<input type="submit" value="submit" class="btn btn-outline-red">
 </form>
 </div>

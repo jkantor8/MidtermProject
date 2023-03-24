@@ -59,7 +59,7 @@
 <div class="row p-2"><h3>Listings that may interest you...</h3></div>
 <div class="row justify-content-center">
 <c:if test="${not empty swapListing}">
-  <div class="col-3">
+  <div class="col-4">
     <div class="card">
     <c:if test="${not empty swapListing.getItems()}">
     <img src="${swapListing.getItems().get(0).getImageUrl()}" class="card-img-top" alt="...">
@@ -80,7 +80,7 @@
   </c:if>
   
   <c:if test="${not empty donationListing}">
-   <div class="col-3">
+   <div class="col-4">
     <div class="card">
      <c:if test="${not empty donationListing.getItems()}">
     <img src="${donationListing.getItems().get(0).getImageUrl()}" class="card-img-top" alt="...">
@@ -102,7 +102,7 @@
   </c:if>
   
    <c:if test="${not empty saleListing}">
-   <div class="col-3">
+   <div class="col-4">
     <div class="card">
      <c:if test="${not empty saleListing.getItem()}">
     <img src="${saleListing.getItem().getImageUrl()}" class="card-img-top" alt="...">

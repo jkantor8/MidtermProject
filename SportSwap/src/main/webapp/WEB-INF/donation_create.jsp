@@ -30,7 +30,7 @@
   			<input type="text" id="username" name="username">
   			<label for="password">password: </label>
   			<input type="text" id="password" name="password">
-  			<input type="submit" value="login" name="login">
+  			<input type="submit" value="login" name="login" class="btn btn-outline-red">
 		</form>
 	</div>
     </c:when>    
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-auto">
          <form method="POST" action="home.do">
-         <input type="submit" value="logout" name="logout">
+         <input type="submit" value="logout" name="logout" class="btn btn-outline-red">
          </form>
          </div>
     </c:otherwise>
@@ -60,18 +60,24 @@
 <p>Please enter the event information.</p>
 
 <form action="submit_donation.do" method="POST">
+<div class="form-group">
 	<label for="title">Title: </label>
 	<input type="text" value="title" name="title">
-	<br>
+	</div>
+	<div class="form-group">
 	<label for="description">Description: </label>
 	<input type="text" value="description" name="description">
-	<br>
+	</div>
+	<div class="form-group">
 	<label for="start">Start date:</label>
 	<input type="datetime-local" id="start" name="eventStart"
-       value="<?php echo date('Y-m-d');?"><br>
+       value="<?php echo date('Y-m-d');?">
+       </div>
+       <div class="form-group">
 	<label for="end">Start date:</label>
 	<input type="datetime-local" id="end" name="eventEnd"
-       value="<?php echo date('Y-m-d');?>"><br>
+       value="<?php echo date('Y-m-d');?>">
+       </div>
 	<input type="submit" value="create donation">
 </form>
 </div>

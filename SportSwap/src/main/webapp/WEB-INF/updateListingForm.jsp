@@ -55,7 +55,7 @@
 
 <div class="row"></div>
 <div class="col">
-<h1>Update Listing</h1>
+<h2>Update Listing</h2>
 
 <form action="performUpdate.do" method="post">
     <input type="hidden" name="listing_type" value="${listing_type}">
@@ -100,7 +100,7 @@
         </c:when>
     </c:choose>
 
-    <button type="submit">Update</button>
+    <input type="submit" value="Update">
 </form>
 </div>
 

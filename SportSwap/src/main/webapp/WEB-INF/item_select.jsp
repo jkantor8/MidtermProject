@@ -74,6 +74,7 @@
 </c:forEach>
 </table>
 <input type="submit" value="submit" class="btn btn-outline-red">
+<a href="item_create.do" class="btn btn-outline-red">create another item</a>
 </form>
 
 </div>

@@ -63,7 +63,7 @@
 	<div class="form-group">
 		<label for="name">name:</label><br>
 		<input type="text" id="name" name="name">
-	
+	</div>
 	<div class="form-group">
 	<label for="description">description:</label>
 	<input type="text" id="description" name="description">

@@ -75,7 +75,7 @@ public class ListingController {
 		default:
 			break;
 		}
-		
+
 		return mv;
 	}
 
@@ -245,93 +245,105 @@ public class ListingController {
 		}
 
 		return mv;
-	
+
 	}
-	
-	
+
 	@RequestMapping(path = "updateListing.do", method = RequestMethod.GET, params = { "id", "listing_type" })
 	public ModelAndView updateListingForm(int id, String listing_type) {
-	    ModelAndView mv = new ModelAndView();
-	    mv.addObject("listing_type", listing_type);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("listing_type", listing_type);
 
-	    switch (listing_type) {
-	    case "donation":
-	        mv.addObject("listing", donationListingDAO.findById(id));
-	        break;
-	    case "swap":
-	        mv.addObject("listing", swapListingDAO.findById(id));
-	        break;
-	    case "sale":
-	        mv.addObject("listing", saleListingDAO.findById(id));
-	        break;
-	    default:
-	        break;
-	    }
+		switch (listing_type) {
+		case "donation":
+			mv.addObject("listing", donationListingDAO.findById(id));
+			break;
+		case "swap":
+			mv.addObject("listing", swapListingDAO.findById(id));
+			break;
+		case "sale":
+			mv.addObject("listing", saleListingDAO.findById(id));
+			break;
+		default:
+			break;
+		}
 
-	    mv.setViewName("updateListingForm");
-	    return mv;
+		mv.setViewName("updateListingForm");
+		return mv;
 	}
 
 	@RequestMapping(path = "performUpdate.do", method = RequestMethod.POST, params = { "id", "listing_type" })
-	public String performUpdate(
-	        int id,
-	        String listing_type,
-	        @RequestParam("active") boolean active,
-	        @RequestParam(value = "eventStart", required = false) LocalDateTime eventStart,
-	        @RequestParam(value = "eventEnd", required = false) LocalDateTime eventEnd,
-	        @RequestParam(value = "price", required = false) Double price) {
+	public String performUpdate(int id, String listing_type, @RequestParam("active") boolean active,
+			@RequestParam(value = "eventStart", required = false) LocalDateTime eventStart,
+			@RequestParam(value = "eventEnd", required = false) LocalDateTime eventEnd,
+			@RequestParam(value = "price", required = false) Double price) {
 
-	    switch (listing_type) {
-	    case "donation":
-	        DonationListing donationListing = donationListingDAO.findById(id);
-	        donationListing.setActive(active);
-	        donationListing.setEventStart(eventStart);
-	        donationListing.setEventEnd(eventEnd);
-	        donationListingDAO.update(donationListing, id);
-	        break;
-	    case "swap":
-	        SwapListing swapListing = swapListingDAO.findById(id);
-	        swapListing.setActive(active);
-	        swapListingDAO.update(swapListing, id);
-	        break;
-	    case "sale":
-	        SaleListing saleListing = saleListingDAO.findById(id);
-	        saleListing.setActive(active);
-	        saleListing.setPrice(price);
-	        saleListingDAO.update(saleListing, id);
-	        break;
-	    default:
-	        break;
-	    }
+		switch (listing_type) {
+		case "donation":
+			DonationListing donationListing = donationListingDAO.findById(id);
+			donationListing.setActive(active);
+			donationListing.setEventStart(eventStart);
+			donationListing.setEventEnd(eventEnd);
+			donationListingDAO.update(donationListing, id);
+			break;
+		case "swap":
+			SwapListing swapListing = swapListingDAO.findById(id);
+			swapListing.setActive(active);
+			swapListingDAO.update(swapListing, id);
+			break;
+		case "sale":
+			SaleListing saleListing = saleListingDAO.findById(id);
+			saleListing.setActive(active);
+			saleListing.setPrice(price);
+			saleListingDAO.update(saleListing, id);
+			break;
+		default:
+			break;
+		}
 
-	    return "redirect:singleListing.do?id=" + id + "&listing_type=" + listing_type;
+		return "redirect:singleListing.do?id=" + id + "&listing_type=" + listing_type;
 	}
-
 
 	@PostMapping(path = "deactivate.do")
 	public ModelAndView deactivateListing(int listingId, String listing_type) {
 		ModelAndView mv = new ModelAndView();
 		boolean deactivated = false;
-		
-				switch (listing_type) {
-			    case "donation":
-			        deactivated = donationListingDAO.deactivate(listingId);
-			        mv.setViewName("viewUserDonationListings");
-			        break;
-			    case "swap":
-			        deactivated = swapListingDAO.deactivate(listingId);
-			        mv.setViewName("viewUserSwapListings");
-			        break;
-			    case "sale":
-			        deactivated = saleListingDAO.deactivate(listingId);
-			        mv.setViewName("viewUserSaleListings");
-			        break;
-			    default:
-			        break;
-			    }
 
-		
-		
+		switch (listing_type) {
+		case "donation":
+			deactivated = donationListingDAO.deactivate(listingId);
+			mv.setViewName("viewUserDonationListings");
+			break;
+		case "swap":
+			deactivated = swapListingDAO.deactivate(listingId);
+			mv.setViewName("viewUserSwapListings");
+			break;
+		case "sale":
+			deactivated = saleListingDAO.deactivate(listingId);
+			mv.setViewName("viewUserSaleListings");
+			break;
+		default:
+			break;
+		}
+
+		return mv;
+	}
+
+	// donation routing
+	@GetMapping(path = "donation_select.do")
+	public ModelAndView selectDonationType(HttpSession session, @RequestParam("donation_type") String donationType) {
+		ModelAndView mv = new ModelAndView();
+
+		switch (donationType) {
+		case "requesting items":
+			mv.setViewName("donation_create");
+			break;
+		case "offering items":
+			mv.setViewName("item_check");
+			break;
+		default:
+			break;
+		}
+
 		return mv;
 	}
 

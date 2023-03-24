@@ -54,9 +54,11 @@
 <main class="container p-4">
 
 		<form method="POST" action="listings.do">
-			<input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red top_btn">
-			<input type="submit" value="view donations" name="list_view" class="btn btn-outline-red top_btn">
-			<input type="submit" value="view sales" name="list_view" class="btn btn-outline-red top_btn">
+		<div class="row">
+			<div class="col"><input type="submit" value="view swaps" name="list_view" class="btn btn-outline-red top_btn"></div>
+				<div class="col"><input type="submit" value="view donations" name="list_view" class="btn btn-outline-red top_btn"></div>
+				<div class="col"><input type="submit" value="view sales" name="list_view" class="btn btn-outline-red top_btn"></div>
+			</div>
 		</form>
 	
 <div class="row">

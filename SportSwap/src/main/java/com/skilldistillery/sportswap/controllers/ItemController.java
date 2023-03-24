@@ -55,6 +55,11 @@ public class ItemController {
 		// take user to item select page
 		return "redirect:item_select.do";
 	}
+	
+	@GetMapping(path="item_create.do")
+	public String addAnotherItem() {
+		return "item_create";
+	}
 
 	// this is for when the user is trying to select items for a listing
 	@GetMapping(path = "item_select.do")

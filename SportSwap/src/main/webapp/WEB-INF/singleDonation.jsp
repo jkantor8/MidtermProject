@@ -59,14 +59,18 @@
 	</header>
 	
 	<main class="container p-4">
+	<div class="row">
+	<div class="col">
 	<h2>${listing.title}</h2><br>
 	<h4>${listing.description}</h4>
-	<h6>${listing.donationAddress}</h6>
-	<h6>Donation Drive Start:<fmt:parseDate value="${listing.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+	<p>${listing.donationAddress}</p>
+	
+	<h6>Donation Start:<fmt:parseDate value="${listing.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
 					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></h6>
-	<h6>Donation Drive End:<fmt:parseDate value="${listing.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+	<h6>Donation End:<fmt:parseDate value="${listing.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
 					<fmt:formatDate pattern="MM.dd.yyyy HH:mm" value="${ parsedDateTime }" /></h6>
-
+</div>
+	</div>
 
 
 
@@ -118,7 +122,7 @@
 						<textarea id="comment" name="comment" rows="4"></textarea>
 						<br> <input type="hidden" name="user" value="${loggedInUser}">
 						<input type="hidden" name="listingId" value="${listing.id}">
-						<input type="submit" value="Post to Donation" name="commentType">
+						<input type="submit" value="Post to Donation" name="commentType" class="btn btn-outline-red">
 					</form>
 
 				</c:when>
