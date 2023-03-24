@@ -55,9 +55,9 @@
 
 <div class="row">
 <div class="col">
-<h2>${listing_type}</h2>
+<h3>Would you like to use your address or create a new location for your ${listing_type} listing?</h3>
 
-<p>Would you like to use your address or create a new location?</p>
+
 <form action="address_check.do" method="POST">
 	<input type="submit" value="Create a Location" name="which_address" class="btn btn-outline-red">
 	<input type="submit" value="Use My Address" name="which_address" class="btn btn-outline-red">
