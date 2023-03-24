@@ -52,10 +52,10 @@
 </div>
 </header>
 <main class="container p-4">
-<<<<<<< HEAD
+
 <div class="row">
 <div class="col">
-<h2>${listing_type }</h2>
+<h2>Create a Swap Listing</h2>
 
 
 <form action="submit_swap.do" method="POST">
